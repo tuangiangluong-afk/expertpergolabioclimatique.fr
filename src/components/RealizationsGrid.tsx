@@ -2,27 +2,27 @@ import Image from "next/image";
 
 const projects = [
     {
-        "city": "Marbella",
-        "desc": "Pérgola Bioclimática Adosada de Lujo",
-        "type": "Estructura Gris Antracita con Lamas Orientables (24m²)",
+        "city": "Cannes",
+        "desc": "Pergola Bioclimatique Adossée de Luxe",
+        "type": "Structure Gris Anthracite avec Lames Orientables (24m²)",
         "img": "/images/generated/pergola-realization-1.png"
     },
     {
-        "city": "Ibiza",
-        "desc": "Pérgola Autoportante Minimalista",
-        "type": "Pérgola Blanca con Iluminación LED y Sensores (30m²)",
+        "city": "Saint-Tropez",
+        "desc": "Pergola Autoportée Minimaliste",
+        "type": "Pergola Blanche avec Éclairage LED et Capteurs (30m²)",
         "img": "/images/generated/pergola-realization-2.png"
     },
     {
-        "city": "Alicante",
-        "desc": "Cerramiento Exterior Completo",
-        "type": "Pérgola con cortinas de cristal y estores motorizados (20m²)",
+        "city": "Aix-en-Provence",
+        "desc": "Fermeture Extérieure Complète",
+        "type": "Pergola avec baies vitrées et stores motorisés (20m²)",
         "img": "/images/generated/pergola-realization-3.png"
     },
     {
-        "city": "Costa Brava",
-        "desc": "Pérgola Bioclimática en Terraza Facade",
-        "type": "Lamas regulables domóticas y acabado premium (18m²)",
+        "city": "Biarritz",
+        "desc": "Pergola Bioclimatique sur Terrasse",
+        "type": "Lames orientables domotisées et finition premium (18m²)",
         "img": "/images/generated/pergola-realization-4.png"
     }
 ];
@@ -32,9 +32,9 @@ export default function RealizationsGrid() {
         <section className="py-20 bg-neutral-900 text-white">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: `Últimas instalaciones de pérgolas en <span class="text-purple-500">España</span>` }} />
+                    <h2 className="text-3xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: `Dernières installations de pergolas en <span class="text-purple-500">France</span>` }} />
                     <p className="text-neutral-400">
-                        Calidad premium y diseño exterior a medida. Proyectos reales terminados.
+                        Qualité premium et aménagement extérieur sur mesure. Projets réels terminés.
                     </p>
                 </div>
 

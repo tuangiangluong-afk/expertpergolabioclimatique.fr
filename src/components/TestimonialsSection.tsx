@@ -3,17 +3,17 @@
 export default function TestimonialsSection() {
     const testimonials = [
         {
-            quote: "Nous voulions rénover notre allée de garage et notre terrasse. L&apos;artisan proposé nous a conseillé le béton désactivé pour la voiture et le béton imprimé imitation bois pour la terrasse. Le résultat est splendide et extrêmement solide !",
+            quote: "Nous voulions profiter de notre terrasse exposée plein sud sans étouffer sous la chaleur. La pergola bioclimatique est un vrai bonheur : on gère l'ombre et la ventilation avec la télécommande. Matériel très robuste !",
             name: "Marc Dubreuil",
             location: "Bordeaux",
-            product: "Béton désactivé & imprimé",
+            product: "Pergola Autoportée 4x4m",
             initials: "MD"
         },
         {
-            quote: "Très satisfaite de mon projet de plage de piscine en béton désactivé. Antidérapant, esthétique et très facile d&apos;entretien. Les devis reçus étaient clairs et compétitifs, avec la garantie décennale.",
+            quote: "Très satisfait de notre pergola adossée. Le design gris anthracite se marie parfaitement avec notre maison moderne. L'éclairage LED intégré nous permet de dîner dehors même tard le soir. Pose impeccable.",
             name: "Valérie Lemaire",
             location: "Nice",
-            product: "Béton Désactivé Piscine",
+            product: "Pergola Adossée avec Stores",
             initials: "VL"
         }
     ];
@@ -22,8 +22,8 @@ export default function TestimonialsSection() {
         <section className="bg-slate-900 text-white py-16 lg:py-24 overflow-hidden relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-16 relative z-10">
                 <div className="flex-1 flex flex-col gap-8">
-                    <h2 className="text-2xl md:text-3xl font-bold">Artisans bétonneurs partout en France</h2>
-                    <p className="text-slate-400 text-lg">Trouvez un expert en béton décoratif qualifié et assuré pour vos travaux extérieurs.</p>
+                    <h2 className="text-2xl md:text-3xl font-bold">Installateurs Premium partout en France</h2>
+                    <p className="text-slate-400 text-lg">Trouvez un expert en aménagement extérieur qualifié pour la pose de votre pergola bioclimatique.</p>
                 </div>
                 <div className="flex-1 flex flex-col gap-6">
                     {testimonials.map((t, idx) => (

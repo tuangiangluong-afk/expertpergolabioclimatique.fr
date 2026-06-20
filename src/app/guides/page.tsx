@@ -15,7 +15,7 @@ export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
     title: "Guías e Ideas para Exteriorismo | Expert Béton Décoratif",
-    description: "Aprenda todo sobre el diseño e instalación de pérgolas bioclimáticas.. Guides, conseils et astuces de nos artisans certifiés RGE QualiPAC.",
+    description: "Découvrez tout sur la conception et l'installation de pergolas bioclimatiques.. Guides, conseils et astuces de nos artisans certifiés RGE QualiPAC.",
 };
 
 export default async function GuidesIndex() {
@@ -69,7 +69,7 @@ export default async function GuidesIndex() {
             <main className="container mx-auto px-4 py-16 pt-32">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-                        Guías y Diseño de Pérgolas
+                        Guías y Diseño de Pergolas
                     </h1>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                         Guías de diseño, tendencias y consejos prácticos para optimizar su espacio exterior.</p>

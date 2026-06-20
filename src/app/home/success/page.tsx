@@ -16,7 +16,7 @@ export default function SuccessPage() {
                 <CheckCircle className="text-green-500 w-16 h-16 mx-auto mb-6" />
                 <h1 className="text-3xl font-black text-slate-900 mb-4">Demande de devis validée !</h1>
                 <p className="text-slate-600 mb-8">
-                    Votre demande de devis pour vos travaux de béton décoratif a bien été enregistrée. Nos artisans partenaires certifiés étudient vos informations et vous recontacteront sous 24h à 48h.
+                    Votre demande de devis pour vos travaux de pergola bioclimatique a bien été enregistrée. Nos artisans partenaires certifiés étudient vos informations et vous recontacteront sous 24h à 48h.
                 </p>
                 <Link href="/" className="inline-block px-8 py-3 bg-amber-500 text-slate-900 font-bold rounded-xl hover:bg-amber-600 transition">
                     Retour à l&apos;accueil

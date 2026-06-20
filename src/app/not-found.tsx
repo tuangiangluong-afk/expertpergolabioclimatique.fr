@@ -15,7 +15,7 @@ export default function NotFound() {
                 </h2>
 
                 <p className="text-slate-500 mb-10 leading-relaxed">
-                    La página que buscas no existe o ha sido movida. Pero no te preocupes, nuestros expertos en pérgolas sí están disponibles.
+                    La página que buscas no existe o ha sido movida. Pero no te preocupes, nuestros expertos en pergolas sí están disponibles.
                 </p>
 
                 <Link

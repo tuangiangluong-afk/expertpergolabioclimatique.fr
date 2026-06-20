@@ -127,7 +127,7 @@ export default function LocalLinker() {
                         <CheckCircle className="text-green-400 shrink-0 mt-0.5" size={18} />
                         <div>
                             <p className="text-sm font-medium text-green-100 mb-2">
-                                ¡Buenas noticias! Tenemos un instalador asociado en <span className="text-white font-bold">{result.city}</span>.
+                                Bonne nouvelle ! Nous avons un installateur partenaire certifié à <span className="text-white font-bold">{result.city}</span>.
                             </p>
                             <Link
                                 href={result.url}

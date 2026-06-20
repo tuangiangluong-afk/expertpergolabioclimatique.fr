@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         }
 
         let leadScore = body.leadScore || 60;
-        const currentCountry = 'ES' as string;
+        const currentCountry = 'FR' as string;
         const currentNiche = 'pergola';
         
         // ----------------------------------------------------
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
                 tp: 1, type_bien: 2, situation: 1, delais: 2,
                 description: `Projet: ${projectType || 'N/A'}. Surface: ${monthlyBill || 'N/A'}. Generé via ${domain}`,
                 cat_id: '108',
-                site_name: domain || 'expertopergolabioclimatica.es'
+                site_name: domain || 'expertpergolabioclimatique.fr'
             };
             try {
                 arbitrageResult = await sendLeadToViteUnDevis(vudPayload);
@@ -109,7 +109,7 @@ export async function POST(request: Request) {
 
         const leadPayload: any = {
             name, email, phone, city, postal_code: postalCode,
-            tenant_id: domain || 'expertopergolabioclimatica.es',
+            tenant_id: domain || 'expertpergolabioclimatique.fr',
             type: `${currentNiche}_lead`,
             housing_type: projectType,
             status: 'new',

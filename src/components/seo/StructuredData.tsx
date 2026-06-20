@@ -4,10 +4,10 @@ export default function StructuredData() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Experto Pérgola Bioclimática",
+        "name": "Expert Pergola Bioclimatique",
         "url": "https://www.expertopergolabioclimatica.es",
         "logo": "https://www.expertopergolabioclimatica.es/logo.png",
-        "description": "Red nacional de instaladores profesionales de pérgolas bioclimáticas a medida para terrazas y jardines en España.",
+        "description": "Réseau national d'installateurs professionnels de pergolas bioclimatiques sur mesure pour terrasses et jardins en France.",
         "sameAs": [],
         "foundingDate": "2020",
         "address": {
@@ -43,7 +43,7 @@ export default function StructuredData() {
     const serviceSchema = {
         "@context": "https://schema.org",
         "@type": "Service",
-        "serviceType": "Instalación de Pérgolas Bioclimáticas",
+        "serviceType": "Installation de Pergolas Bioclimatiques",
         "provider": { "@type": "Organization", "name": "expertopergolabioclimatica" },
         "areaServed": { "@type": "Country", "name": "España" }
     };

@@ -3,25 +3,25 @@ import { CityConfig } from "@/lib/db";
 export const NATIONAL_CONFIG: CityConfig = {
     slug: "home",
     domain: "expertopergolabioclimatica.es",
-    name: "Experto Pérgola Bioclimática",
+    name: "Expert Pergola Bioclimatique",
     city: "España",
     phoneNumber: "+34 900 000 000",
     email: "contacto@expertopergolabioclimatica.es",
     heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop",
-    description: "La red n°1 de instaladores de pérgolas bioclimáticas en España. Presupuesto gratuito y técnicos cualificados.",
+    description: "Le réseau n°1 d'installateurs de pergolas bioclimatiques en France. Devis gratuit et techniciens certifiés RGE.",
     meta: {
-        title: "Experto Pérgola Bioclimática | Diseño y Instalación Premium",
-        description: "Instalación de pérgolas bioclimáticas a medida en toda España. Presupuesto gratuito en 24h. Materiales premium y garantía."
+        title: "Expert Pergola Bioclimatique | Diseño y Instalación Premium",
+        description: "Installation de pergolas bioclimatiques sur mesure dans toute la France. Devis gratuit en 24h. Matériaux premium et garantie."
     },
     features: [
         "Diseño a Medida",
         "Presupuesto Gratuito en 24h",
         "Materiales Premium",
-        "Instaladores Certificados"
+        "Installateurs Certifiés"
     ],
     pricing: {
         base: "Presupuesto Gratuito",
-        description: "Presupuesto personalizado según su proyecto de pérgola"
+        description: "Presupuesto personalizado según su proyecto de pergola"
     },
     hospitals: [],
     stations: [],

@@ -17,7 +17,7 @@ export function LocalFAQ({ site, segment }: LocalFAQProps) {
                         Preguntas frecuentes en {city}
                     </h2>
                     <p className="text-slate-600 mt-3 text-lg">
-                        Todo lo que necesita saber sobre la instalación de pérgolas de aluminio a medida.
+                        Tout ce que vous devez savoir sur l'installation de pergolas en aluminium sur mesure.
                     </p>
                 </div>
                 <div className="space-y-4">
@@ -57,12 +57,12 @@ export function getLocalFAQData(city: string, department: string | undefined, se
 
     return [
         {
-            question: `¿Cuál es el precio de una pérgola bioclimática en ${city}?`,
-            answer: `El coste de una pérgola bioclimática instalada en ${city} varía entre 3.500€ y 8.000€, dependiendo de las dimensiones, motorización y si incluye luces LED o cerramientos laterales.`
+            question: `¿Cuál es el precio de una pergola bioclimática en ${city}?`,
+            answer: `Le coût d'une pergola bioclimatique installée à ${city} varie entre 3500€ et 8000€, selon les dimensions, la motorisation et les options (LED, stores).`
         },
         {
-            question: `¿Cuánto tiempo dura la instalación en ${city}?`,
-            answer: `La instalación de una pérgola en ${city} es un proceso rápido y limpio que suele completarse en 1 o 2 días. Más de ${installCount} clientes ya disfrutan de su terraza en su provincia.`
+            question: `Combien de temps dure l'installation à ${city} ?`,
+            answer: `L'installation d'une pergola à ${city} est rapide et soignée, réalisée généralement en 1 à 2 jours. De nombreux clients profitent déjà de leur terrasse dans votre région.`
         },
         {
             question: `¿Se necesita licencia de obra en ${city}?`,

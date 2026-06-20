@@ -29,7 +29,7 @@ export function Footer({ config }: FooterProps) {
         }, {} as Record<string, SiteConfig[]>);
 
     const getGlobalDiverseAnchor = (cityName: string, index: number) => {
-        const variations = ["Pérgola bioclimática ${cityName}","Instalación de pérgola ${cityName}","Pérgola aluminio ${cityName}","Fabricante de pérgolas ${cityName}","Diseño terraza ${cityName}"];
+        const variations = ["Pergola bioclimatique ${cityName}","Installation de pergola ${cityName}","Pergola aluminium ${cityName}","Fabricant de pergolas ${cityName}","Aménagement terrasse ${cityName}"];
         return variations[index % variations.length].replace(/\${cityName}/g, cityName);
     };
 
@@ -38,12 +38,12 @@ export function Footer({ config }: FooterProps) {
             <div className="container mx-auto px-4 text-center">
                 <h4 className="text-white font-bold mb-4">Sobre {config.name}</h4>
                 <p className="max-w-2xl mx-auto text-sm mb-8">
-                    {config.name} es el comparador de referencia para el diseño e instalación de pérgolas bioclimáticas en {config.city}. Solicita 3 diseños a medida de fabricantes de confianza.
+                    {config.name} est le comparateur de référence pour la conception et l'installation de pergolas bioclimatiques à {config.city}. Obtenez jusqu'à 3 devis de professionnels certifiés.
                 </p>
 
                 <div className="inline-flex items-center gap-2 bg-purple-500/10 border-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-8">
                     <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                    <span className="font-bold text-sm">Fabricantes e Instaladores Premium</span>
+                    <span className="font-bold text-sm">Fabricants et Installateurs Premium</span>
                 </div>
 
                 <div className="border-t border-white/10 pt-12 mt-12">
@@ -108,7 +108,7 @@ export function Footer({ config }: FooterProps) {
                                     }
 
                                     const getVariedFooterAnchor = (cityName: string, index: number) => {
-                                        const variations = ["Pérgola bioclimática ${cityName}","Instalación de pérgola ${cityName}","Pérgola aluminio ${cityName}","Fabricante de pérgolas ${cityName}","Diseño terraza ${cityName}"];
+                                        const variations = ["Pergola bioclimatique ${cityName}","Installation de pergola ${cityName}","Pergola aluminium ${cityName}","Fabricant de pergolas ${cityName}","Aménagement terrasse ${cityName}"];
                                         return variations[index % variations.length].replace(/\${cityName}/g, cityName);
                                     };
 
@@ -133,13 +133,13 @@ export function Footer({ config }: FooterProps) {
                                 <li>
                                     <Link href="/guides/precio-pergola-aluminio-medida" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Precio de pérgolas a medida
+                                        Precio de pergolas a medida
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/guides/ventajas-pergola-bioclimatica" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Ventajas de pérgola bioclimática
+                                        Ventajas de pergola bioclimática
                                     </Link>
                                 </li>
                                 <li>
@@ -166,7 +166,7 @@ export function Footer({ config }: FooterProps) {
                         <div>
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Modelos</h5>
                             <ul className="space-y-3 text-sm mb-8">
-                                {["Pérgola Adosada","Pérgola Autoportante","Estores Motorizados","Iluminación LED"].map((brand) => (
+                                {["Pergola Adosada","Pergola Autoportante","Estores Motorizados","Iluminación LED"].map((brand) => (
                                     <li key={brand}>
                                         <Link href={`#simulateur`} className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                             <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
@@ -195,7 +195,7 @@ export function Footer({ config }: FooterProps) {
 
                 <div className="border-t border-white/10 pt-12 mt-4 text-left max-w-7xl mx-auto mb-16 px-4 md:px-0">
                     <h5 className="text-white font-bold mb-8 text-xl tracking-tight text-center md:text-left">
-                        Nuestra Red de Instaladores de Pérgolas Bioclimáticas
+                        Notre Réseau d'Installateurs de Pergolas Bioclimatiques
                     </h5>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
                         {Object.entries(sitesByRegion).map(([region, sites]) => (
@@ -223,7 +223,7 @@ export function Footer({ config }: FooterProps) {
                 </div>
 
                 <div className="text-xs border-t border-white/10 pt-8">
-                    &copy; {new Date().getFullYear()} {config.name} - Todos los derechos reservados.
+                    &copy; {new Date().getFullYear()} {config.name} - Tous droits réservés.
                 </div>
                 <div className="flex justify-center gap-4 text-xs mt-4 mb-2">
                     <Link href="/mentions-legales" className="text-neutral-500 hover:text-white transition-colors">Aviso Legal</Link>

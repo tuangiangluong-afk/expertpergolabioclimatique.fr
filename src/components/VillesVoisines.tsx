@@ -35,10 +35,10 @@ export function VillesVoisines({ currentCitySlug, department, cityName }: Villes
             <div className="container mx-auto px-4 max-w-6xl">
                 <div className="text-center mb-8">
                     <h2 className="text-2xl font-bold text-slate-900">
-                        Instalación de pérgolas bioclimáticas cerca de {cityName}
+                        Installation de pergolas bioclimatiques près de {cityName}
                     </h2>
                     <p className="text-slate-600 mt-2">
-                        Nuestros instaladores especializados también trabajan en estas ciudades de la provincia de {department}.
+                        Nos installateurs spécialisés interviennent également dans ces villes du département {department}.
                     </p>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -47,7 +47,7 @@ export function VillesVoisines({ currentCitySlug, department, cityName }: Villes
                             key={city.slug}
                             href={`/ville/${city.slug}`}
                             className="text-sm text-slate-700 hover:text-amber-700 transition-colors block text-center bg-slate-50 py-3 px-2 rounded-lg border border-slate-100 hover:border-amber-200 hover:shadow-md font-medium"
-                            title={`Pérgolas bioclimáticas en ${city.name}`}
+                            title={`Pergolas bioclimáticas en ${city.name}`}
                         >
                             {city.name}
                         </Link>

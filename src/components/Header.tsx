@@ -41,11 +41,11 @@ export default function Header({
     const navLinks = [
         {
                 "href": "/guides",
-                "text": "Artículos"
+                "text": "Articles"
         },
         {
                 "href": "#simulateur",
-                "text": "Simulador"
+                "text": "Simulateur"
         }
 ];
 
@@ -87,7 +87,7 @@ export default function Header({
 
                     <div className="hidden lg:flex items-center gap-2 bg-purple-500/10 border-purple-500/20 text-purple-700 px-3 py-1.5 rounded-full">
                         <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                        <span className="text-xs font-bold">Fabricantes Premium</span>
+                        <span className="text-xs font-bold">Fabricants Premium</span>
                     </div>
 
                     <Link
@@ -95,7 +95,7 @@ export default function Header({
                         className={`hidden md:flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-lg transition transform hover:-translate-y-0.5 bg-purple-600 hover:bg-purple-700 shadow-purple-500/20`}
                     >
                         <Zap size={16} fill="currentColor" />
-                        <span>Diseño Gratis</span>
+                        <span>Devis Gratuit</span>
                     </Link>
                 
                     {showMobileMenu && (

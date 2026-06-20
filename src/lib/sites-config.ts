@@ -36,7 +36,7 @@ export interface SiteConfig {
 const TEMPLATE_CERTIFICATIONS = [
     "Diseño a medida",
     "Aluminio alta calidad",
-    "Garantía de instalación"
+    "Garantie décennale et installation"
 ];
 const TEMPLATE_AIDES = [
     "Presupuesto sin compromiso",
@@ -55,17 +55,17 @@ const _hubConfig: SiteConfig = {
     postalCode: "",
     department: "",
     region: "National",
-    name: "Experto Pérgola Bioclimática",
+    name: "Expert Pergola Bioclimatique",
     phoneNumber: "910 00 00 00",
     email: "contacto@expertopergolabioclimatica.es",
     targetType: "CONCRETE",
     priceRange: 'STANDARD',
     theme: 'premium',
     heroImage: "/images/generated/pergola-hero.png",
-    description: "Encuentra instaladores autorizados de pérgolas bioclimáticas en España. Solicita tu estudio gratuito.",
+    description: "Trouvez des installateurs certifiés de pergolas bioclimatiques en France. Demandez votre devis gratuit.",
     meta: {
-        title: "Experto Pérgola Bioclimática | Presupuestos & Instalación",
-        description: "Encuentra instaladores autorizados de pérgolas bioclimáticas en España. Solicita tu estudio gratuito."
+        title: "Expert Pergola Bioclimatique | Devis & Installation",
+        description: "Trouvez des installateurs certifiés de pergolas bioclimatiques en France. Demandez votre devis gratuit."
     },
     certifications: TEMPLATE_CERTIFICATIONS,
     aidesDisponibles: TEMPLATE_AIDES,

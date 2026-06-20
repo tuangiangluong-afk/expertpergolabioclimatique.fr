@@ -130,7 +130,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 <CheckCircle className="text-purple-600 mx-auto mb-4" size={40} />
                 <h3 className="text-2xl font-bold text-purple-800 mb-3">¡Solicitud de diseño recibida!</h3>
                 <p className="text-neutral-700 mb-6">
-                    Su solicitud ha sido registrada correctamente. Un especialista en pérgolas de aluminio se pondrá en contacto con usted en **24 horas** para su proyecto en **{city}**.
+                    Su solicitud ha sido registrada correctamente. Un especialista en pergolas de aluminio se pondrá en contacto con usted en **24 horas** para su proyecto en **{city}**.
                 </p>
             </div>
         );
@@ -139,7 +139,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
     return (
         <div className="bg-white rounded-3xl shadow-2xl border border-neutral-200 overflow-hidden font-sans">
             <div className="bg-gradient-to-r from-purple-700 to-indigo-600 p-6 text-white">
-                <h3 className="font-bold text-lg">{`Simulador de Pérgolas en ${city} 2026`}</h3>
+                <h3 className="font-bold text-lg">{`Simulateur de Pergolas en ${city} 2026`}</h3>
                 <div className="h-2 bg-white/20 rounded-full mt-4">
                     <div className="h-full bg-white rounded-full" style={{ width: `${progress}%` }} />
                 </div>
@@ -153,14 +153,14 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                             <Home className="text-purple-500" />
                             <div>
                                 <div className="font-bold">Chalet independiente / Pareado</div>
-                                <div className="text-sm text-neutral-500">Espacio ideal para pérgola o porche de aluminio</div>
+                                <div className="text-sm text-neutral-500">Espacio ideal para pergola o porche de aluminio</div>
                             </div>
                         </button>
                         <button onClick={() => { handleOptionSelect('projectType', 'allee_garage'); setStep(2); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Home />
                             <div>
                                 <div className="font-bold">Ático o piso con gran terraza</div>
-                                <div className="text-sm text-neutral-500">Apto para pérgolas autoportantes o adosadas</div>
+                                <div className="text-sm text-neutral-500">Apto para pergolas autoportantes o adosadas</div>
                             </div>
                         </button>
                     </div>
@@ -199,7 +199,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                         <button onClick={() => { handleOptionSelect('roofType', 'toupie_oui'); setStep(4); }} className="w-full p-4 border rounded-xl text-left hover:bg-neutral-50 flex items-center gap-4">
                             <Home className="text-purple-500" />
                             <div>
-                                <div className="font-bold">Pérgola Bioclimática</div>
+                                <div className="font-bold">Pergola Bioclimática</div>
                                 <div className="text-sm text-neutral-500">Lamas de aluminio orientables motorizadas</div>
                             </div>
                         </button>
@@ -227,7 +227,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                             <Zap />
                             <div>
                                 <div className="font-bold">No, es un espacio completamente libre</div>
-                                <div className="text-sm text-neutral-500">Nueva estructura e instalación de obra limpia</div>
+                                <div className="text-sm text-neutral-500">Structure neuve et pose rapide</div>
                             </div>
                         </button>
                     </div>

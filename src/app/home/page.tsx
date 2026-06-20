@@ -14,8 +14,8 @@ import FAQSection from "@/components/FAQSection";
 import RealizationsGrid from "@/components/RealizationsGrid";
 
 export const metadata = {
-    title: "Experto Pérgola Bioclimática | Pérgolas Bioclimáticas de Aluminio",
-    description: "Diseña e instala tu pérgola bioclimática de aluminio a medida en España. Pide presupuestos gratis.",
+    title: "Expert Pergola Bioclimatique | Pergolas Bioclimatiques en Aluminium",
+    description: "Concevez et installez votre pergola bioclimatique en aluminium sur mesure en France. Demandez des devis gratuits.",
 };
 
 export default function HomePage() {
@@ -33,11 +33,11 @@ export default function HomePage() {
                             <div>
                                 <div className="inline-flex items-center rounded-full border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-bold text-purple-700 mb-6">
                                     <CheckCircle size={16} className="mr-2" />
-                                    Diseño de Lujo a Medida
+                                    Design de Luxe sur Mesure
                                 </div>
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight" dangerouslySetInnerHTML={{ __html: `Disfruta de tu terraza los 365 días con una <span class="text-purple-600">Pérgola Bioclimática</span>` }} />
+                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight" dangerouslySetInnerHTML={{ __html: `Profitez de votre terrasse 365 jours par an avec une <span class="text-purple-600">Pergola Bioclimatique</span>` }} />
                                 <p className="text-xl text-slate-600 mb-4 max-w-xl mx-auto lg:mx-0">
-                                    Lamas orientables motorizadas, iluminación LED y cerramientos de cristal. Compara los mejores fabricantes en España.
+                                    Lames orientables motorisées, éclairage LED et fermetures en verre. Comparez les meilleurs fabricants en France.
                                 </p>
                             </div>
 
@@ -46,12 +46,12 @@ export default function HomePage() {
                                     <div className="p-1 bg-gradient-to-r from-purple-600 to-indigo-600"></div>
                                     <div className="p-6 md:p-8">
                                         <div className="mb-6">
-                                            <h3 className="text-lg font-bold text-slate-900">Simulador de Presupuesto</h3>
-                                            <p className="text-sm text-slate-500">Gratis • Sin compromiso • Resultados en 2 min</p>
+                                            <h3 className="text-lg font-bold text-slate-900">Simulateur de Devis</h3>
+                                            <p className="text-sm text-slate-500">Gratuit • Sans engagement • Résultats en 2 min</p>
                                         </div>
                                         <LeadForm
-                                            city="España"
-                                            domain="expertopergolabioclimatica.es"
+                                            city="France"
+                                            domain="expertpergolabioclimatique.fr"
                                             targetType="MIXED"
                                             themeColor="purple"
                                         />
@@ -64,7 +64,7 @@ export default function HomePage() {
                             <div className="relative h-[300px] lg:h-[450px] w-full rounded-2xl overflow-hidden border bg-white">
                                 <Image
                                     src="/images/generated/pergola-hero.png"
-                                    alt="Experto Pérgola Bioclimática"
+                                    alt="Expert Pergola Bioclimatique"
                                     fill
                                     className="object-cover"
                                 />
@@ -82,7 +82,7 @@ export default function HomePage() {
             {/* Local Cities Section */}
             <section className="py-16 bg-slate-50">
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Instaladores de Pérgolas por Provincias</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Installateurs de Pergolas par Département</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                         {cities.map((city, idx) => (
                             <Link href={`/ville/${city.slug}`} key={idx} className="p-4 bg-white border rounded-xl hover:border-purple-500 shadow-sm text-center font-semibold text-slate-800">

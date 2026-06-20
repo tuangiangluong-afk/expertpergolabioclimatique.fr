@@ -19,10 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      template: `%s | Experto Pérgola Bioclimática`,
-      default: "Experto Pérgola Bioclimática - Pérgolas de Aluminio a Medida",
+      template: `%s | Expert Pergola Bioclimatique`,
+      default: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
     },
-    description: "Diseña tu espacio exterior a medida. Compara los mejores fabricantes e instaladores de pérgolas bioclimáticas de aluminio en España.",
+    description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}${path}`,
@@ -39,9 +39,9 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: "Experto Pérgola Bioclimática - Pérgolas de Aluminio a Medida",
-      description: "Diseña tu espacio exterior a medida. Compara los mejores fabricantes e instaladores de pérgolas bioclimáticas de aluminio en España.",
-      siteName: "Experto Pérgola Bioclimática",
+      title: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
+      description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
+      siteName: "Expert Pergola Bioclimatique",
       locale: "es_ES",
       type: "website",
       url: `${baseUrl}${path}`,
@@ -50,14 +50,14 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${baseUrl}/images/og-image.png`,
           width: 1200,
           height: 630,
-          alt: "Experto Pérgola Bioclimática - Pérgolas de Aluminio a Medida",
+          alt: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Experto Pérgola Bioclimática - Pérgolas de Aluminio a Medida",
-      description: "Diseña tu espacio exterior a medida. Compara los mejores fabricantes e instaladores de pérgolas bioclimáticas de aluminio en España.",
+      title: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
+      description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
       images: [`${baseUrl}/images/og-image.png`],
     },
     icons: {

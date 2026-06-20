@@ -23,7 +23,7 @@ const REVIEW_POOL = [
     {
         author: "Carlos M.",
         templates: [
-            "Instalador muy profesional. La instalación de la pérgola bioclimática en {city} fue impecable. Disfrutamos de la terraza todo el año.",
+            "Installateur très professionnel. L'installation de la pergola bioclimatique à {city} a été impeccable. Nous profitons de la terrasse toute l'année.",
             "Presupuesto rápido y diseño a medida en 3D. El equipo que vino a {city} fue muy detallista en los remates.",
             "Servicio perfecto. Acabados premium y montaje rapidísimo en {city}. Las luces LED integradas quedan de lujo."
         ]
@@ -33,30 +33,30 @@ const REVIEW_POOL = [
         templates: [
             "Presupuesto rápido y diseño a medida en 3D. El equipo que vino a {city} fue muy detallista en los remates.",
             "Servicio perfecto. Acabados premium y montaje rapidísimo en {city}. Las luces LED integradas quedan de lujo.",
-            "Muy contentos con nuestra nueva pérgola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección."
+            "Muy contentos con nuestra nueva pergola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección."
         ]
     },
     {
         author: "Javier P.",
         templates: [
             "Servicio perfecto. Acabados premium y montaje rapidísimo en {city}. Las luces LED integradas quedan de lujo.",
-            "Muy contentos con nuestra nueva pérgola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección.",
-            "Empresa muy seria. Instalaron nuestra pérgola de aluminio en {city} en solo un día y dejaron la terraza impecable."
+            "Muy contentos con nuestra nueva pergola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección.",
+            "Entreprise très sérieuse. Ils ont installé notre pergola en aluminium à {city} en une seule journée et laissé la terrasse impeccable."
         ]
     },
     {
         author: "Miguel A.",
         templates: [
-            "Muy contentos con nuestra nueva pérgola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección.",
-            "Empresa muy seria. Instalaron nuestra pérgola de aluminio en {city} en solo un día y dejaron la terraza impecable.",
-            "Instalador muy profesional. La instalación de la pérgola bioclimática en {city} fue impecable. Disfrutamos de la terraza todo el año."
+            "Muy contentos con nuestra nueva pergola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección.",
+            "Entreprise très sérieuse. Ils ont installé notre pergola en aluminium à {city} en une seule journée et laissé la terrasse impeccable.",
+            "Installateur très professionnel. L'installation de la pergola bioclimatique à {city} a été impeccable. Nous profitons de la terrasse toute l'année."
         ]
     },
     {
         author: "Sofia G.",
         templates: [
-            "Empresa muy seria. Instalaron nuestra pérgola de aluminio en {city} en solo un día y dejaron la terraza impecable.",
-            "Instalador muy profesional. La instalación de la pérgola bioclimática en {city} fue impecable. Disfrutamos de la terraza todo el año.",
+            "Entreprise très sérieuse. Ils ont installé notre pergola en aluminium à {city} en une seule journée et laissé la terrasse impeccable.",
+            "Installateur très professionnel. L'installation de la pergola bioclimatique à {city} a été impeccable. Nous profitons de la terrasse toute l'année.",
             "Presupuesto rápido y diseño a medida en 3D. El equipo que vino a {city} fue muy detallista en los remates."
         ]
     }

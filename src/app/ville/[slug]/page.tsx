@@ -38,7 +38,7 @@ export async function generateMetadata({
         title: pseo.meta_title,
         description: pseo.meta_description,
         alternates: {
-            canonical: `https://www.expertopergolabioclimatica.es/ville/${resolvedParams.slug}`,
+            canonical: `https://www.expertpergolabioclimatique.fr/ville/${resolvedParams.slug}`,
         },
         openGraph: {
             title: pseo.meta_title,
@@ -105,7 +105,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                             <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-8 flex gap-3">
                                 <Award className="text-purple-600 shrink-0 mt-1" />
                                 <p className="text-sm text-slate-700 italic">
-                                    <strong>Consejo del Experto:</strong> {pseo.expert_tip}
+                                    <strong>Conseil d'Expert :</strong> {pseo.expert_tip}
                                 </p>
                             </div>
 
@@ -120,17 +120,36 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                                     href={`tel:${site.phoneNumber}`}
                                     className="bg-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold text-center hover:bg-slate-200 transition"
                                 >
-                                    Llamar a un especialista
+                                    Appeler un spécialiste
                                 </a>
                             </div>
                         </div>
                         <div className="relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                             <Image
                                 src={site.heroImage}
-                                alt={`Instalación de pérgola bioclimática ${site.city}`}
+                                alt={`Installation de pergola bioclimatique ${site.city}`}
                                 fill
                                 className="object-cover"
                             />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-16 bg-white">
+                <div className="container mx-auto px-4 max-w-4xl">
+                    <div className="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">Climat & Installation à {site.city}</h2>
+                            <p className="text-slate-600 leading-relaxed">
+                                {pseo.local_climate_info}
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">Délais d'intervention</h2>
+                            <p className="text-slate-600 leading-relaxed">
+                                {pseo.installation_timeline}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -140,12 +159,12 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-xl">
                         <div className="text-center mb-10">
-                            <h2 className="text-3xl font-bold text-slate-900 mb-4">Diseño 3D y presupuesto en {site.city}</h2>
-                            <p className="text-slate-600">Cálculo de coste de instalación a medida</p>
+                            <h2 className="text-3xl font-bold text-slate-900 mb-4">Design 3D et devis sur {site.city}</h2>
+                            <p className="text-slate-600">Calcul du coût d'installation sur mesure</p>
                         </div>
                         <LeadForm
                             city={site.city}
-                            domain="expertopergolabioclimatica.es"
+                            domain="expertpergolabioclimatique.fr"
                             targetType="MIXED"
                             themeColor="purple"
                         />

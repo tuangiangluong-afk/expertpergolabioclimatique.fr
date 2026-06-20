@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/admin/', '/login', '/api/', '/demo/', '/_next/static/', '/favicon.ico'],
         },
-        sitemap: 'https://www.expertbetondecoratif.com/sitemap.xml',
+        sitemap: 'https://www.expertpergolabioclimatique.fr/sitemap.xml',
     };
 }

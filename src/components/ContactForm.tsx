@@ -121,7 +121,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
                     >
                         <option value="devis_particulier">Presupuesto particular</option>
                         <option value="devis_pro">Presupuesto empresa</option>
-                        <option value="partenariat_installateur">Ser instalador colaborador</option>
+                        <option value="partenariat_installateur">Devenir installateur partenaire</option>
                         <option value="autre">Otra consulta</option>
                     </select>
                 </div>

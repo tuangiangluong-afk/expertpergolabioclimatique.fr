@@ -23,11 +23,11 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
 
     function getVariedAnchor(name: string, index: number) {
         const variations = [
-            `Pérgola bioclimática ${name}`,
-            `Instalador de pérgolas ${name}`,
-            `Pérgola de aluminio ${name}`,
+            `Pergola bioclimatique ${name}`,
+            `Installateur de pergolas ${name}`,
+            `Pergola de aluminio ${name}`,
             `Cerramientos terraza ${name}`,
-            `Especialistas pérgolas ${name}`
+            `Especialistas pergolas ${name}`
         ];
         return variations[index % variations.length];
     }
@@ -40,11 +40,11 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Nuestros Servicios</h4>
                         <ul className="space-y-3">
                             {[
-                                "Diseño de Pérgolas Bioclimáticas",
-                                "Instalación a Medida",
+                                "Diseño de Pergolas Bioclimáticas",
+                                "Installation Sur Mesure",
                                 "Cerramientos de Cristal",
                                 "Motorización y Domótica",
-                                "Mantenimiento de Pérgolas"
+                                "Mantenimiento de Pergolas"
                             ].map((service, i) => (
                                 <li key={i}>
                                     <a href="#simulateur" className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
@@ -96,7 +96,7 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Documentación y Consejos</h4>
                         <ul className="space-y-3">
                             {[
-                                { label: "Precios Pérgolas 2026", href: "/guides/precio-pergola-bioclimatica" },
+                                { label: "Precios Pergolas 2026", href: "/guides/precio-pergola-bioclimatica" },
                                 { label: "Guía de Compra", href: "/guides/guia-compra-pergolas" },
                                 { label: "Tipos de Cerramientos", href: "/guides/cerramientos-cristal" },
                                 { label: "Todos los artículos", href: "/guides" }
