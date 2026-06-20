@@ -11,7 +11,7 @@ export default function PricingTable() {
                             <tr className="bg-slate-100">
                                 <th className="p-4 font-bold border border-slate-200">Type de Pergola Bioclimatique</th>
                                 <th className="p-4 font-bold border border-slate-200">Surface Moyenne (12-15m²)</th>
-                                <th className="p-4 font-bold border border-slate-200">Surface Grande (> 20m²)</th>
+                                <th className="p-4 font-bold border border-slate-200">Surface Grande (&gt; 20m²)</th>
                             </tr>
                         </thead>
                         <tbody>

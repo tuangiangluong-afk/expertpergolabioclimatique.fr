@@ -48,7 +48,7 @@ export default function Logo({
                 <SunMedium className={variant === 'light' ? 'text-white' : 'text-stone-600'} size={s.iconSize} strokeWidth={2.2} />
             </div>
             <div className={`${s.text} font-bold tracking-tight leading-tight`}>
-                <span className={colors.expert}>Experto </span>
+                <span className={colors.expert}>Expert </span>
                 <span className={`${colors.niche} ${city ? '' : 'bg-clip-text text-transparent bg-gradient-to-r from-stone-600 to-stone-400'}`}>Pergola</span>
                 {city && (
                     <span className={`${colors.niche} block text-sm font-semibold uppercase tracking-wider`}>{city}</span>
