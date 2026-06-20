@@ -6,41 +6,46 @@ import { ChevronDown } from "lucide-react";
 interface FAQProps {
     city?: string;
     type?: string;
-    themeColor?: 'blue' | 'emerald' | 'amber' | 'purple' | 'rose';
+    themeColor?: 'blue' | 'emerald' | 'amber' | 'purple' | 'rose' | 'slate' | 'stone';
+    items?: { question: string; answer: string; }[];
 }
 
-export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
-    const questions = [
+export default function FAQ({ city, type, themeColor = 'purple', items }: FAQProps) {
+    const defaultQuestions = [
         {
-            q: "Combien coûte l'installation d'une pompe à chaleur ?",
-            a: "Le coût d'installation d'une pompe à chaleur (PAC) Air-Eau oscille généralement entre 10 000€ et 16 000€ TTC selon la surface à chauffer. Grâce aux subventions de l'État (MaPrimeRénov', CEE), le reste à charge peut être réduit à moins de 3 000€ pour les foyers aux revenus modestes."
+            question: "Combien coûte l'installation d'une pergola bioclimatique ?",
+            answer: "Le coût moyen d'une pergola bioclimatique en aluminium sur mesure varie entre 3500€ et 8000€, selon les dimensions, la motorisation et les options choisies (lumières LED, stores latéraux, capteurs météo)."
         },
         {
-            q: "Quelles sont les aides financières disponibles en 2026 ?",
-            a: "Pour le remplacement d'un chauffage fossile (fioul ou gaz), vous pouvez cumuler MaPrimeRénov' (jusqu'à 9 000€), la prime CEE (jusqu'à 5 000€), l'éco-prêt à taux zéro (éco-PTZ) jusqu'à 50 000€ et une TVA réduite à 5.5% appliquée directement sur la facture de pose."
+            question: "Faut-il un permis de construire pour une pergola ?",
+            answer: "Pour une pergola dont la surface au sol est comprise entre 5m² et 20m², une simple déclaration préalable de travaux en mairie est suffisante. Au-delà de 20m², un permis de construire est requis."
         },
         {
-            q: "Quelle est la durée de vie d'une pompe à chaleur ?",
-            a: "Une pompe à chaleur a une durée de vie moyenne de 15 à 20 ans. Pour optimiser ses performances et sa longévité, il est recommandé de souscrire à un contrat d'entretien annuel auprès d'un technicien certifié."
+            question: "Quelle est la résistance d'une pergola face au vent et à la neige ?",
+            answer: "Nos pergolas bioclimatiques en aluminium extrudé sont conçues pour résister à des vents violents allant jusqu'à 120 km/h et peuvent supporter une charge de neige importante. Les capteurs de pluie et de vent ferment automatiquement les lames."
         },
         {
-            q: "Ma maison est-elle adaptée à l'installation d'une PAC ?",
-            a: "Les pompes à chaleur s'adaptent à la majorité des logements. L'idéal est de disposer d'un système de chauffage central existant (radiateurs hydrauliques ou plancher chauffant) et d'un espace extérieur dégagé (jardin, cour, cour intérieure) pour positionner l'unité extérieure."
+            question: "Comment entretenir sa pergola bioclimatique ?",
+            answer: "L'entretien est très simple. Un nettoyage deux fois par an à l'eau savonneuse (sans détergent agressif) suffit pour maintenir l'aluminium et le mécanisme des lames orientables en parfait état."
         },
         {
-            q: "Pourquoi choisir un installateur certifié RGE QualiPAC ?",
-            a: "La certification RGE (Reconnu Garant de l'Environnement) option QualiPAC garantit que l'artisan maîtrise la pose de ces systèmes et respecte les normes thermiques. Elle est également obligatoire pour bénéficier des subventions de l'État."
+            question: "Quelles garanties sont offertes par vos installateurs partenaires ?",
+            answer: "Tous nos installateurs partenaires disposent d'une assurance garantie décennale. Les structures en aluminium sont généralement garanties 10 ans et les motorisations 5 ans."
         }
     ];
 
+    const questions = items || defaultQuestions;
+
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const themeStyles = {
+    const themeStyles: Record<string, string> = {
         blue: "bg-blue-100 text-blue-700",
         emerald: "bg-emerald-100 text-emerald-700",
         amber: "bg-amber-100 text-amber-800",
         purple: "bg-purple-100 text-purple-700",
-        rose: "bg-stone-100 text-stone-800"
+        rose: "bg-slate-100 text-slate-800",
+        slate: "bg-slate-100 text-slate-800",
+        stone: "bg-stone-100 text-stone-800"
     };
 
     const faqSchema = {
@@ -48,14 +53,14 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
         "@type": "FAQPage",
         "mainEntity": questions.map(item => ({
             "@type": "Question",
-            "name": item.q,
+            "name": item.question,
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": item.a
+                "text": item.answer
             }
         }))
     };
-    const badgeClass = themeStyles[themeColor] || themeStyles.rose;
+    const badgeClass = themeStyles[themeColor] || themeStyles.purple;
 
     return (
         <section className="py-20 bg-slate-50 border-t border-slate-200">
@@ -69,10 +74,10 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
                         Questions Fréquentes
                     </span>
                     <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-                        Des questions sur les pompes à chaleur ?
+                        Des questions sur les pergolas bioclimatiques ?
                     </h2>
                     <p className="text-xl text-slate-600 mt-4">
-                        Nous avons réuni les réponses pour vous guider dans votre projet de transition énergétique.
+                        Nous avons réuni les réponses pour vous guider dans votre aménagement extérieur.
                     </p>
                 </div>
 
@@ -86,7 +91,7 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
                                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                                 className="w-full flex items-center justify-between p-6 text-left"
                             >
-                                <span className="font-bold text-lg text-slate-900 pr-8">{item.q}</span>
+                                <span className="font-bold text-lg text-slate-900 pr-8">{item.question}</span>
                                 <ChevronDown
                                     className={`text-slate-400 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`}
                                 />
@@ -99,7 +104,7 @@ export default function FAQ({ city, type, themeColor = 'rose' }: FAQProps) {
                                 `}
                             >
                                 <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-100">
-                                    {item.a}
+                                    {item.answer}
                                 </div>
                             </div>
                         </div>
