@@ -14,7 +14,7 @@ const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supaba
 export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
-    title: "Guías e Ideas para Exteriorismo | Expert Béton Décoratif",
+    title: "Guides et Idées d'Aménagement | Expert Béton Décoratif",
     description: "Découvrez tout sur la conception et l'installation de pergolas bioclimatiques.. Guides, conseils et astuces de nos artisans certifiés RGE QualiPAC.",
 };
 
@@ -69,10 +69,10 @@ export default async function GuidesIndex() {
             <main className="container mx-auto px-4 py-16 pt-32">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-                        Guías y Diseño de Pergolas
+                        Guides d'Aménagement et Pergolas
                     </h1>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                        Guías de diseño, tendencias y consejos prácticos para optimizar su espacio exterior.</p>
+                        Guides d'aménagement, tendances et conseils pratiques pour optimiser votre espace extérieur.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -104,7 +104,7 @@ export default async function GuidesIndex() {
                                     )}
                                 </div>
                                 <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform text-stone-600 font-medium">
-                                    Ver más <ArrowRight size={14} />
+                                    Lire la suite <ArrowRight size={14} />
                                 </span>
                             </div>
                         </Link>

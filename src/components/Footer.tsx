@@ -36,7 +36,7 @@ export function Footer({ config }: FooterProps) {
     return (
         <footer className="bg-neutral-900 border-t border-white/10 py-12 text-neutral-400">
             <div className="container mx-auto px-4 text-center">
-                <h4 className="text-white font-bold mb-4">Sobre {config.name}</h4>
+                <h4 className="text-white font-bold mb-4">À propos de {config.name}</h4>
                 <p className="max-w-2xl mx-auto text-sm mb-8">
                     {config.name} est le comparateur de référence pour la conception et l'installation de pergolas bioclimatiques à {config.city}. Obtenez jusqu'à 3 devis de professionnels certifiés.
                 </p>
@@ -50,17 +50,17 @@ export function Footer({ config }: FooterProps) {
                     <div className="grid md:grid-cols-4 gap-8 text-left max-w-7xl mx-auto">
                         <div>
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">
-                                {config.slug === 'home' ? 'Provincias' : 'Provincias'}
+                                {config.slug === 'home' ? "Zones d'intervention" : "Zones d'intervention"}
                             </h5>
                             <ul className="space-y-3 text-sm">
                                 {config.slug === 'home' ? (
                                     <>
                                         
-            <li><Link href="/ville/madrid" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Madrid</Link></li>
-            <li><Link href="/ville/barcelona" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Barcelona</Link></li>
-            <li><Link href="/ville/valencia" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Valencia</Link></li>
-            <li><Link href="/ville/sevilla" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Sevilla</Link></li>
-            <li><Link href="/ville/malaga" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Málaga</Link></li>
+            <li><Link href="/ville/paris" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Paris</Link></li>
+            <li><Link href="/ville/lyon" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Lyon</Link></li>
+            <li><Link href="/ville/marseille" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Marseille</Link></li>
+            <li><Link href="/ville/toulouse" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Toulouse</Link></li>
+            <li><Link href="/ville/bordeaux" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-amber-500 transition"></span>Bordeaux</Link></li>
         
                                     </>
                                 ) : (
@@ -83,7 +83,7 @@ export function Footer({ config }: FooterProps) {
 
                         <div>
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">
-                                Nuestra Red
+                                Notre Réseau
                             </h5>
                             <ul className="space-y-3 text-sm">
                                 {(() => {
@@ -91,7 +91,7 @@ export function Footer({ config }: FooterProps) {
                                     const currentSite = config as SiteConfig;
 
                                     if (config.slug === 'home') {
-                                        const topSlugs = ["madrid", "barcelona", "valencia", "sevilla"];
+                                        const topSlugs = ["paris", "lyon", "marseille", "toulouse"];
                                         nearbySites = uniqueSites.filter(s => topSlugs.includes(s.slug));
                                     } else {
                                         const sameDept = uniqueSites.filter(s => s.slug !== 'home' && s.slug !== currentSite.slug && s.department === currentSite.department);
@@ -128,55 +128,55 @@ export function Footer({ config }: FooterProps) {
                         </div>
 
                         <div>
-                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Guías y Consejos</h5>
+                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Guides et Conseils</h5>
                             <ul className="space-y-3 text-sm">
                                 <li>
-                                    <Link href="/guides/precio-pergola-aluminio-medida" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                    <Link href="/guides/prix-pergola-aluminium-sur-mesure" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Precio de pergolas a medida
+                                        Prix des pergolas sur-mesure
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/guides/ventajas-pergola-bioclimatica" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                    <Link href="/guides/avantages-pergola-bioclimatique" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Ventajas de pergola bioclimática
+                                        Avantages de la pergola bioclimatique
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/guides/diseno-pergolas-bioclimaticas" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                    <Link href="/guides/design-pergolas-bioclimatiques" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Diseños y cerramientos
+                                        Design et aménagements
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/guides" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Todas las guías
+                                        Tous nos guides
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/contact" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Registrarse como partner
+                                        Devenir installateur partenaire
                                     </Link>
                                 </li>
                             </ul>
                         </div>
 
                         <div>
-                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Modelos</h5>
+                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Modèles</h5>
                             <ul className="space-y-3 text-sm mb-8">
-                                {["Pergola Adosada","Pergola Autoportante","Estores Motorizados","Iluminación LED"].map((brand) => (
+                                {["Pergola Adossée","Pergola Autoportante","Stores Latéraux Motorisés","Éclairage LED intégré"].map((brand) => (
                                     <li key={brand}>
                                         <Link href={`#simulateur`} className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                             <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                            Opción {brand}
+                                            Option {brand}
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
 
-                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Contacto</h5>
+                            <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Contact</h5>
                             <ul className="space-y-6">
                                 <li>
                                     <Link href="/contact" className="flex items-start gap-4 text-neutral-400 hover:text-white transition group text-left">
@@ -226,9 +226,9 @@ export function Footer({ config }: FooterProps) {
                     &copy; {new Date().getFullYear()} {config.name} - Tous droits réservés.
                 </div>
                 <div className="flex justify-center gap-4 text-xs mt-4 mb-2">
-                    <Link href="/mentions-legales" className="text-neutral-500 hover:text-white transition-colors">Aviso Legal</Link>
+                    <Link href="/mentions-legales" className="text-neutral-500 hover:text-white transition-colors">Mentions Légales</Link>
                     <span className="text-neutral-700">•</span>
-                    <Link href="/cgv" className="text-neutral-500 hover:text-white transition-colors">Condiciones</Link>
+                    <Link href="/cgv" className="text-neutral-500 hover:text-white transition-colors">CGV</Link>
                 </div>
             </div>
         </footer>
