@@ -55,11 +55,50 @@ export default function StructuredData() {
         "mainEntity": []
     };
 
+    
+    const webPageSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://www.expertpergolabioclimatique.fr",
+        "name": "Expert Pergola Bioclimatique",
+        "description": "Installation de pergolas bioclimatiques sur mesure",
+        "inLanguage": "fr",
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [
+                "h1",
+                ".hero-description",
+                ".faq-answer",
+                "article h2",
+                "article p:first-of-type",
+                ".prose > p:first-child"
+            ]
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "url": "https://www.expertpergolabioclimatique.fr",
+            "name": "Expert Pergola Bioclimatique"
+        }
+    };
+
     return (
+        <>
         <Script
             id="org-schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) + '\n' + JSON.stringify(websiteSchema) + '\n' + JSON.stringify(serviceSchema) + '\n' + JSON.stringify(faqSchema) }}
         />
+
+        <Script
+
+            id="webpage-speakable-schema"
+
+            type="application/ld+json"
+
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+
+        />
+
+        </>
     );
 }
