@@ -20,6 +20,7 @@ interface FormData {
     email: string;
     phone: string;
     zipCode: string;
+    phoneConsent?: boolean;
 }
 
 const PHONE_REGEX = /^(?:\+?34)?\s*[6789](?:[\s.-]*\d){8}$/;
@@ -36,7 +37,8 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
         name: "",
         email: "",
         phone: "",
-        zipCode: ""
+        zipCode: "",
+        phoneConsent: false
     });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState("");
@@ -68,7 +70,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                     formData.name.trim() !== "" &&
                     formData.email.includes("@") &&
                     ZIP_CODE_REGEX.test(formData.zipCode.trim()) &&
-                    PHONE_REGEX.test(formData.phone.replace(/\s/g, ''))
+                    PHONE_REGEX.test(formData.phone.replace(/\s/g, '') && formData.phoneConsent === true)
                 );
             default: return false;
         }
@@ -240,6 +242,23 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                         <input type="text" name="zipCode" placeholder="Code Postal (ex: 75000)" value={formData.zipCode} onChange={handleInputChange} maxLength={5} className="w-full p-3 border rounded-xl outline-none focus:border-purple-500" />
                         <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} className="w-full p-3 border rounded-xl outline-none focus:border-purple-500" />
                         <input type="tel" name="phone" placeholder="Numéro de téléphone" value={formData.phone} onChange={handleInputChange} className="w-full p-3 border rounded-xl outline-none focus:border-purple-500" />
+                        
+                            {/* Phone Consent Checkbox (RGPD / Loi 2025-594) */}
+                            <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-left my-3">
+                                <label className="flex items-start gap-3 cursor-pointer select-none">
+                                    <input
+                                        type="checkbox"
+                                        name="phoneConsent"
+                                        checked={formData.phoneConsent || false}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, phoneConsent: e.target.checked }))}
+                                        className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 accent-blue-600 shrink-0"
+                                    />
+                                    <span className="text-xs text-slate-600 leading-snug">
+                                        J&apos;accepte d&apos;être contacté(e) par téléphone par ViteUnDevis.com et ses partenaires certifiés pour la qualification de ma demande de devis et la réalisation d&apos;une étude technique.
+                                    </span>
+                                </label>
+                            </div>
+
                         {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
                         
                         <button onClick={handleSubmit} disabled={status === 'loading'} className="w-full py-4 bg-purple-700 hover:bg-purple-800 text-white rounded-xl font-bold text-lg transition">
