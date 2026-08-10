@@ -6,10 +6,10 @@ export default function StructuredData() {
         "@type": "Organization",
         "name": "Expert Pergola Bioclimatique",
         "legalName": "Expert Pergola Bioclimatique SAS",
-        "alternateName": ["ExpertPergolaBioclimatique", "Expert Pergola Bioclimatique France"],
+        "alternateName": ["ExpertPergolaBioclimatique", "Expert Pergola Bioclimatique Global"],
         "url": "https://www.expertpergolabioclimatique.fr",
         "logo": "https://www.expertpergolabioclimatique.fr/icon.png",
-        "description": "N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure pour particuliers et CHR.",
+        "description": "N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure.",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "8 Rue de la Paix",
@@ -17,21 +17,16 @@ export default function StructuredData() {
             "postalCode": "75002",
             "addressCountry": "FR"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 48.8686,
-            "longitude": 2.3314
-        },
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+33 1 84 80 00 00",
             "contactType": "customer service",
             "areaServed": "FR",
-            "availableLanguage": "French"
+            "availableLanguage": "fr-FR"
         },
         "areaServed": {
             "@type": "Country",
-            "name": "France"
+            "name": "FR"
         }
     };
 
@@ -41,7 +36,7 @@ export default function StructuredData() {
         "url": "https://www.expertpergolabioclimatique.fr",
         "name": "Expert Pergola Bioclimatique",
         "alternateName": "www.expertpergolabioclimatique.fr",
-        "description": "N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure pour particuliers et CHR.",
+        "description": "N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure.",
         "inLanguage": "fr-FR",
         "publisher": {
             "@type": "Organization",
