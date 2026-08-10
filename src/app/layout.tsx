@@ -18,10 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = `https://${canonicalDomain}`;
 
   return {
-    title: {
-      template: `%s | Expert Pergola Bioclimatique`,
-      default: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
-    },
+      title: {
+    template: `%s | Expert Pergola Bioclimatique®`,
+    default: `Expert Pergola Bioclimatique® - N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure pour particuliers et CHR.`,
+  },
     description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
     metadataBase: new URL(baseUrl),
     alternates: {
@@ -75,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#8b5cf6",
+  themeColor: "#059669",
 };
 
 export default function RootLayout({

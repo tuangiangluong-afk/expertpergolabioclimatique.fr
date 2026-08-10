@@ -5,100 +5,62 @@ export default function StructuredData() {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Expert Pergola Bioclimatique",
-        "url": "https://www.expertopergolabioclimatica.es",
-        "logo": "https://www.expertopergolabioclimatica.es/logo.png",
-        "description": "Réseau national d'installateurs professionnels de pergolas bioclimatiques sur mesure pour terrasses et jardins en France.",
-        "sameAs": [],
-        "foundingDate": "2020",
+        "legalName": "Expert Pergola Bioclimatique SAS",
+        "alternateName": ["ExpertPergolaBioclimatique", "Expert Pergola Bioclimatique France"],
+        "url": "https://www.expertpergolabioclimatique.fr",
+        "logo": "https://www.expertpergolabioclimatique.fr/icon.png",
+        "description": "N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure pour particuliers et CHR.",
         "address": {
             "@type": "PostalAddress",
-            "addressCountry": "ES"
+            "streetAddress": "8 Rue de la Paix",
+            "addressLocality": "Paris",
+            "postalCode": "75002",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 48.8686,
+            "longitude": 2.3314
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "910 00 00 00",
+            "telephone": "+33 1 84 80 00 00",
             "contactType": "customer service",
-            "areaServed": "ES",
-            "availableLanguage": "Spanish"
+            "areaServed": "FR",
+            "availableLanguage": "French"
         },
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.expertopergolabioclimatica.es/ville/{search_term_string}",
-            "query-input": "required name=search_term_string"
+        "areaServed": {
+            "@type": "Country",
+            "name": "France"
         }
     };
 
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "url": "https://www.expertopergolabioclimatica.es",
-        "name": "expertopergolabioclimatica",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.expertopergolabioclimatica.es/ville/{search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    };
-
-    const serviceSchema = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Installation de Pergolas Bioclimatiques",
-        "provider": { "@type": "Organization", "name": "expertopergolabioclimatica" },
-        "areaServed": { "@type": "Country", "name": "España" }
-    };
-
-    
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": []
-    };
-
-    
-    const webPageSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
         "url": "https://www.expertpergolabioclimatique.fr",
         "name": "Expert Pergola Bioclimatique",
-        "description": "Installation de pergolas bioclimatiques sur mesure",
-        "inLanguage": "fr",
-        "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": [
-                "h1",
-                ".hero-description",
-                ".faq-answer",
-                "article h2",
-                "article p:first-of-type",
-                ".prose > p:first-child"
-            ]
-        },
-        "isPartOf": {
-            "@type": "WebSite",
-            "url": "https://www.expertpergolabioclimatique.fr",
+        "alternateName": "www.expertpergolabioclimatique.fr",
+        "description": "N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure pour particuliers et CHR.",
+        "inLanguage": "fr-FR",
+        "publisher": {
+            "@type": "Organization",
             "name": "Expert Pergola Bioclimatique"
         }
     };
 
     return (
         <>
-        <Script
-            id="org-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) + '\n' + JSON.stringify(websiteSchema) + '\n' + JSON.stringify(serviceSchema) + '\n' + JSON.stringify(faqSchema) }}
-        />
-
-        <Script
-
-            id="webpage-speakable-schema"
-
-            type="application/ld+json"
-
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-
-        />
-
+            <Script
+                id="org-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+            <Script
+                id="website-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
         </>
     );
 }
