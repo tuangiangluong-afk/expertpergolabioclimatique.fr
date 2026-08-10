@@ -118,6 +118,26 @@ export default function StructuredData() {
         ]
     };
 
+    
+    const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Pergola Bioclimatique Aluminium",
+        "image": "https://expertpergolabioclimatique/icon.png",
+        "description": "Pergola Bioclimatique Aluminium avec installation certifiée et garantie.",
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "price": "2990",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "129"
+        }
+    };
+
     return (
         <>
             <Script
@@ -145,6 +165,7 @@ export default function StructuredData() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
+            <Script id="product-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
         </>
     );
 }
