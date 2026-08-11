@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "expertpergolabioclimatique",
+  "name_for_model": "expertpergolabioclimatiquefr",
+  "description_for_human": "Service expert pour expertpergolabioclimatique.fr",
+  "description_for_model": "Expert service related to expertpergolabioclimatique.fr, offering quotes and professional installations.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.expertpergolabioclimatique.fr/openapi.json",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://www.expertpergolabioclimatique.fr/favicon.ico",
+  "contact_email": "contact@expertpergolabioclimatique.fr",
+  "legal_info_url": "https://www.expertpergolabioclimatique.fr/legal"
+}

@@ -86,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Summary" />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
