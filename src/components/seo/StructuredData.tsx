@@ -119,17 +119,72 @@ export default function StructuredData() {
     };
 
     
-    const productSchema = {
+        const productSchema = {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "Pergola Bioclimatique Aluminium",
-        "image": "https://expertpergolabioclimatique/icon.png",
+        "image": [
+            "https://www.expertpergolabioclimatique.fr/icon.png"
+        ],
         "description": "Pergola Bioclimatique Aluminium avec installation certifiée et garantie.",
+        "sku": "EPB-PERGOLA-001",
+        "mpn": "EPB-PERGOLA-001",
+        "brand": {
+            "@type": "Brand",
+            "name": "Expert Pergola Bioclimatique"
+        },
         "offers": {
             "@type": "Offer",
+            "url": "https://www.expertpergolabioclimatique.fr",
             "priceCurrency": "EUR",
             "price": "2990",
-            "availability": "https://schema.org/InStock"
+            "validFrom": "2026-01-01",
+            "priceValidUntil": "2026-12-31",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock",
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "FR",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+            },
+            "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": "0",
+                    "currency": "EUR"
+                },
+                "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "addressCountry": "FR"
+                },
+                "deliveryTime": {
+                    "@type": "ShippingDeliveryTime",
+                    "businessDays": {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "https://schema.org/Monday",
+                            "https://schema.org/Tuesday",
+                            "https://schema.org/Wednesday",
+                            "https://schema.org/Thursday",
+                            "https://schema.org/Friday"
+                        ]
+                    },
+                    "cutoffTime": "18:00:00Z",
+                    "handlingTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 1,
+                        "maxValue": 3,
+                        "unitCode": "DAY"
+                    },
+                    "transitTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 1,
+                        "maxValue": 5,
+                        "unitCode": "DAY"
+                    }
+                }
+            }
         },
         "aggregateRating": {
             "@type": "AggregateRating",
