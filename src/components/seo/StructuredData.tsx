@@ -52,13 +52,6 @@ export default function StructuredData() {
             "price": "2990",
             "availability": "https://schema.org/InStock",
             "validFrom": "2026-01-01"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "129",
-            "bestRating": "5",
-            "worstRating": "1"
         }
     };
 
