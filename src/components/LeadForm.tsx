@@ -136,7 +136,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 <CheckCircle className="text-purple-600 mx-auto mb-4" size={40} />
                 <h3 className="text-2xl font-bold text-purple-800 mb-3">Demande de devis reçue !</h3>
                 <p className="text-neutral-700 mb-6">
-                    Votre demande a bien été enregistrée. Un spécialiste en pergolas bioclimatiques vous contactera sous **24h** pour votre projet à **{city}**.
+                    Votre demande a bien été enregistrée. Un spécialiste en pergolas bioclimatiques vous contactera sous <strong>24h</strong> pour votre projet {(!city || city.toLowerCase() === 'france' || city.toLowerCase() === 'national') ? 'en France' : <>à <strong>{city}</strong></>}.
                 </p>
             </div>
         );
