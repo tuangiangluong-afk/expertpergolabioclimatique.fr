@@ -38,7 +38,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
         email: "",
         phone: "",
         zipCode: "",
-        phoneConsent: false
+        phoneConsent: true
     });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState("");
