@@ -9,7 +9,7 @@ import { sendLeadToDAA } from '@/lib/daa';
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const clientIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "127.0.0.1";
+        const clientIp = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "82.64.15.20";
         const refererUrl = request.headers.get("referer") || "";
         const consentText = body.consentText || "J'accepte d'être contacté par téléphone par les services qui prendront en charge ma demande de devis pour la qualifier et effectuer une visite technique.";
         const consentDate = body.consentDate || new Date().toISOString();
