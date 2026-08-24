@@ -23,7 +23,8 @@ interface FormData {
     phoneConsent?: boolean;
 }
 
-const PHONE_REGEX = /^(?:\+?34)?\s*[6789](?:[\s.-]*\d){8}$/;
+const FRENCH_PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+const PHONE_REGEX = FRENCH_PHONE_REGEX;
 const ZIP_CODE_REGEX = /^\d{5}$/;
 
 export default function LeadForm({ city, domain, initialProjectType }: LeadFormProps) {
@@ -101,7 +102,10 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                 postalCode: formData.zipCode,
                 domain,
                 niche: 'pergola',
-                country: 'ES',
+                consentText: "J'accepte d'être contacté par téléphone par les services qui prendront en charge ma demande de devis pour la qualifier et effectuer une visite technique.",
+                consentDate: new Date().toISOString(),
+                consentUrl: typeof window !== 'undefined' ? window.location.href : '',
+                country: 'FR',
                 leadScore: getLeadScore(),
                 timestamp: new Date().toISOString()
             };
