@@ -64,11 +64,7 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
                 "@type": "City",
                 "name": site.city
             },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "reviewCount": "142"
-            }
+            
         };
     } else if (type === "Organization" && site) {
         schema = {

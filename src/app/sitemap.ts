@@ -3,6 +3,10 @@ import { getAllGuides } from '@/lib/mdx';
 import { CITIES } from '@/lib/db';
 import { slugify } from '@/lib/slugify';
 import { createClient } from '@supabase/supabase-js';
+import { PERGOLA_BRANDS } from '@/data/pergola-brands';
+import { PERGOLA_TYPES } from '@/data/pergola-types';
+import { PERGOLA_TAILLES } from '@/data/pergola-tailles';
+import { PERGOLA_COMPARATIFS } from '@/data/pergola-comparatifs';
 
 // Base URL (Hub)
 const BASE_URL = 'https://www.expertpergolabioclimatique.fr';
@@ -106,7 +110,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
     }));
 
-    return [...routes, ...guideRoutes, ...blogRoutes, ...cityRoutes].map(item => ({
+    // 5. City x Marque (pSEO Matrix)
+    const cityMarqueRoutes: MetadataRoute.Sitemap = Array.from(uniqueSites.values()).flatMap((site) => {
+        const citySlug = slugify(site.city).toLowerCase();
+        return PERGOLA_BRANDS.map((marque) => ({
+            url: `${BASE_URL}/ville/${citySlug}/${marque.slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.85,
+        }));
+    });
+
+    // 6. Marques
+    const marquesRoutes = PERGOLA_BRANDS.map((m) => ({ url: `${BASE_URL}/marques/${m.slug}`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 }));
+    // 7. Types
+    const typeRoutes = PERGOLA_TYPES.map((t) => ({ url: `${BASE_URL}/type/${t.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 }));
+    // 8. Tailles
+    const tailleRoutes = PERGOLA_TAILLES.map((t) => ({ url: `${BASE_URL}/tailles/${t.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 }));
+    // 9. Comparatifs
+    const comparatifRoutes = PERGOLA_COMPARATIFS.map((c) => ({ url: `${BASE_URL}/comparatif/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.85 }));
+
+    return [...routes, ...guideRoutes, ...blogRoutes, ...cityRoutes, ...cityMarqueRoutes, ...marquesRoutes, ...typeRoutes, ...tailleRoutes, ...comparatifRoutes].map(item => ({
         ...item,
         url: item.url.toLowerCase()
     }));

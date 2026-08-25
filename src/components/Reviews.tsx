@@ -19,50 +19,10 @@ function stringHash(str: string): number {
     return Math.abs(hash);
 }
 
-const REVIEW_POOL = [
-    {
-        author: "Carlos M.",
-        templates: [
-            "Installateur très professionnel. L'installation de la pergola bioclimatique à {city} a été impeccable. Nous profitons de la terrasse toute l'année.",
-            "Presupuesto rápido y diseño a medida en 3D. El equipo que vino a {city} fue muy detallista en los remates.",
-            "Servicio perfecto. Acabados premium y montaje rapidísimo en {city}. Las luces LED integradas quedan de lujo."
-        ]
-    },
-    {
-        author: "Elena R.",
-        templates: [
-            "Presupuesto rápido y diseño a medida en 3D. El equipo que vino a {city} fue muy detallista en los remates.",
-            "Servicio perfecto. Acabados premium y montaje rapidísimo en {city}. Las luces LED integradas quedan de lujo.",
-            "Muy contentos con nuestra nueva pergola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección."
-        ]
-    },
-    {
-        author: "Javier P.",
-        templates: [
-            "Servicio perfecto. Acabados premium y montaje rapidísimo en {city}. Las luces LED integradas quedan de lujo.",
-            "Muy contentos con nuestra nueva pergola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección.",
-            "Entreprise très sérieuse. Ils ont installé notre pergola en aluminium à {city} en une seule journée et laissé la terrasse impeccable."
-        ]
-    },
-    {
-        author: "Miguel A.",
-        templates: [
-            "Muy contentos con nuestra nueva pergola en {city}. El motor es silencioso y nos protege del sol y la lluvia a la perfección.",
-            "Entreprise très sérieuse. Ils ont installé notre pergola en aluminium à {city} en une seule journée et laissé la terrasse impeccable.",
-            "Installateur très professionnel. L'installation de la pergola bioclimatique à {city} a été impeccable. Nous profitons de la terrasse toute l'année."
-        ]
-    },
-    {
-        author: "Sofia G.",
-        templates: [
-            "Entreprise très sérieuse. Ils ont installé notre pergola en aluminium à {city} en une seule journée et laissé la terrasse impeccable.",
-            "Installateur très professionnel. L'installation de la pergola bioclimatique à {city} a été impeccable. Nous profitons de la terrasse toute l'année.",
-            "Presupuesto rápido y diseño a medida en 3D. El equipo que vino a {city} fue muy detallista en los remates."
-        ]
-    }
-];
+const REVIEW_POOL: any[] = [];
 
 export default function Reviews({ site, themeColor = 'blue' }: ReviewsProps) {
+      if (REVIEW_POOL.length === 0) return null;
     const city = site.city;
     // For FR we use "à" or "en". For others we don't really need prep in the title usually, but let's just output the city directly
     // since the config title has trailing space: "Opiniones de Clientes en "

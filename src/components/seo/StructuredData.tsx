@@ -179,11 +179,7 @@ export default function StructuredData() {
                 }
             }
         },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "129"
-        }
+        
     };
 
     return (
