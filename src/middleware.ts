@@ -56,7 +56,7 @@ export default async function middleware(req: NextRequest) {
     if (path === "/sitemap.xml") {
         let sitemapResponse;
         if (isHub) {
-            sitemapResponse = NextResponse.rewrite(new URL("/home/sitemap.xml", req.url));
+            sitemapResponse = NextResponse.next(); // serve top-level sitemap.ts (full matrix routes)
         } else {
             sitemapResponse = NextResponse.rewrite(new URL(`/${domainKey}/sitemap.xml`, req.url));
         }
@@ -87,7 +87,7 @@ export default async function middleware(req: NextRequest) {
             }
         }
 
-        if (path.startsWith("/admin") || path.startsWith("/login") || path.startsWith("/api") || path.startsWith("/leads") || path.startsWith("/guides") || path.startsWith("/outils") || path.startsWith("/vehicules") || path.startsWith("/ville") || path.startsWith("/solutions") || path.startsWith("/service") || path.startsWith("/quartier") || path.startsWith("/departement") || path.startsWith("/poi") || path.startsWith("/demo") || path.startsWith("/installation") || path.startsWith("/images")) {
+        if (path.startsWith("/admin") || path.startsWith("/login") || path.startsWith("/api") || path.startsWith("/leads") || path.startsWith("/guides") || path.startsWith("/outils") || path.startsWith("/vehicules") || path.startsWith("/ville") || path.startsWith("/solutions") || path.startsWith("/service") || path.startsWith("/quartier") || path.startsWith("/departement") || path.startsWith("/poi") || path.startsWith("/demo") || path.startsWith("/installation") || path.startsWith("/marques") || path.startsWith("/type") || path.startsWith("/comparatif") || path.startsWith("/tailles") || path.startsWith("/images")) {
             response = NextResponse.next();
         } else {
             response = NextResponse.rewrite(
