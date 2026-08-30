@@ -74,7 +74,7 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
             "url": baseUrl,
             "logo": `${baseUrl}/logo.png`,
             "sameAs": [
-                "https://www.linkedin.com/company/expert-pompe-a-chaleur"
+                "https://www.linkedin.com/company/expert-pergola-bioclimatique"
             ],
             "contactPoint": {
                 "@type": "ContactPoint",
