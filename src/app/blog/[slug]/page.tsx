@@ -124,7 +124,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         "dateModified": post.updated_at,
         "author": {
             "@type": "Person",
-            "name": post.author_name || "Expert Béton Décoratif"
+            "name": post.author_name || "Expert Pergola Bioclimatique",
+            "url": post.author_slug ? `https://www.expertpergolabioclimatique.fr/author/${post.author_slug}` : undefined,
+            "@id": post.author_slug ? `https://www.expertpergolabioclimatique.fr/author/${post.author_slug}#person` : undefined
         },
         "publisher": {
 
