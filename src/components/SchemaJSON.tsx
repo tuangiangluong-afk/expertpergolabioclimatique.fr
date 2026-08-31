@@ -73,9 +73,6 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
             "name": "Expert Béton Décoratif",
             "url": baseUrl,
             "logo": `${baseUrl}/logo.png`,
-            "sameAs": [
-                "https://www.linkedin.com/company/expert-pergola-bioclimatique"
-            ],
             "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": site.phoneNumber || "01 84 80 00 00",
