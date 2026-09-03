@@ -27,11 +27,47 @@ interface PergolaContentPageProps {
 export default function PergolaContentPage({ site, heroBadge, pageTitle, introHtml, facts, benefits, expertTip, faqs, canonicalUrl, heroImage, breadcrumb, sections = [], localHtml, themeColor = "purple" }: PergolaContentPageProps) {
     const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.reponse } })) };
     const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.expertpergolabioclimatique.fr" }, ...breadcrumb.map((b, i) => ({ "@type": "ListItem", position: i + 2, name: b.name, item: b.item }))] };
+    
+    // Robust Price Parsing for AggregateOffer Schema (supporting Prix, Budget, Tarif)
+    const priceFact = facts.find(f => {
+        const l = f.label.toLowerCase();
+        return l.includes('prix') || l.includes('budget') || l.includes('tarif');
+    });
+    const priceStr = priceFact?.value || "5000";
+    const prices = priceStr.match(/\d+(?:[.,\s]\d+)?/g)?.map(p => parseInt(p.replace(/\D/g, ''), 10)) || [5000, 15000];
+    const lowPrice = Math.min(...prices) || 5000;
+    const highPrice = prices.length > 1 ? Math.max(...prices) : Math.floor(lowPrice * 1.2);
+
+    const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": pageTitle,
+        "image": `https://www.expertpergolabioclimatique.fr${heroImage}`,
+        "description": introHtml.replace(/<[^>]*>?/gm, ''),
+        "brand": {
+            "@type": "Brand",
+            "name": "Expert Pergola Bioclimatique"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "EUR",
+            "lowPrice": lowPrice.toString(),
+            "highPrice": highPrice.toString(),
+            "offerCount": "12",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "Expert Pergola Bioclimatique"
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen font-sans text-slate-900 bg-white">
             <Header isHub={true} city={site.city} phoneNumber={site.phoneNumber} variant="default" themeColor={themeColor} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
             <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24"><div className="container mx-auto px-4"><div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-6"><CheckCircle size={16} className="text-purple-600" />{heroBadge}</div>
