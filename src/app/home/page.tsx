@@ -93,6 +93,36 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Pôle Aménagement Extérieur */}
+            <section className="py-16 bg-white border-t border-slate-100">
+                <div className="container mx-auto px-4 max-w-5xl">
+                    <div className="bg-gradient-to-br from-purple-50/60 to-rose-50/40 rounded-3xl p-8 sm:p-10 border border-purple-100/80 shadow-sm">
+                        <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
+                            <div className="space-y-3 text-center md:text-left max-w-xl">
+                                <span className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-bold rounded-full uppercase tracking-wider">
+                                    Aménagement Extérieur &amp; Sol Minéral
+                                </span>
+                                <h3 className="text-2xl font-bold text-slate-900">
+                                    Créez une dalle robuste pour votre future pergola bioclimatique
+                                </h3>
+                                <p className="text-slate-600 text-sm leading-relaxed">
+                                    Une pergola aluminium doit être fixée sur une assise stable et indéformable : découvrez les dallages en béton décoratif (désactivé, imprimé ou lissé) conformes DTU 13.3 pour sublimer vos terrasses extérieures.
+                                </p>
+                            </div>
+                            <a
+                                href="https://www.expertbetondecoratif.com"
+                                target="_blank"
+                                rel="noopener"
+                                className="shrink-0 inline-flex items-center gap-2 bg-white text-rose-700 border border-rose-200 hover:bg-rose-600 hover:text-white px-6 py-3.5 rounded-2xl font-bold shadow-sm transition group"
+                            >
+                                <span>Découvrir le béton décoratif</span>
+                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <FAQSection />
             <Footer config={hub} />
             <MobileStickyCTA themeColor="purple" />
