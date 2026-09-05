@@ -10,73 +10,109 @@ export interface PseoPageContent {
     pricing_estimated: string;
     regional_subsidy: string;
     expert_tip: string;
-    local_climate_info: string;
-    installation_timeline: string;
+    local_climate_info?: string;
+    installation_timeline?: string;
+    local_compliance_info?: string;
 }
 
 const DEFAULT_REGIONAL = {
-    subsidyName: "Garantie Décennale Inclus",
-    subsidyAmount: "Jusqu'à 30% d'économies d'énergie",
-    avgPrice: "4 500€ – 12 000€"
+    subsidyName: "Garantie Décennale & Devis Gratuit",
+    subsidyAmount: "Aluminium extrudé thermolaqué garanti 10 ans",
+    avgPrice: "6 000€ – 16 000€"
 };
 
+const TIPS = [
+        "À {city}, l'orientation des lames perpendiculaires à la façade capte un maximum de luminosité en hiver tout en régulant la chaleur estivale aux heures les plus chaudes.",
+        "Nos pergolas bioclimatiques installées à {city} disposent d'un système d'évacuation d'eau pluviale totalement invisible intégré à l'intérieur des poteaux porteurs.",
+        "Pour les terrasses exposées aux vents à {city}, l'ajout de stores screens latéraux micro-perforés motorisés crée une protection coupe-vent efficace tout en préservant la vue extérieure.",
+        "La motorisation Somfy avec capteurs de pluie et de vent ferme automatiquement les lames dès les premières gouttes pour protéger votre mobilier de jardin à {city}.",
+        "Les habitants de {neighborhood_0} optent fréquemment pour l'éclairage LED périphérique à intensité variable pour profiter de leur terrasse lors des soirées d'été.",
+        "Pour une surface au sol comprise entre 5 m² et 20 m² à {city}, une simple déclaration préalable de travaux (DP) en mairie suffit sans besoin de permis de construire.",
+        "L'aluminium thermolaqué sous labels Qualicoat et Qualimarine garantit une résistance absolue à la corrosion et aux UV sans aucun entretien contraignant à {city}.",
+        "Nos poseurs réalisent l'ancrage de la structure sur plots béton ou dalle carrelée en assurant une stabilité certifiée jusqu'à 140 km/h de vent."
+];
+const INTROS = [
+        "<p class=\"mb-4 leading-relaxed\">Vous rêvez de profiter de votre terrasse en toute saison à <strong>{city}{postalMention}</strong> ? La <strong>pergola bioclimatique en aluminium sur mesure</strong> transforme votre espace extérieur en une véritable pièce de vie supplémentaire, ombragée en été et abritée des averses à la mi-saison. {neighborhoodMention}</p><p class=\"mb-4 leading-relaxed\">Grâce à ses lames orientables motorisées de 0° à 135°, vous modulez précisément l'ensoleillement et créez une ventilation naturelle bienfaisante sous la toiture. Le tarif moyen pour une pergola bioclimatique haut de gamme à {city} se situe entre <strong>{avgPrice}</strong> selon les dimensions et les options d'éclairage ou de fermetures latérales.</p><p class=\"leading-relaxed\">Fabriquées en aluminium extrudé français thermolaqué, nos structures sont protégées par une garantie décennale. Contactez nos techniciens conseils pour recevoir votre étude 3D et votre devis gratuit sous 24h.</p>",
+        "<p class=\"mb-4 leading-relaxed\">Valorisez votre maison et aménagez votre jardin à <strong>{city}</strong>{deptMention} avec une pergola bioclimatique adossée ou autoportée. Véritable régulateur thermique naturel, elle protège également les baies vitrées de votre salon du rayonnement direct, limitant les surchauffes intérieures en période caniculaire.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} Équipée de capteurs météo intelligents, la toiture s'adapte automatiquement aux aléas du temps pour garder votre mobilier parfaitement au sec. Budget moyen constaté : <strong>{avgPrice}</strong> tout compris.</p><p class=\"leading-relaxed\">Nos artisans poseurs certifiés interviennent avec rigueur pour assurer une fixation solide et une intégration harmonieuse à votre façade. Obtenez votre chiffrage immédiat sans engagement.</p>",
+        "<p class=\"mb-4 leading-relaxed\">À <strong>{city}</strong>, créez un espace extérieur chaleureux et contemporain grâce à nos pergolas bioclimatiques motorisées de haute manufacture. {neighborhoodMention}</p><p class=\"mb-4 leading-relaxed\">Personnalisez votre projet selon vos envies : rubans LED blanc chaud ou RGB intégrés, stores zip occultants, parois vitrées coulissantes panoramiques et chauffage infrarouge pour l'hiver. Tarifs indicatifs sur votre commune : <strong>{avgPrice}</strong>.</p><p class=\"leading-relaxed\">Nous prenons en charge la constitution complète de votre dossier d'urbanisme en mairie de {city} pour valider votre déclaration préalable en toute conformité.</p>",
+        "<p class=\"mb-4 leading-relaxed\">Recherchez-vous un <strong>fabricant et installateur de pergola bioclimatique à {city}{postalMention}</strong> ? Notre réseau réunit des spécialistes de l'aménagement extérieur reconnus pour la qualité de leurs finitions.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} De la prise de mesures initiale au laser jusqu'à la mise en service des télécommandes radio, nous assurons une pose soignée en seulement 1 à 2 jours de chantier. Coût moyen de référence : <strong>{avgPrice}</strong>.</p><p class=\"leading-relaxed\">Bénéficiez des conseils avisés de nos experts locaux et recevez une simulation tarifaire détaillée adaptée à la configuration de votre terrasse.</p>",
+        "<p class=\"mb-4 leading-relaxed\">Repoussez les limites de votre habitat à <strong>{city}</strong>. La pergola bioclimatique est l'alliance parfaite entre architecture contemporaine, robustesse mécanique et confort thermique haut de gamme.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} Conçue pour résister aux rafales de vent et aux charges de neige de votre département, elle vous offre une tranquillité d'esprit totale au fil des saisons. Le budget moyen observé s'établit entre <strong>{avgPrice}</strong>.</p><p class=\"leading-relaxed\">Demandez dès aujourd'hui votre rendez-vous conseil gratuit à domicile et concrétisez votre projet d'aménagement avec nos experts régionaux.</p>"
+];
+
+function getExpertTip(city: string, dept: string, neighborhoods: string[]): string {
+    const hash = city.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const n0 = neighborhoods.length > 0 ? neighborhoods[0] : city;
+    const t = TIPS[hash % TIPS.length];
+    return t
+        .replace(/{city}/g, city)
+        .replace(/{dept}/g, dept || "votre département")
+        .replace(/{neighborhood_0}/g, n0);
+}
+
+function getIntroHtml(city: string, dept: string, neighborhoods: string[], postalCode: string, avgPrice: string): string {
+    const hash = city.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const isFrance = city.toLowerCase() === "france";
+    const prep = isFrance ? "en" : "à";
+
+    const neighborhoodMention = neighborhoods.length >= 2
+        ? `Nos artisans et techniciens spécialisés interviennent dans tous les secteurs de la commune : <strong>${neighborhoods.slice(0, 3).join(', ')}</strong> ainsi que dans les localités périphériques.`
+        : "Nos spécialistes qualifiés assurent une couverture totale de l'ensemble de votre secteur et de ses environs.";
+
+    const postalMention = postalCode ? ` (${postalCode})` : "";
+    const deptMention = dept ? ` (${dept})` : "";
+
+    const t = INTROS[hash % INTROS.length];
+    return t
+        .replace(/{city}/g, city)
+        .replace(/{prep}/g, prep)
+        .replace(/{postalMention}/g, postalMention)
+        .replace(/{deptMention}/g, deptMention)
+        .replace(/{neighborhoodMention}/g, neighborhoodMention)
+        .replace(/{avgPrice}/g, avgPrice);
+}
+
 export async function getPseoContent(cityConfig: CityConfig, targetType: string = 'MIXED'): Promise<PseoPageContent> {
-    const { city, postalCode, pricing } = cityConfig;
+    const { city, department, postalCode, neighborhoods, pricing } = cityConfig;
+    const dept = department || "";
     const postal = postalCode || "";
-    
+    const quartiers = neighborhoods || [];
+
     const regionalInfo = DEFAULT_REGIONAL;
     const realPrice = pricing?.base || regionalInfo.avgPrice;
 
-    const renderTip = (c: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const tips = [
-        `Pour votre pergola bioclimatique à ${c}, nous recommandons d'intégrer un éclairage LED orientable dans les lames pour profiter de votre terrasse lors des longues soirées d'été.`,
-        `À ${c}, ajouter des stores verticaux (screens) à votre pergola vous permettra de créer un espace protégé du vent tout en conservant la vue sur votre extérieur.`,
-        `Toutes les pergolas installées à ${c} peuvent être équipées de capteurs de pluie et de vent pour fermer les lames automatiquement en cas d'intempéries.`
-      ];
-      return tips[hash % tips.length];
-    };
+    const isFrance = city.toLowerCase() === "france";
+    const prep = isFrance ? "en" : "à";
+    const postalSpan = postal ? ` <span class="text-slate-400 text-3xl">(${postal})</span>` : "";
 
-    const renderIntro = (c: string, p: string, avg: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const intros = [
-        `<p class="mb-4">Habitants de <strong>${c}</strong>, transformez votre terrasse en un véritable espace de vie avec nos <strong>pergolas bioclimatiques en aluminium</strong>. Nos installateurs certifiés RGE s'occupent de tout.</p><p>Le coût d'installation est estimé à <strong>${avg}</strong>. Optimisez l'ombre et la lumière grâce aux lames orientables motorisées.</p>`,
-        `<p class="mb-4">Profitez de votre extérieur en toute saison à <strong>${c}</strong>. L'installation d'une pergola bioclimatique adossée ou autoportée vous protège du soleil et des intempéries.</p><p>Budget estimé : <strong>${avg}</strong>. Nous coordonnons l'ensemble du projet, de la conception 3D à la pose finale.</p>`
-      ];
-      return intros[hash % intros.length];
-    };
+    const meta_title = `Installateur Pergola Bioclimatique {city}{postal} | Sur Mesure`
+        .replace("{city}", isFrance ? "en France" : city)
+        .replace("{postal}", postal ? ` (${postal})` : "");
 
-    const renderClimateInfo = (c: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const climates = [
-        `Dans votre région autour de ${c}, le climat impose souvent des variations rapides de météo. La pergola bioclimatique permet de s'adapter instantanément : lames ouvertes pour la ventilation estivale, fermées et étanches lors des averses, ou légèrement inclinées pour laisser passer la lumière hivernale.`,
-        `Le taux d'ensoleillement et les conditions de vent spécifiques à ${c} font de l'aluminium extrudé le matériau le plus durable. Nos pergolas résistent sans problème aux bourrasques et aux forts UV, garantissant une durée de vie de plus de 20 ans sans entretien particulier.`,
-        `Que vous soyez exposé plein sud ou dans une zone venteuse près de ${c}, nos structures sont dimensionnées sur-mesure. L'orientation des lames permet de créer un microclimat sur votre terrasse, bloquant l'effet de serre thermique tout en conservant une circulation d'air continue.`
-      ];
-      return climates[hash % climates.length];
-    };
+    const meta_description = `Installation de pergola bioclimatique aluminium à lames orientables motorisées à {city}. Confort thermique 4 saisons. Devis gratuit personnalisé sous 24h.`
+        .replace("{city}", city)
+        .replace("{price}", realPrice)
+        .replace("{prep}", prep);
 
-    const renderTimeline = (c: string) => {
-      const hash = c.split('').reduce((a, x) => a + x.charCodeAt(0), 0);
-      const timelines = [
-        `À ${c}, après validation de votre devis et des métrés définitifs, le délai de fabrication et de livraison est d'environ 6 à 8 semaines. La pose s'effectue généralement en une seule journée par nos équipes expertes locales.`,
-        `Nos techniciens intervenant sur ${c} et sa périphérie s'assurent d'un chantier propre et rapide. La structure principale est montée en matinée, suivie de la motorisation et des finitions (leds, stores) l'après-midi. Vous profitez de votre pergola le soir même.`,
-        `Pour toute installation à ${c}, nous vous accompagnons également dans les démarches administratives (déclaration préalable de travaux). Une fois le feu vert de l'urbanisme obtenu, l'installation est programmée selon vos disponibilités.`
-      ];
-      return timelines[hash % timelines.length];
-    };
+    const hero_title = `Installateur <span class="text-blue-500">Pergola Bioclimatique</span> {prep} {city}{postalSpan}`
+        .replace("{city}", city)
+        .replace("{prep}", prep)
+        .replace("{postalSpan}", postalSpan);
+
+    const intro_html = getIntroHtml(city, dept, quartiers, postal, realPrice);
+    const expert_tip = getExpertTip(city, dept, quartiers);
 
     return {
-        meta_title: `Installateur Pergola Bioclimatique à ${city}${postal ? ` (${postal})` : ""} | Devis Gratuit`,
-        meta_description: `Conception et installation de pergolas bioclimatiques en aluminium sur mesure à ${city}. Profitez de votre terrasse toute l'année. Devis gratuit en 48h.`,
-        hero_title: `Installateur de <span class="text-slate-500">Pergolas Bioclimatiques</span> à ${city}${postal ? ` <span class="text-slate-400 text-3xl">(${postal})</span>` : ""}`,
+        meta_title,
+        meta_description,
+        hero_title,
         hero_badge: regionalInfo.subsidyName,
-        intro_html: cityConfig.unique_intro || renderIntro(city, postal, realPrice),
-        cta_primary: "Demander une étude 3D et un devis",
+        intro_html,
+        cta_primary: "Configurer ma pergola sur mesure",
         pricing_estimated: realPrice,
         regional_subsidy: regionalInfo.subsidyAmount,
-        expert_tip: cityConfig.unique_expert_tip || renderTip(city),
-        local_climate_info: renderClimateInfo(city),
-        installation_timeline: renderTimeline(city),
+        expert_tip,
+        local_climate_info: expert_tip,
+        installation_timeline: "Intervention sous 24h à 48h",
+        local_compliance_info: regionalInfo.subsidyAmount
     };
 }

@@ -1,17 +1,21 @@
 import Link from "next/link";
-import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText } from "lucide-react";
+import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText, Landmark, Building2 } from "lucide-react";
 import type { CityConfig } from "@/lib/db";
 
 interface LocalAeoSectionProps {
     site: CityConfig;
 }
 
-const pricingMatrix = [{"name": "Pergola Adossée 3x4m (Lames motorisées)", "usage": "Prolongement naturel du salon", "price": "4 500€ - 8 200€", "aid": "TVA réduite selon logement", "net": "Dès 4 500€"}, {"name": "Pergola Autoportée 4x4m (4 poteaux)", "usage": "Îlot autonome terrasse ou jardin", "price": "6 500€ - 11 500€", "aid": "Inclus éclairage LED périmètre", "net": "Dès 6 500€"}, {"name": "Pergola XXL avec Stores Zip latéraux", "usage": "Protection totale vent et soleil", "price": "9 500€ - 16 000€", "aid": "Capteurs pluie & vent offerts", "net": "Sur devis"}, {"name": "Carport Aluminium Abri Voiture", "usage": "Protection de véhicule premium", "price": "5 000€ - 9 800€", "aid": "Structure thermo-laquée", "net": "Sur mesure"}];
-const steps = [{"title": "Étude d'exposition & modélisation 3D", "desc": "Visite technique gratuite pour analyser l'ensoleillement et concevoir les plans 3D sur mesure."}, {"title": "Devis transparent sous 24h clé en main", "desc": "Chiffrage tout compris incluant la fabrication en usine, le transport et la pose certifiée."}, {"title": "Fabrication française haute précision", "desc": "Profilés aluminium thermolaqués Qualicoat avec lames double paroi orientables de 0 à 135 degrés."}, {"title": "Installation propre en 1 à 2 jours", "desc": "Ancrage sur plots béton, raccordement électrique des moteurs Somfy et remise de la garantie décennale."}];
+const pricingMatrix = [{"name": "Pergola Adossée 3x3m (Lames manuelles/éco)", "usage": "Terrasse standard petit espace", "price": "4 800€ - 7 200€", "aid": "Garantie Décennale", "net": "Dès 4 800€"}, {"name": "Pergola Motorisée 4x3m (Somfy & LED)", "usage": "Format idéal salon de jardin 4-6 pers.", "price": "7 500€ - 11 500€", "aid": "Aluminium Qualicoat", "net": "Dès 7 500€"}, {"name": "Pergola Grande Dimension 6x4m", "usage": "Terrasse spacieuse & îlot autoporté", "price": "12 000€ - 18 500€", "aid": "Fabrication sur mesure", "net": "Dès 12 000€"}, {"name": "Store zip latéral motorisé (3m)", "usage": "Protection vent, soleil rasant & vis-à-vis", "price": "1 200€ - 1 800€", "aid": "Toile Serge Ferrari", "net": "Sur mesure"}];
+const steps = [{"title": "Étude d'implantation & Vue 3D", "desc": "Relevé des cotes de terrasse, analyse des ombrages et simulation photoréaliste de votre future pergola."}, {"title": "Déclaration préalable en Mairie de {city}", "desc": "Préparation complète des pièces graphiques (plans de masse et d'élévation) pour validation municipale."}, {"title": "Fabrication sur mesure en usine", "desc": "Usinage de précision des profilés aluminium extrudés et thermolaquage haute durabilité."}, {"title": "Pose & Paramétrage des capteurs météo", "desc": "Ancrage au sol, raccordement électrique étanche, pose des lames et réglage des automatismes Somfy."}];
 
 export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
     const city = site.city;
     const dept = site.department ? ` (${site.department})` : "";
+    const neighborhoods = site.neighborhoods || [];
+    const neighborhoodsText = neighborhoods.length > 0 
+        ? `, notamment dans les quartiers ${neighborhoods.slice(0, 4).join(', ')}` 
+        : "";
 
     return (
         <section className="py-12 bg-slate-50/50 border-t border-slate-200">
@@ -32,33 +36,33 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-100">
                         <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-slate-900 text-white">
                             <FileText size={13} />
-                            Pergola Bioclimatique Aluminium à {city} (2026)
+                            Pergola Bioclimatique à {city} (2026)
                         </span>
                         <span className="text-xs font-medium text-slate-500 flex items-center gap-1">
-                            <Clock size={13} /> Chiffres & Aides certifiés 2026
+                            <Clock size={13} /> Données & Tarifs certifiés 2026
                         </span>
                     </div>
 
                     <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-6">
-                        <strong>En résumé : </strong>À {city}{dept}, le prix de pose d'une pergola bioclimatique en aluminium sur-mesure varie de 350€ à 950€ par m² selon les dimensions et équipements (lames motorisées, éclairage LED, stores zip latéraux). Résistante aux vents violents et 100% étanche, elle valorise immédiatement votre bien.
+                        <strong>En résumé : </strong>À {city}{dept}, le coût moyen d'une prestation de pergola bioclimatique réalisée par nos artisans qualifiés s'établit entre 6 000€ – 16 000€ avant déduction des éventuelles aides financières. Nos techniciens certifiés interviennent sous 24h à 48h avec garantie décennale.
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2">
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Prix estimé</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">350€ – 950€ / m²</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">6 000€ – 16 000€</div>
                         </div>
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Aides & Primes</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Fabrication française & Garantie 10 ans</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Garantie Décennale & Devis Gratuit</div>
                         </div>
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Délai d'intervention</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Étude 3D en 24h, installation en 1 à 2 jours</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Devis 24h, pose rapide</div>
                         </div>
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Garantie & Norme</div>
-                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Label Qualicoat & Qualimarine Aluminium</div>
+                            <div className="text-sm md:text-base font-bold text-slate-900 mt-1">Garantie Décennale & RGE</div>
                         </div>
                     </div>
                 </div>
@@ -67,10 +71,10 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                 <div className="mb-14">
                     <div className="mb-6">
                         <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
-                            Grille tarifaire et aides à {city}
+                            Grille tarifaire et prestations à {city}
                         </h2>
                         <p className="text-slate-600 mt-1 text-sm md:text-base">
-                            Coûts moyens constatés pour une pose réalisée par nos artisans partenaires certifiés.
+                            Coûts indicatifs moyens constatés pour une pose réalisée dans les règles de l'art.
                         </p>
                     </div>
 
@@ -81,7 +85,7 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                                     <th className="px-5 py-4">Équipement / Prestation</th>
                                     <th className="px-5 py-4 hidden md:table-cell">Usage conseillé</th>
                                     <th className="px-5 py-4">Coût indicatif</th>
-                                    <th className="px-5 py-4">Aides déduites</th>
+                                    <th className="px-5 py-4">Avantage & Aides</th>
                                     <th className="px-5 py-4 font-bold text-slate-900">Reste à charge</th>
                                 </tr>
                             </thead>
@@ -100,14 +104,67 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                     </div>
                 </div>
 
+                {/* Guide & Spécificités d'installation à {city} */}
+                <div className="mb-14">
+                    <div className="mb-8">
+                        <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+                            Spécificités d'installation & urbanisme à {city}
+                        </h2>
+                        <p className="text-slate-600 mt-1 text-sm md:text-base">
+                            Réglementation municipale, exposition au vent et démarches administratives dans votre commune.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {/* Card 1: Urbanisme & Mairie */}
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600">
+                                    <Landmark size={20} />
+                                </span>
+                                <h3 className="font-bold text-slate-900 text-base">Urbanisme & Déclaration préalable à {city}</h3>
+                            </div>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                Pour toute pergola bioclimatique adossée ou autoportée dont l'emprise au sol est comprise entre 5 m² et 20 m² à {city}{dept}, une Déclaration Préalable (DP) de travaux doit être déposée auprès du service d'urbanisme de la mairie. Si votre terrain est situé dans le champ de visibilité d'un monument historique ou en zone sauvegardée, l'avis de l'Architecte des Bâtiments de France (ABF) est requis. Nos techniciens montent l'intégralité du dossier administratif avec plans cotés pour obtenir votre arrêté municipal sans tracas.
+                            </p>
+                        </div>
+
+                        {/* Card 2: Typologie du bâti & Quartiers */}
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
+                                    <Building2 size={20} />
+                                </span>
+                                <h3 className="font-bold text-slate-900 text-base">Typologie des terrasses & Quartiers à {city}</h3>
+                            </div>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                Nos installateurs se déplacent dans tous les secteurs de la commune{neighborhoodsText}. Nous concevons aussi bien des pergolas adossées sur façade isolée (avec scellements chimiques à rupture de pont thermique) que des structures autoportées à 4 poteaux pour abriter un espace lounge près d'une piscine ou au milieu d'un jardin paysager.
+                            </p>
+                        </div>
+
+                        {/* Card 3: Climat, Performance & Aides */}
+                        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="grid h-10 w-10 place-items-center rounded-xl bg-amber-50 text-amber-600">
+                                    <ShieldCheck size={20} />
+                                </span>
+                                <h3 className="font-bold text-slate-900 text-base">Résistance au vent & Climat local à {city}</h3>
+                            </div>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                Nos pergolas sont dimensionnées conformément aux règles Eurocodes pour supporter les charges de neige et les poussées de vent caractéristiques de votre zone géographique. Les profilés en aluminium alliage 6060-T6 et les lames double paroi étanches assurent une évacuation fluide des eaux pluviales jusqu'à 150 mm/h, maintenant votre terrasse propre et abritée même lors d'orages soudains.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Déroulement du chantier en 4 étapes */}
                 <div className="mb-14">
                     <div className="mb-8">
                         <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
-                            Votre installation à {city} en 4 étapes
+                            Votre projet à {city} en 4 étapes
                         </h2>
                         <p className="text-slate-600 mt-1 text-sm md:text-base">
-                            Un accompagnement complet et transparent, de l'audit jusqu'à l'obtention des aides.
+                            Un accompagnement transparent de l'étude préliminaire jusqu'à la garantie de parfait achèvement.
                         </p>
                     </div>
 
@@ -127,16 +184,16 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                 {/* Bannière de Réassurance locale */}
                 <div className="rounded-3xl bg-slate-900 text-white p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
                     <div>
-                        <h3 className="text-xl font-bold mb-1">Un projet d'installation à {city} ?</h3>
+                        <h3 className="text-xl font-bold mb-1">Un projet à {city} ?</h3>
                         <p className="text-slate-300 text-sm">
-                            Garantie décennale & résistance vent 180 km/h. Devis gratuit sous 24h sans aucun engagement.
+                            Garantie décennale & devis gratuit sous 24h sans aucun engagement.
                         </p>
                     </div>
                     <a
                         href="#simulateur"
                         className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-white text-slate-900 px-6 py-3.5 font-bold hover:bg-slate-100 transition shadow"
                     >
-                        <span>Estimer mon devis</span>
+                        <span>Estimer mon projet</span>
                         <ArrowRight size={16} />
                     </a>
                 </div>
