@@ -39,18 +39,12 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                     <div>
                         <h4 className="text-white font-bold mb-6 text-lg">Nuestros Servicios</h4>
                         <ul className="space-y-3">
-                            {[
-                                "Diseño de Pergolas Bioclimáticas",
-                                "Installation Sur Mesure",
-                                "Cerramientos de Cristal",
-                                "Motorización y Domótica",
-                                "Mantenimiento de Pergolas"
-                            ].map((service, i) => (
+                            {[{"title": "Pergola Bioclimatique Adossée", "href": "/type/adossee"}, {"title": "Pergola Bioclimatique Autoportée", "href": "/type/autoportee"}, {"title": "Carport Bioclimatique Aluminium", "href": "/type/carport"}, {"title": "Pergola Toit Plat & Stores Zip", "href": "/type/toit-plat"}, {"title": "Guides & Prix Pergola 2026", "href": "/guides"}].map((service, i) => (
                                 <li key={i}>
-                                    <a href="#simulateur" className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
-                                        <span className="bg-amber-500 rounded-full h-1 w-1 shrink-0"></span>
-                                        {service}
-                                    </a>
+                                    <Link href={service.href} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
+                                        <span className="bg-emerald-500 rounded-full h-1 w-1 shrink-0"></span>
+                                        {service.title}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -80,7 +74,7 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <ul className="space-y-3">
                             {neighborhoods.slice(0, 8).map((quartier: string, i: number) => (
                                 <li key={quartier}>
-                                    <Link href={`#simulateur`} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
+                                    <Link href="/guides" className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
                                         <span className="bg-amber-500 rounded-full h-1 w-1 shrink-0"></span>
                                         {getVariedAnchor(quartier, i + 2)}
                                     </Link>

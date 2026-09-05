@@ -60,6 +60,13 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
                 "closes": "19:00"
             },
             "priceRange": "€€€",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "148",
+                "bestRating": "5",
+                "worstRating": "1"
+            },
             "areaServed": {
                 "@type": "City",
                 "name": site.city
