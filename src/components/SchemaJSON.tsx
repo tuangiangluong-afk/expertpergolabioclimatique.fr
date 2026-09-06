@@ -26,7 +26,7 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
 
         schema = {
             "@context": "https://schema.org",
-            "@type": ["LocalBusiness", "SolarEnergyContractor", "HomeImprovement"],
+            "@type": ["LocalBusiness", "SolarEnergyContractor", "HomeAndConstructionBusiness"],
             "name": site.name,
             "image": site.heroImage,
             "@id": canonicalUrl,
@@ -60,19 +60,12 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
                 "closes": "19:00"
             },
             "priceRange": "€€€",
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "reviewCount": "148",
-                "bestRating": "5",
-                "worstRating": "1"
-            },
+            
             "areaServed": {
                 "@type": "City",
                 "name": site.city
-            },
-            
-        };
+            }
+            };
     } else if (type === "Organization" && site) {
         schema = {
             "@context": "https://schema.org",
