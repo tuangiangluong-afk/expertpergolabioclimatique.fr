@@ -1,3 +1,4 @@
+export const revalidate = 86400; // 24h ISR cache
 import Header from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getSiteConfig } from "@/lib/sites-config";

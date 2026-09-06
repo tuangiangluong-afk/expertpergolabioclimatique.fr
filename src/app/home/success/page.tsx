@@ -1,3 +1,4 @@
+export const revalidate = 86400; // 24h ISR cache
 import { Metadata } from "next";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";

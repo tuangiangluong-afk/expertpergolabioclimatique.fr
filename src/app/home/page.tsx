@@ -1,3 +1,4 @@
+export const revalidate = 86400; // 24h ISR cache
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { getHubConfig } from "@/lib/sites-config";
 import { NATIONAL_TARGETS } from "@/config/national-targets";

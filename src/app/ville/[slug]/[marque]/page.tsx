@@ -1,3 +1,4 @@
+export const revalidate = 86400; // 24h ISR cache
 import { getCityByCleanSlug, CITIES } from "@/lib/db";
 import { PERGOLA_BRANDS, getPergolaBrandBySlug } from "@/data/pergola-brands";
 import { slugify } from "@/lib/slugify";
