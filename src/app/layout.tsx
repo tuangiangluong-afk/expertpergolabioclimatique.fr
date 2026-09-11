@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { headers } from "next/headers";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
@@ -100,6 +101,7 @@ export default function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body className={`${inter.variable} antialiased bg-white text-slate-900`}>
+        <Script src="https://answershaper.com/api/v1/m2m/local-tag/23.js" strategy="lazyOnload" defer />
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
