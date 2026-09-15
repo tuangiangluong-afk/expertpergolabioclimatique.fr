@@ -15,7 +15,7 @@ export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
     title: "Guides pergola bioclimatique et aménagement",
-    description: "Découvrez tout sur la conception et l'installation de pergolas bioclimatiques.. Guides, conseils et astuces de nos professionnels spécialisés en pergolas bioclimatiques.",
+    description: "Conception, réglementation, prix et entretien d'une pergola bioclimatique, expliqués par nos installateurs.",
 };
 
 export default async function GuidesIndex() {

@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { getSiteConfig } from "@/lib/sites-config";
 
 export const metadata = {
-    title: "Glossaire technique et définitions | expertpergolabioclimatique",
+    title: "Glossaire pergola : définitions et repères",
     description: "Découvrez notre glossaire complet pour comprendre tous les termes techniques et réglementaires de votre projet.",
 };
 

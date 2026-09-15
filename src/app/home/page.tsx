@@ -15,7 +15,7 @@ import FAQSection from "@/components/FAQSection";
 import RealizationsGrid from "@/components/RealizationsGrid";
 
 export const metadata = {
-    title: "Expert Pergola Bioclimatique | Pergolas Bioclimatiques en Aluminium",
+    title: "Expert Pergola Bioclimatique : pergolas sur mesure",
     description: "Concevez et installez votre pergola bioclimatique en aluminium sur mesure en France. Demandez des devis gratuits.",
 };
 
