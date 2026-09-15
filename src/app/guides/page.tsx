@@ -80,13 +80,13 @@ export default async function GuidesIndex() {
                         <Link
                             key={guide.slug}
                             href={`/guides/${guide.slug}`}
-                            className="group bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-xl hover:border-stone-200 transition-all duration-300 flex flex-col h-full"
+                            className="group bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-xl hover:border-purple-300 transition-all duration-300 flex flex-col h-full"
                         >
                             <div className="mb-4">
-                                <span className="inline-flex items-center text-xs font-bold text-stone-700 bg-stone-50 px-2 py-1 rounded-md uppercase tracking-wider mb-3">
+                                <span className="inline-flex items-center text-xs font-bold text-purple-800 bg-purple-50 border border-purple-100 px-2 py-1 rounded-md uppercase tracking-wider mb-3">
                                     {guide.category || 'Guide'}
                                 </span>
-                                <h2 className="text-xl font-bold group-hover:text-stone-600 transition-colors line-clamp-2">
+                                <h2 className="text-xl font-bold group-hover:text-purple-700 transition-colors line-clamp-2">
                                     {guide.title}
                                 </h2>
                             </div>
@@ -103,7 +103,7 @@ export default async function GuidesIndex() {
                                         </span>
                                     )}
                                 </div>
-                                <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform text-stone-600 font-medium">
+                                <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform text-purple-600 font-medium">
                                     Lire la suite <ArrowRight size={14} />
                                 </span>
                             </div>

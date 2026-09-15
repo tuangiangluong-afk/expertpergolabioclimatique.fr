@@ -201,7 +201,8 @@ export function Footer({ config }: FooterProps) {
                                             <Mail size={20} />
                                         </div>
                                         <div>
-                                            <span className="block text-white font-bold text-lg">{config.email}</span>
+                                            <span className="block text-white font-bold text-lg">Formulaire de contact</span>
+                                            <span className="text-xs text-neutral-400">Assistance en ligne 7j/7</span>
                                         </div>
                                     </Link>
                                 </li>

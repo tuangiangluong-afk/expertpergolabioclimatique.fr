@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-    const domain = req.headers.get("x-irve-domain") || "expertbetondecoratif.com";
+    const domain = req.headers.get("x-irve-domain") || "expertpergolabioclimatique.fr";
     const baseUrl = `https://${domain}`;
 
     const robotsTxt = `User-Agent: *

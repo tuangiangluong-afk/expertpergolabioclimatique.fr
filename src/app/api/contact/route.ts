@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         // If API Key is not set, we just log it (Simulated Mode)
         if (!process.env.RESEND_API_KEY) {
             console.log("⚠️ SIMULATION RESEND (No API Key found)");
-            console.log("To: bonjour@expertbetondecoratif.com");
+            console.log("To: bonjour@expertpergolabioclimatique.fr");
             console.log(`Subject: [${postalCode || city}] Nouveau message de ${name}`);
             console.log("Body:", message);
 
@@ -27,8 +27,8 @@ export async function POST(req: Request) {
         }
 
         const data = await resend.emails.send({
-            from: 'Expert Béton Décoratif <contact@expertbetondecoratif.com>',
-            to: ['bonjour@expertbetondecoratif.com'],
+            from: 'Expert Pergola Bioclimatique <hello@expertbornerecharge.com>',
+            to: ['bonjour@expertpergolabioclimatique.fr'],
             replyTo: email,
             subject: `[${postalCode || city}] Contact: ${subject} - ${name}`,
             html: `

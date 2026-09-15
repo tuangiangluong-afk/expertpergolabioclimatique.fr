@@ -112,7 +112,7 @@ export async function assignLeadToPartners(leadId: string, partnerIds: string[])
                 } catch (e) { }
 
                 await resend.emails.send({
-                    from: 'Expert Béton Décoratif <contact@expertbetondecoratif.com>',
+                    from: 'Expert Pergola Bioclimatique <hello@expertbornerecharge.com>',
                     to: [partner.email],
                     subject: `🚀 Nouveau Lead Disponible : ${lead.city}`,
                     html: `
@@ -134,7 +134,7 @@ export async function assignLeadToPartners(leadId: string, partnerIds: string[])
                             </div>
 
                             <p style="text-align: center; margin-top: 30px;">
-                                <a href="https://www.expertbetondecoratif.com/leads/unlock/${lead.id}" 
+                                <a href="https://www.expertpergolabioclimatique.fr/leads/unlock/${lead.id}" 
                                    style="background-color: #e11d48; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
                                    DÉBLOQUER LES COORDONNÉES
                                 </a>
@@ -215,7 +215,7 @@ export async function deliverUnlockedLead(leadId: string, partnerId: string) {
         } catch (e) { }
 
         await resend.emails.send({
-            from: 'Expert Béton Décoratif <contact@expertbetondecoratif.com>',
+            from: 'Expert Pergola Bioclimatique <hello@expertbornerecharge.com>',
             to: [partner.email],
             subject: `💰 Lead Débloqué : ${lead.name} (${lead.city})`,
             html: `

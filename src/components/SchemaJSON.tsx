@@ -16,7 +16,7 @@ export default function SchemaJSON({ type, site, breadcrumbItems, faqSegment }: 
     const baseUrl = "https://www.expertpergolabioclimatique.fr";
 
     if (type === "LocalBusiness" && site) {
-        const canonicalUrl = site.slug === 'home' || site.slug === 'expertbetondecoratif.com' || site.slug === 'www.expertbetondecoratif.com'
+        const canonicalUrl = site.slug === 'home' || site.slug === 'expertpergolabioclimatique.fr' || site.slug === 'www.expertpergolabioclimatique.fr'
             ? baseUrl
             : `${baseUrl}/ville/${slugify(site.city)}`;
 

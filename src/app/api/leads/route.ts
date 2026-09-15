@@ -112,35 +112,34 @@ export async function POST(request: Request) {
             country: currentCountry
         };
 
-        const supabase = createSupabaseAdmin();
         const siteConfig = getSiteConfig(domain);
         const region = siteConfig?.region || 'National';
         const department = siteConfig?.department || (postalCode ? postalCode.substring(0, 2) : null);
 
-        const leadPayload: any = {
-            name, email, phone, city, postal_code: postalCode,
-            tenant_id: domain || 'expertpergolabioclimatique.fr',
-            type: `${currentNiche}_lead`,
-            housing_type: projectType,
-            status: 'new',
-            region: region,
-            department: department,
-            message: JSON.stringify(metadata, null, 2),
-            niche: currentNiche,
-            arbitrage_status: arbitrageStatus,
-            score: leadScore,
-            country: currentCountry
-        };
-
-        const { error: dbError } = await supabase.from('leads').insert(leadPayload);
-        if (dbError && dbError.code === '42703') { 
-            console.log("⚠️ [Supabase] 'country' column missing, retrying without it...");
-            delete leadPayload.country;
-            await supabase.from('leads').insert(leadPayload);
+        try {
+            const supabase = createSupabaseAdmin();
+            const leadPayload: any = {
+                name,
+                email,
+                phone,
+                city: city || 'France',
+                postal_code: postalCode || '75000',
+                tenant_id: domain || 'expertpergolabioclimatique.fr',
+                type: `${currentNiche}_lead`,
+                housing_type: projectType || 'terrasse',
+                status: 'new',
+                region: region,
+                department: department,
+                message: JSON.stringify(metadata, null, 2)
+            };
+            const { error: dbError } = await supabase.from('leads').insert(leadPayload);
+            if (dbError) console.error("⚠️ [Supabase Error] (non-blocking):", dbError.message);
+        } catch (dbErr) {
+            console.error("⚠️ [Supabase Exception] (non-blocking):", dbErr);
         }
 
         // 5. SEND NOTIFICATION EMAIL (Resend)
-        const apiKey = process.env.RESEND_API_KEY || "re_7pgxJbPq_CwqeXijSNtvzHdZeLk8CPKix";
+        const apiKey = process.env.RESEND_API_KEY;
         const resend = apiKey ? new Resend(apiKey) : null;
         if (resend) {
             const siteName = siteConfig?.name || domain;
@@ -185,7 +184,7 @@ export async function POST(request: Request) {
 
             await resend.emails.send({
                 from: `${siteName} <hello@expertbornerecharge.com>`,
-                to: ['hello@expertbornerecharge.com', `bonjour@${domain}`],
+                to: ['hello@expertbornerecharge.com'],
                 subject,
                 html
             });

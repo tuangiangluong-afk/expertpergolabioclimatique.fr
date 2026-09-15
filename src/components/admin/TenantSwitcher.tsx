@@ -14,7 +14,7 @@ export function TenantSwitcher() {
     const tenants = useMemo(() => {
         const unique = new Map();
         Object.values(SITES).forEach(site => {
-            if (site.slug !== 'home' && site.slug !== 'expertbetondecoratif.com') {
+            if (site.slug !== 'home' && site.slug !== 'expertpergolabioclimatique.fr') {
                 unique.set(site.slug, site);
             }
         });

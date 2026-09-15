@@ -86,7 +86,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // 4. City Routes (From CITIES Config)
     const uniqueSites = new Map();
     Object.values(CITIES).forEach(site => {
-        if (site.slug !== 'home' && site.slug !== 'expertbetondecoratif.com' && site.slug !== 'www.expertbetondecoratif.com') {
+        if (site.slug !== 'home' && site.slug !== 'expertpergolabioclimatique.fr' && site.slug !== 'www.expertpergolabioclimatique.fr') {
             uniqueSites.set(site.slug, site);
         }
     });

@@ -52,7 +52,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, post: inserted });
   } catch (error: any) {
-    console.error('Expert Béton Décoratif Webhook error:', error);
+    console.error('Expert Pergola Bioclimatique Webhook error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -40,28 +40,28 @@ const CookieBanner = ({ slug, cityName }: CookieBannerProps) => {
                 </div>
                 <div className="flex-1">
                     <h3 className="text-lg font-semibold text-white mb-2">
-                        Privacidad & Cookies
+                        Confidentialité & Cookies
                     </h3>
                     <p className="text-sm text-neutral-400 mb-4 leading-relaxed">
-                        Utilizamos cookies para mejorar tu experiencia en la web de {cityName}. Sin rastreos intrusivos, lo prometemos.
+                        Nous utilisons des cookies pour améliorer votre expérience sur {cityName}. Aucun pistage intrusif garanti.
                         {' '}
                         <Link href="/mentions-legales" className="underline text-purple-400 hover:text-purple-300 transition">
-                            Saber más
+                            En savoir plus
                         </Link>
                     </p>
- 
+
                     <div className="flex flex-col gap-2">
                         <button
                             onClick={acceptAll}
                             className="w-full py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-lg transition-colors"
                         >
-                            ${cityName ? "Aceptar todo" : "Aceptar todo"}
+                            Accepter tout
                         </button>
                         <button
                             onClick={rejectAll}
                             className="w-full py-2 bg-white/5 text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
                         >
-                            Continuar sin aceptar
+                            Continuer sans accepter
                         </button>
                     </div>
                 </div>

@@ -289,7 +289,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                     </div>
                                 </div>
                                 <div>
-                                    <Link href={post.author_slug ? `/author/${post.author_slug}` : "#"} className="font-bold text-neutral-900 hover:text-amber-600 transition-colors">{post.author_name || 'Expert Béton Décoratif'}</Link>
+                                    <Link href={post.author_slug ? `/author/${post.author_slug}` : "#"} className="font-bold text-neutral-900 hover:text-amber-600 transition-colors">{post.author_name || 'Expert Pergola Bioclimatique'}</Link>
                                     <p className="text-xs text-neutral-500">Expert Chauffage &amp; PAC</p>
                                 </div>
                             </div>

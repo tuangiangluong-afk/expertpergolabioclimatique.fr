@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Expert Béton Décoratif AI Agent API",
-    "description": "API for interacting with Expert Béton Décoratif services, understanding product offerings, and generating leads.",
+    "title": "Expert Pergola Bioclimatique AI Agent API",
+    "description": "API for interacting with Expert Pergola Bioclimatique services, understanding product offerings, and generating leads.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://expertbetondecoratif.com"
+      "url": "https://expertpergolabioclimatique.fr"
     }
   ],
   "paths": {
@@ -85,6 +85,6 @@
   },
   "externalDocs": {
     "description": "Full documentation, guides, and installer network details",
-    "url": "https://expertbetondecoratif.com/guides"
+    "url": "https://expertpergolabioclimatique.fr/guides"
   }
 }

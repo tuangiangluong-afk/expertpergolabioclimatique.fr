@@ -316,7 +316,7 @@ export default function LeadUnlockPage() {
 
                     <footer className="text-center space-y-6">
                         <p className="text-slate-400 text-xs font-medium px-12 leading-relaxed">
-                            Expert Béton Décoratif garantit l'exclusivité de ce lead. En achetant ces coordonnées, vous bénéficiez de l'accès unique à ce projet client.
+                            Expert Pergola Bioclimatique garantit l'exclusivité de ce lead. En achetant ces coordonnées, vous bénéficiez de l'accès unique à ce projet client.
                         </p>
                         <div className="flex flex-col items-center gap-6">
                             <div className="flex items-center justify-center gap-6">

@@ -11,7 +11,7 @@ const HOME_FIELDS = [
     { key: "hero_title", label: "Titre Hero (H1)", type: "text", placeholder: "Installation Pompes à Chaleur à..." },
     { key: "hero_subtitle", label: "Sous-titre Hero", type: "textarea", placeholder: "Produisez votre propre électricité verte et réduisez vos factures..." },
     { key: "cta_button", label: "Texte CTA Button", type: "text", placeholder: "Simuler mes économies" },
-    { key: "about_title", label: "Titre 'À Propos'", type: "text", placeholder: "Pourquoi choisir Expert Béton Décoratif ?" },
+    { key: "about_title", label: "Titre 'À Propos'", type: "text", placeholder: "Pourquoi choisir Expert Pergola Bioclimatique ?" },
     { key: "about_text", label: "Texte 'À Propos'", type: "textarea", placeholder: "Nous accompagnons les particuliers dans leur transition énergétique avec des équipements certifiés RGE..." },
 ];
 

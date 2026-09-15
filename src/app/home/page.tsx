@@ -101,22 +101,20 @@ export default function HomePage() {
                         <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
                             <div className="space-y-3 text-center md:text-left max-w-xl">
                                 <span className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-bold rounded-full uppercase tracking-wider">
-                                    Aménagement Extérieur &amp; Sol Minéral
+                                    Aluminium Thermolaqué &amp; Lames Orientables
                                 </span>
                                 <h3 className="text-2xl font-bold text-slate-900">
-                                    Créez une dalle robuste pour votre future pergola bioclimatique
+                                    Concevez votre pergola bioclimatique sur-mesure
                                 </h3>
                                 <p className="text-slate-600 text-sm leading-relaxed">
-                                    Une pergola aluminium doit être fixée sur une assise stable et indéformable : découvrez les dallages en béton décoratif (désactivé, imprimé ou lissé) conformes DTU 13.3 pour sublimer vos terrasses extérieures.
+                                    Profitez d&apos;un espace de vie extérieur protégé du soleil et des intempéries toute l&apos;année : structure aluminium extrudé, motorisation Somfy, capteurs vent/pluie et éclairage LED intégré avec garantie décennale.
                                 </p>
                             </div>
                             <a
-                                href="https://www.expertpergolabioclimatique.fr"
-                                target="_blank"
-                                rel="noopener"
-                                className="shrink-0 inline-flex items-center gap-2 bg-white text-rose-700 border border-rose-200 hover:bg-rose-600 hover:text-white px-6 py-3.5 rounded-2xl font-bold shadow-sm transition group"
+                                href="#simulateur"
+                                className="shrink-0 inline-flex items-center gap-2 bg-purple-600 text-white hover:bg-purple-700 px-6 py-3.5 rounded-2xl font-bold shadow-sm transition group"
                             >
-                                <span>Découvrir le béton décoratif</span>
+                                <span>Configurer ma pergola</span>
                                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                             </a>
                         </div>

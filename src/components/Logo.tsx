@@ -20,9 +20,9 @@ export default function Logo({
     customLink
 }: LogoProps) {
     const sizes = {
-        sm: { height: 32, text: "text-lg", iconSize: 24 },
-        md: { height: 48, text: "text-xl", iconSize: 32 },
-        lg: { height: 64, text: "text-3xl", iconSize: 44 },
+        sm: { height: 32, text: "text-lg", iconSize: 22 },
+        md: { height: 48, text: "text-xl", iconSize: 28 },
+        lg: { height: 64, text: "text-3xl", iconSize: 38 },
     };
 
     const s = sizes[size];
@@ -30,28 +30,28 @@ export default function Logo({
     const colors = {
         default: {
             expert: "text-slate-900",
-            niche: "text-stone-600",
-            dot: "text-stone-500",
-            cityText: "text-stone-700"
+            niche: "text-purple-700",
+            dot: "text-purple-500",
+            cityText: "text-purple-700"
         },
         light: {
             expert: "text-white",
             niche: "text-white",
-            dot: "text-stone-300",
+            dot: "text-purple-300",
             cityText: "text-white"
         }
     }[variant];
 
     return (
         <Link href={customLink || "/"} className={`flex items-center gap-2.5 ${className}`}>
-            <div className={`flex items-center justify-center p-2 rounded-xl bg-stone-50/50 backdrop-blur-sm border border-stone-100/30 ${variant === 'light' ? 'bg-white/10 border-white/20' : ''}`}>
-                <SunMedium className={variant === 'light' ? 'text-white' : 'text-stone-600'} size={s.iconSize} strokeWidth={2.2} />
+            <div className={`flex items-center justify-center p-2 rounded-xl transition ${variant === "light" ? "bg-white/10 border border-white/20 text-white" : "bg-purple-50 border border-purple-200/80 text-purple-700 shadow-sm"}`}>
+                <SunMedium size={s.iconSize} strokeWidth={2.2} />
             </div>
             <div className={`${s.text} font-bold tracking-tight leading-tight`}>
                 <span className={colors.expert}>Expert </span>
-                <span className={`${colors.niche} ${city ? '' : 'bg-clip-text text-transparent bg-gradient-to-r from-stone-600 to-stone-400'}`}>Pergola</span>
+                <span className={`${colors.niche} ${city ? "" : "bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-indigo-600"}`}>Pergola</span>
                 {city && (
-                    <span className={`${colors.niche} block text-sm font-semibold uppercase tracking-wider`}>{city}</span>
+                    <span className={`${colors.niche} block text-xs font-semibold uppercase tracking-wider text-purple-700`}>{city}</span>
                 )}
             </div>
         </Link>
@@ -60,8 +60,8 @@ export default function Logo({
 
 export function LogoIcon({ size = 40, className = "" }: { size?: number; className?: string }) {
     return (
-        <div className={`flex items-center justify-center p-2 rounded-xl bg-stone-50/50 backdrop-blur-sm border border-stone-100/30 ${className}`}>
-            <SunMedium className="text-stone-600" size={size} strokeWidth={2.2} />
+        <div className={`flex items-center justify-center p-2 rounded-xl bg-purple-50 border border-purple-200/80 text-purple-700 ${className}`}>
+            <SunMedium size={size} strokeWidth={2.2} />
         </div>
     );
 }
