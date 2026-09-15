@@ -3,6 +3,12 @@ import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 import { Calendar, ArrowRight } from "lucide-react";
 
+export const metadata = {
+    title: "Blog pergola : prix, réglementation et entretien",
+    description: "Conseils sur le choix, la réglementation et l'entretien d'une pergola bioclimatique, avec les prix constatés par type de projet.",
+};
+
+
 // Initialize Supabase Client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://yzsvnjguuhdihchpwfkl.supabase.co';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6c3Zuamd1dWhkaWhjaHB3ZmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTAyMjUsImV4cCI6MjA5Njg2NjIyNX0.NBDqjBQ1mFtEnhTP3yYa18CcLMj32x6UR5llGE_4SE8';

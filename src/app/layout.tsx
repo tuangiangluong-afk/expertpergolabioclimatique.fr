@@ -33,8 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
           title: {
-    template: `%s | Pergola Expert`,
-    default: `Expert Pergola Bioclimatique® - N°1 de la conception et pose de pergolas bioclimatiques en aluminium sur-mesure pour particuliers et CHR.`,
+    template: "%s",
+    default: "Expert Pergola Bioclimatique® - Pergolas en aluminium sur mesure",
   },
     description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
     metadataBase: new URL(baseUrl),

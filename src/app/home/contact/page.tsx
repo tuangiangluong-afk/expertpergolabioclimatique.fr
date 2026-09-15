@@ -5,6 +5,12 @@ import { ArrowLeft, Mail, Phone, MapPin, Zap, CheckCircle } from "lucide-react";
 import { getTheme } from "@/lib/theme";
 import Header from "@/components/Header";
 
+export const metadata = {
+    title: "Contact : étude de pergola bioclimatique",
+    description: "Contactez nos installateurs pour une étude de pergola bioclimatique sur mesure : mesures sur place, devis chiffré et délais de pose.",
+};
+
+
 export default function HubContactPage() {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-stone-500 selection:text-white">
