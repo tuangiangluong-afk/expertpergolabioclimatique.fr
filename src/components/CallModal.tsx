@@ -80,10 +80,10 @@ export default function CallModal({
                             <Phone size={32} className="text-white fill-current" />
                         </div>
                         <h3 className="text-2xl font-bold text-white">
-                            Expert Béton Décoratif {cityName}
+                            Expert Pergola Bioclimatique {cityName}
                         </h3>
                         <p className="text-white/90 font-medium">
-                            Installation & presupuesto gratuito
+                            Étude & devis gratuit
                         </p>
                     </div>
 

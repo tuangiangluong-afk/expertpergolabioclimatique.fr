@@ -14,8 +14,8 @@ const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supaba
 export const revalidate = 60; // ISR 60 seconds
 
 export const metadata: Metadata = {
-    title: "Guides et Idées d'Aménagement | Expert Béton Décoratif",
-    description: "Découvrez tout sur la conception et l'installation de pergolas bioclimatiques.. Guides, conseils et astuces de nos artisans certifiés RGE QualiPAC.",
+    title: "Guides et Idées d'Aménagement | Expert Pergola Bioclimatique",
+    description: "Découvrez tout sur la conception et l'installation de pergolas bioclimatiques.. Guides, conseils et astuces de nos professionnels spécialisés en pergolas bioclimatiques.",
 };
 
 export default async function GuidesIndex() {

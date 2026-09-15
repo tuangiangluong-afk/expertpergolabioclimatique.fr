@@ -7,7 +7,7 @@ export default function SimulatorWidget() {
                 Comparez les offres
             </h3>
             <p className="text-sm text-slate-600 mb-6">
-                Recevez jusqu'à 3 presupuesto gratuitos d'installateurs qualifiés RGE.
+                Recevez jusqu'à 3 devis gratuits d'entreprises spécialisées en pergolas bioclimatiques.
             </p>
 
             {/* Mini Formulaire visuel */}
@@ -21,7 +21,7 @@ export default function SimulatorWidget() {
             </div>
 
             <a href="/#simulateur" className="block w-full text-center bg-stone-600 hover:bg-stone-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-stone-500/25 transition-all">
-                Comparar presupuestos
+                Comparer les devis
             </a>
             <div className="mt-4 flex justify-center items-center gap-2 text-xs text-green-600 font-medium">
                 <CheckCircle size={12} /> Gratis y sin compromiso

@@ -1,18 +1,29 @@
 import Link from "next/link";
 import { CheckCircle, ShieldCheck, Clock, Award, Euro, ArrowRight, ChevronRight, FileText, Landmark, Building2 } from "lucide-react";
 import type { CityConfig } from "@/lib/db";
+import type { PseoPageContent } from "@/lib/pseo";
 
 interface LocalAeoSectionProps {
     site: CityConfig;
+    /** Contenu pSEO local (faits vérifiables, contraintes, délais) */
+    pseo?: PseoPageContent;
 }
 
 const pricingMatrix = [{"name": "Pergola Adossée 3x3m (Lames manuelles/éco)", "usage": "Terrasse standard petit espace", "price": "4 800€ - 7 200€", "aid": "Garantie Décennale", "net": "Dès 4 800€"}, {"name": "Pergola Motorisée 4x3m (Somfy & LED)", "usage": "Format idéal salon de jardin 4-6 pers.", "price": "7 500€ - 11 500€", "aid": "Aluminium Qualicoat", "net": "Dès 7 500€"}, {"name": "Pergola Grande Dimension 6x4m", "usage": "Terrasse spacieuse & îlot autoporté", "price": "12 000€ - 18 500€", "aid": "Fabrication sur mesure", "net": "Dès 12 000€"}, {"name": "Store zip latéral motorisé (3m)", "usage": "Protection vent, soleil rasant & vis-à-vis", "price": "1 200€ - 1 800€", "aid": "Toile Serge Ferrari", "net": "Sur mesure"}];
 const steps = [{"title": "Étude d'implantation & Vue 3D", "desc": "Relevé des cotes de terrasse, analyse des ombrages et simulation photoréaliste de votre future pergola."}, {"title": "Déclaration préalable en Mairie de {city}", "desc": "Préparation complète des pièces graphiques (plans de masse et d'élévation) pour validation municipale."}, {"title": "Fabrication sur mesure en usine", "desc": "Usinage de précision des profilés aluminium extrudés et thermolaquage haute durabilité."}, {"title": "Pose & Paramétrage des capteurs météo", "desc": "Ancrage au sol, raccordement électrique étanche, pose des lames et réglage des automatismes Somfy."}];
 
-export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
+export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
     const city = site.city;
     const dept = site.department ? ` (${site.department})` : "";
     const neighborhoods = site.neighborhoods || [];
+    const facts = pseo?.local_facts || [];
+    const priceLine = pseo?.pricing_estimated && !pseo.pricing_estimated.includes("partir")
+        ? pseo.pricing_estimated
+        : site.pricing?.base || "Sur devis";
+    const f0 = facts.find(f => f.label === "Département")?.value;
+    const f1 = facts.find(f => f.label === "Région")?.value;
+    const f2 = facts.find(f => f.label === "Vent dominant")?.value;
+    const f3 = facts.find(f => f.label === "Préfecture")?.value;
     const neighborhoodsText = neighborhoods.length > 0 
         ? `, notamment dans les quartiers ${neighborhoods.slice(0, 4).join(', ')}` 
         : "";
@@ -47,6 +58,24 @@ export default function LocalAeoSection({ site }: LocalAeoSectionProps) {
                         <strong>En résumé : </strong>À {city}{dept}, le coût moyen d'une prestation de pergola bioclimatique réalisée par nos artisans qualifiés s'établit entre 6 000€ – 16 000€ avant déduction des éventuelles aides financières. Nos techniciens certifiés interviennent sous 24h à 48h avec garantie décennale.
                     </p>
 
+                                        {facts.length > 0 && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2 mb-6">
+                            {facts.slice(0, 8).map((f) => (
+                                <div key={f.label} className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4">
+                                    <div className="text-xs text-slate-500 font-medium">{f.label}</div>
+                                    <div className="text-sm font-bold text-slate-900 mt-1 leading-snug">{f.value}</div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {f0 && (
+                        <p className="text-sm text-slate-600 leading-relaxed mb-6 pt-1 border-t border-slate-100">
+                            <strong>Contexte local : </strong>{city} se situe dans le département {f0}, en {f1}, où le vent dominant est {f2}. {" "}Ces paramètres locaux déterminent le nombre de points d'ancrage et la résistance mécanique exigée pour votre pergola.
+                        </p>
+                    )}
+
+                    
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2">
                         <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 text-center">
                             <div className="text-xs text-slate-500 font-medium">Prix estimé</div>

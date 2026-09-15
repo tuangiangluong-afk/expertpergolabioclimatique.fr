@@ -10,7 +10,7 @@ export default function HomeLayout({
         <>
             <GoogleAnalytics GA_MEASUREMENT_ID="G-20JN53SLCP" />
             {children}
-            <CookieBanner slug="home" cityName="Expert Béton Décoratif" />
+            <CookieBanner slug="home" cityName="Expert Pergola Bioclimatique" />
         </>
     );
 }

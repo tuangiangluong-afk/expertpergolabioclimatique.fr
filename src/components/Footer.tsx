@@ -25,7 +25,7 @@ export function Footer({ config }: FooterProps) {
     );
 
     const sitesByRegion = uniqueSites
-        .filter(site => site.slug !== 'home' && site.slug !== 'expertopergolabioclimatica.es' && site.slug !== 'www.expertopergolabioclimatica.es')
+        .filter(site => site.slug !== 'home' && site.slug !== 'expertpergolabioclimatique.fr' && site.slug !== 'www.expertpergolabioclimatique.fr')
         .reduce((acc, site) => {
             const region = site.region || 'Otras';
             if (!acc[region]) acc[region] = [];
@@ -136,21 +136,33 @@ export function Footer({ config }: FooterProps) {
                             <h5 className="text-white font-bold mb-6 text-lg tracking-tight">Guides et Conseils</h5>
                             <ul className="space-y-3 text-sm">
                                 <li>
-                                    <Link href="/guides/prix-pergola-aluminium-sur-mesure" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
-                                        <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Prix des pergolas sur-mesure
-                                    </Link>
-                                </li>
-                                <li>
                                     <Link href="/guides/avantages-pergola-bioclimatique" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Avantages de la pergola bioclimatique
+                                        Avantages d'une Pergola Bioclimatique
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/guides/design-pergolas-bioclimatiques" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
                                         <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
-                                        Design et aménagements
+                                        Design et Fermetures pour Pergolas Bioclimatiques
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/guides/pergola-adossee-vs-autoportee-comparatif" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                        <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
+                                        Pergola Adossée vs Autoportée
+                                    </Link>
+                                </li>
+<li>
+                                    <Link href="/guides/prix-pergola-aluminium-sur-mesure" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                        <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
+                                        Prix des Pergolas en Aluminium sur Mesure
+                                    </Link>
+                                </li>
+<li>
+                                    <Link href="/guides/prix-pergola-bioclimatique-aluminium-m2" className="text-neutral-400 hover:text-white transition flex items-center gap-2 group">
+                                        <span className={`w-1 h-1 rounded-full bg-neutral-600 group-hover:${theme.classes.bg} transition`}></span>
+                                        Prix Pergola Bioclimatique Alu Sur Mesure Lames Orientables 2026
                                     </Link>
                                 </li>
                                 <li>

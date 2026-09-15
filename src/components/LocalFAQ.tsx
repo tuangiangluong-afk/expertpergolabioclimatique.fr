@@ -1,4 +1,5 @@
 import { CityConfig } from "@/lib/db";
+import { DEPARTEMENTS, ventForDepartement } from "@/data/fr-departements";
 
 interface LocalFAQProps {
     site: CityConfig;
@@ -41,32 +42,37 @@ export function LocalFAQ({ site, segment }: LocalFAQProps) {
         </section>
     );
 }
-
-function cityHash(city: string): number {
-    let hash = 0;
-    for (let i = 0; i < city.length; i++) {
-        hash = ((hash << 5) - hash + city.charCodeAt(i)) | 0;
-    }
-    return Math.abs(hash);
-}
-
-export function getLocalFAQData(city: string, department: string | undefined, segment: "B2C" | "COPRO" | "ENTREPRISE") {
-    const dept = department || "";
-    const h = cityHash(city);
-    const installCount = 40 + (h % 80);
+/**
+ * Exporté pour que SchemaJSON génère les données structurées FAQPage.
+ *
+ * IMPORTANT : aucune statistique n'est inventée ici. Les réponses s'appuient
+ * uniquement sur des faits vérifiables (département, région, préfecture, vent
+ * dominant) afin de rester citable par les moteurs IA.
+ */
+export function getLocalFAQData(city: string, department: string | undefined, _segment: "B2C" | "COPRO" | "ENTREPRISE" = "B2C") {
+    const dept = department ? DEPARTEMENTS[department] : undefined;
+    const deptRef = dept ? `${dept.name} (${dept.code})` : "votre département";
+    const region = dept?.region || "France";
+    const vent = ventForDepartement(department);
+    const montagne = !!dept?.montagne;
+    const littoral = !!dept?.littoral;
 
     return [
         {
-            question: `¿Cuál es el precio de una pergola bioclimática en ${city}?`,
-            answer: `Le coût d'une pergola bioclimatique installée à ${city} varie entre 3500€ et 8000€, selon les dimensions, la motorisation et les options (LED, stores).`
+            question: `Quel est le prix d'une pergola bioclimatique à ${city} ?`,
+            answer: `Le prix d'une pergola bioclimatique posée à ${city} se situe généralement entre 400 € et 850 € par m² selon la motorisation et les options (LED, fermetures latérales, chauffage). Pour une structure résidentielle standard de 3 × 3 à 4 × 3 m, comptez le plus souvent entre 3 500 € et 8 000 €.`
         },
         {
-            question: `Combien de temps dure l'installation à ${city} ?`,
-            answer: `L'installation d'une pergola à ${city} est rapide et soignée, réalisée généralement en 1 à 2 jours. De nombreux clients profitent déjà de leur terrasse dans votre région.`
+            question: `Combien de temps dure l'installation d'une pergola à ${city} ?`,
+            answer: `Après la prise de mesures et la fabrication sur mesure, la pose à ${city} se déroule en 1 à 2 journées, sans gros œuvre. Le délai global dépend surtout du délai de fabrication, généralement de 3 à 5 semaines.`
         },
         {
-            question: `¿Se necesita licencia de obra en ${city}?`,
-            answer: `Por lo general, al ser una estructura desmontable y no alterar la edificabilidad, no requiere licencia de obra mayor en ${city}. Sin embargo, recomendamos informarse sobre normativas estéticas del ayuntamiento o comunidad de vecinos.`
+            question: `Faut-il un permis de construire pour une pergola bioclimatique à ${city} ?`,
+            answer: `À ${city}, département ${deptRef} (${region}), une pergola bioclimatique est une structure ouverte et démontable qui ne crée pas de surface habitable close : elle ne relève donc pas du permis de construire dans la majorité des cas. Une déclaration préalable peut rester exigée selon la commune et le PLU, et les règles d'urbanisme locales doivent être vérifiées avant travaux.`
+        },
+        {
+            question: `Quel vent et quelles contraintes climatiques à ${city} ?`,
+            answer: `Le vent dominant sur le département ${deptRef} est ${vent}.${montagne ? " En zone de montagne, la charge de neige doit être intégrée au dimensionnement de la structure." : ""}${littoral ? " Sur le littoral, l'air salin impose une finition anticorrosion et une visserie inox." : ""} Ces éléments conditionnent le nombre de points d'ancrage et la résistance mécanique exigée pour une pergola à ${city}.`
         }
     ];
 }

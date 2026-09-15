@@ -2,26 +2,26 @@ import { CityConfig } from "@/lib/db";
 
 export const NATIONAL_CONFIG: CityConfig = {
     slug: "home",
-    domain: "expertopergolabioclimatica.es",
+    domain: "expertpergolabioclimatique.fr",
     name: "Expert Pergola Bioclimatique",
-    city: "España",
-    phoneNumber: "+34 900 000 000",
-    email: "contacto@expertopergolabioclimatica.es",
+    city: "France",
+    phoneNumber: "01 84 80 00 00",
+    email: "contact@expertpergolabioclimatique.fr",
     heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop",
     description: "Le réseau n°1 d'installateurs de pergolas bioclimatiques en France. Devis gratuit et techniciens certifiés RGE.",
     meta: {
-        title: "Expert Pergola Bioclimatique | Diseño y Instalación Premium",
-        description: "Installation de pergolas bioclimatiques sur mesure dans toute la France. Devis gratuit en 24h. Matériaux premium et garantie."
+        title: "Expert Pergola Bioclimatique | Conception & Pose Sur-Mesure",
+        description: "Installation de pergolas bioclimatiques sur mesure dans toute la France. Devis gratuit en 24h. Lames orientables motorisées, matériaux premium et garantie décennale."
     },
     features: [
-        "Diseño a Medida",
-        "Presupuesto Gratuito en 24h",
-        "Materiales Premium",
+        "Conception Sur-Mesure",
+        "Devis Gratuit sous 24h",
+        "Lames Orientables Motorisées",
         "Installateurs Certifiés"
     ],
     pricing: {
-        base: "Presupuesto Gratuito",
-        description: "Presupuesto personalizado según su proyecto de pergola"
+        base: "Sur Devis",
+        description: "Devis gratuit personnalisé selon vos dimensions et le climat local"
     },
     hospitals: [],
     stations: [],

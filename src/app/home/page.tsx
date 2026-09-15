@@ -111,7 +111,7 @@ export default function HomePage() {
                                 </p>
                             </div>
                             <a
-                                href="https://www.expertbetondecoratif.com"
+                                href="https://www.expertpergolabioclimatique.fr"
                                 target="_blank"
                                 rel="noopener"
                                 className="shrink-0 inline-flex items-center gap-2 bg-white text-rose-700 border border-rose-200 hover:bg-rose-600 hover:text-white px-6 py-3.5 rounded-2xl font-bold shadow-sm transition group"

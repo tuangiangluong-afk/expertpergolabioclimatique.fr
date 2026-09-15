@@ -192,7 +192,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 </div>
             </section>
 
-            <LocalAeoSection site={site} />
+            <LocalAeoSection site={site} pseo={pseo} />
 
             <section className="py-16 bg-slate-50 border-y border-slate-200" id="simulateur">
                 <div className="container mx-auto px-4">

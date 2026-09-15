@@ -175,19 +175,19 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         "@type": "Article",
         "headline": guide.title,
         "description": guide.description,
-        "image": guide.image ? [`https://www.expertbetondecoratif.com${guide.image}`] : [`https://www.expertbetondecoratif.com/images/og-image.png`],
+        "image": guide.image ? [`https://www.expertpergolabioclimatique.fr${guide.image}`] : [`https://www.expertpergolabioclimatique.fr/images/og-image.png`],
         "datePublished": guide.date,
         "author": [{
             "@type": "Organization",
-            "name": "Expert Béton Décoratif",
-            "url": "https://www.expertbetondecoratif.com"
+            "name": "Expert Pergola Bioclimatique",
+            "url": "https://www.expertpergolabioclimatique.fr"
         }],
         "publisher": {
             "@type": "Organization",
-            "name": "Expert Béton Décoratif",
+            "name": "Expert Pergola Bioclimatique",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.expertbetondecoratif.com/logo.png"
+                "url": "https://www.expertpergolabioclimatique.fr/logo.png"
             }
         },
         "dateModified": guide.date || guide.published_at,
@@ -292,7 +292,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                                     EP
                                 </div>
                                 <div>
-                                    <div className="font-bold text-lg text-slate-900">Expert Béton Décoratif</div>
+                                    <div className="font-bold text-lg text-slate-900">Expert Pergola Bioclimatique</div>
                                     <div className="text-sm text-slate-500">Departamento de Diseño</div>
                                 </div>
                             </div>

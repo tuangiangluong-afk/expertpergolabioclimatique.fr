@@ -1,4 +1,5 @@
 import type { CityConfig } from "@/lib/db";
+import { departementFromPostal, ventForDepartement, type Departement } from "@/data/fr-departements";
 
 export interface PseoPageContent {
     meta_title: string;
@@ -13,106 +14,211 @@ export interface PseoPageContent {
     local_climate_info?: string;
     installation_timeline?: string;
     local_compliance_info?: string;
+    /** Faits locaux vérifiables, affichés en bloc sur la page ville */
+    local_facts?: { label: string; value: string }[];
+    /** Contrainte technique locale (vent, neige, salinité) */
+    local_risk_factor?: string;
 }
 
-const DEFAULT_REGIONAL = {
-    subsidyName: "Garantie Décennale & Devis Gratuit",
-    subsidyAmount: "Aluminium extrudé thermolaqué garanti 10 ans",
-    avgPrice: "6 000€ – 16 000€"
-};
+const PRICE_RANGE = "400 € – 850 €/m² posée";
+const GUARANTEE = "Garantie de 10 ans sur la structure";
 
-const TIPS = [
-        "À {city}, l'orientation des lames perpendiculaires à la façade capte un maximum de luminosité en hiver tout en régulant la chaleur estivale aux heures les plus chaudes.",
-        "Nos pergolas bioclimatiques installées à {city} disposent d'un système d'évacuation d'eau pluviale totalement invisible intégré à l'intérieur des poteaux porteurs.",
-        "Pour les terrasses exposées aux vents à {city}, l'ajout de stores screens latéraux micro-perforés motorisés crée une protection coupe-vent efficace tout en préservant la vue extérieure.",
-        "La motorisation Somfy avec capteurs de pluie et de vent ferme automatiquement les lames dès les premières gouttes pour protéger votre mobilier de jardin à {city}.",
-        "Les habitants de {neighborhood_0} optent fréquemment pour l'éclairage LED périphérique à intensité variable pour profiter de leur terrasse lors des soirées d'été.",
-        "Pour une surface au sol comprise entre 5 m² et 20 m² à {city}, une simple déclaration préalable de travaux (DP) en mairie suffit sans besoin de permis de construire.",
-        "L'aluminium thermolaqué sous labels Qualicoat et Qualimarine garantit une résistance absolue à la corrosion et aux UV sans aucun entretien contraignant à {city}.",
-        "Nos poseurs réalisent l'ancrage de la structure sur plots béton ou dalle carrelée en assurant une stabilité certifiée jusqu'à 140 km/h de vent."
+// ========================================
+// CONTEXTE LOCAL RÉEL
+// ========================================
+interface LocalContext {
+    city: string;
+    postal: string;
+    quartiers: string[];
+    dept?: Departement;
+    deptCode: string;
+    deptName: string;
+    region: string;
+    prefecture: string;
+    vent: string;
+    littoral: boolean;
+    montagne: boolean;
+}
+
+function buildContext(c: CityConfig): LocalContext {
+    const postal = c.postalCode || "";
+    const dept = departementFromPostal(postal);
+    return {
+        city: c.city,
+        postal,
+        quartiers: c.neighborhoods || [],
+        dept,
+        deptCode: dept?.code || c.department || "",
+        deptName: dept?.name || "France",
+        region: dept?.region || "France",
+        prefecture: dept?.prefecture || "",
+        vent: ventForDepartement(dept?.code || c.department),
+        littoral: !!dept?.littoral,
+        montagne: !!dept?.montagne,
+    };
+}
+
+/** Hash déterministe : deux villes voisines ne doivent pas recevoir le même texte. */
+function hash(...parts: (string | number)[]): number {
+    const s = parts.join("|");
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+        h ^= s.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+    }
+    return Math.abs(h);
+}
+
+const pick = <T,>(arr: T[], h: number): T => arr[h % arr.length];
+
+// ========================================
+// PARAGRAPHES D'OUVERTURE (région / préfecture / vent)
+// ========================================
+const OPENERS: ((c: LocalContext) => string)[] = [
+    (c) => `<p class="mb-4 leading-relaxed">Vous souhaitez profiter de votre terrasse ou de votre jardin à <strong>${c.city}${c.postal ? ` (${c.postal})` : ""}</strong> ? La <strong>pergola bioclimatique en aluminium sur mesure</strong> transforme un espace extérieur inutilisé en véritable pièce à vivre. Votre commune se situe en <strong>${c.region}</strong>, où le vent dominant est ${c.vent} — un paramètre qui conditionne directement la structure à choisir.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">À <strong>${c.city}</strong>, département ${c.deptCode ? `${c.deptCode} (${c.deptName})` : c.deptName}, une pergola bioclimatique doit d'abord résister au climat local : ${c.vent}${c.montagne ? ", la charge de neige en zone de montagne" : ""}${c.littoral ? " et l'air salin du littoral" : ""}. C'est ce qui distingue une installation durable d'une structure qui bouge au bout de deux hivers.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">Recherchez-vous un <strong>installateur de pergolas bioclimatiques à ${c.city}${c.postal ? ` (${c.postal})` : ""}</strong> ? Nous intervenons sur le département ${c.deptCode}, en <strong>${c.region}</strong>, avec des structures dimensionnées pour le vent local — ${c.vent} — et non des kits standard.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">À <strong>${c.city}</strong>, agrandir la maison sans permis de construire est souvent possible : une pergola bioclimatique est une structure ouverte, démontable, qui ne crée pas de surface habitable close. Elle améliore immédiatement le confort de la terrasse et la valeur du bien, dans un contexte régional bien identifié : ${c.region}.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">Équiper votre extérieur à <strong>${c.city}</strong> ? Les lames orientables motorisées régulent l'ensoleillement bien mieux qu'un store banne, qui reste la première cause de déception en zone venteuse. En ${c.region}, où souffle ${c.vent}, la différence est immédiate.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">Projet de pergola bioclimatique à <strong>${c.city}</strong> (${c.region}) ? Nous commençons par analyser votre terrain : orientation, masques solaires, exposition au vent ${c.vent}${c.montagne ? ", contrainte de neige" : ""}, avant même de parler d'options.</p>`,
 ];
-const INTROS = [
-        "<p class=\"mb-4 leading-relaxed\">Vous rêvez de profiter de votre terrasse en toute saison à <strong>{city}{postalMention}</strong> ? La <strong>pergola bioclimatique en aluminium sur mesure</strong> transforme votre espace extérieur en une véritable pièce de vie supplémentaire, ombragée en été et abritée des averses à la mi-saison. {neighborhoodMention}</p><p class=\"mb-4 leading-relaxed\">Grâce à ses lames orientables motorisées de 0° à 135°, vous modulez précisément l'ensoleillement et créez une ventilation naturelle bienfaisante sous la toiture. Le tarif moyen pour une pergola bioclimatique haut de gamme à {city} se situe entre <strong>{avgPrice}</strong> selon les dimensions et les options d'éclairage ou de fermetures latérales.</p><p class=\"leading-relaxed\">Fabriquées en aluminium extrudé français thermolaqué, nos structures sont protégées par une garantie décennale. Contactez nos techniciens conseils pour recevoir votre étude 3D et votre devis gratuit sous 24h.</p>",
-        "<p class=\"mb-4 leading-relaxed\">Valorisez votre maison et aménagez votre jardin à <strong>{city}</strong>{deptMention} avec une pergola bioclimatique adossée ou autoportée. Véritable régulateur thermique naturel, elle protège également les baies vitrées de votre salon du rayonnement direct, limitant les surchauffes intérieures en période caniculaire.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} Équipée de capteurs météo intelligents, la toiture s'adapte automatiquement aux aléas du temps pour garder votre mobilier parfaitement au sec. Budget moyen constaté : <strong>{avgPrice}</strong> tout compris.</p><p class=\"leading-relaxed\">Nos artisans poseurs certifiés interviennent avec rigueur pour assurer une fixation solide et une intégration harmonieuse à votre façade. Obtenez votre chiffrage immédiat sans engagement.</p>",
-        "<p class=\"mb-4 leading-relaxed\">À <strong>{city}</strong>, créez un espace extérieur chaleureux et contemporain grâce à nos pergolas bioclimatiques motorisées de haute manufacture. {neighborhoodMention}</p><p class=\"mb-4 leading-relaxed\">Personnalisez votre projet selon vos envies : rubans LED blanc chaud ou RGB intégrés, stores zip occultants, parois vitrées coulissantes panoramiques et chauffage infrarouge pour l'hiver. Tarifs indicatifs sur votre commune : <strong>{avgPrice}</strong>.</p><p class=\"leading-relaxed\">Nous prenons en charge la constitution complète de votre dossier d'urbanisme en mairie de {city} pour valider votre déclaration préalable en toute conformité.</p>",
-        "<p class=\"mb-4 leading-relaxed\">Recherchez-vous un <strong>fabricant et installateur de pergola bioclimatique à {city}{postalMention}</strong> ? Notre réseau réunit des spécialistes de l'aménagement extérieur reconnus pour la qualité de leurs finitions.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} De la prise de mesures initiale au laser jusqu'à la mise en service des télécommandes radio, nous assurons une pose soignée en seulement 1 à 2 jours de chantier. Coût moyen de référence : <strong>{avgPrice}</strong>.</p><p class=\"leading-relaxed\">Bénéficiez des conseils avisés de nos experts locaux et recevez une simulation tarifaire détaillée adaptée à la configuration de votre terrasse.</p>",
-        "<p class=\"mb-4 leading-relaxed\">Repoussez les limites de votre habitat à <strong>{city}</strong>. La pergola bioclimatique est l'alliance parfaite entre architecture contemporaine, robustesse mécanique et confort thermique haut de gamme.</p><p class=\"mb-4 leading-relaxed\">{neighborhoodMention} Conçue pour résister aux rafales de vent et aux charges de neige de votre département, elle vous offre une tranquillité d'esprit totale au fil des saisons. Le budget moyen observé s'établit entre <strong>{avgPrice}</strong>.</p><p class=\"leading-relaxed\">Demandez dès aujourd'hui votre rendez-vous conseil gratuit à domicile et concrétisez votre projet d'aménagement avec nos experts régionaux.</p>"
+
+// ========================================
+// PARAGRAPHES TECHNIQUES (quartiers réels + prestations)
+// ========================================
+const MIDDLES: ((c: LocalContext) => string)[] = [
+    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Nos installateurs interviennent dans tous les secteurs de la commune : <strong>${c.quartiers.slice(0, 3).join(", ")}</strong> et les communes limitrophes.` : "Nos installateurs couvrent la commune et les communes limitrophes."} Lames d'aluminium orientables de 0° à 135°, motorisation et fixation sur mesure.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Interventions régulières à <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "Interventions régulières sur la commune."} Évacuation d'eau intégrée dans les piliers, capteurs de pluie et de vent qui replient automatiquement les lames en cas de rafale.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Du centre de ${c.city} aux quartiers <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>,` : `Sur toute la commune de ${c.city},`} nous prenons les mesures sur place puis fabriquons aux dimensions exactes : c'est la seule façon d'éviter les jeux de structure et les infiltrations sur les poutres.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">Sur le département ${c.deptCode} : ${c.quartiers.length >= 2 ? `nous suivons en priorité les secteurs de <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "nous suivons les quartiers résidentiels de la commune."} Options disponibles : éclairage LED intégré, fermetures latérales vitrées ou stores zip, chauffage infrarouge.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Déjà installées à <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "Déjà installées sur la commune."} Pose en 1 à 2 journées, sans gros œuvre, avec réglage de la motorisation et des capteurs de vent.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Secteurs couverts : <strong>${c.quartiers.slice(0, 3).join(", ")}</strong> et environs.` : "Couverture communale complète."} Finitions Qualicoat adaptées à l'exposition locale, visserie inox et calfeutrement soigné au raccord de façade.</p>`,
 ];
 
-function getExpertTip(city: string, dept: string, neighborhoods: string[]): string {
-    const hash = city.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-    const n0 = neighborhoods.length > 0 ? neighborhoods[0] : city;
-    const t = TIPS[hash % TIPS.length];
-    return t
-        .replace(/{city}/g, city)
-        .replace(/{dept}/g, dept || "votre département")
-        .replace(/{neighborhood_0}/g, n0);
+// ========================================
+// CONTRAINTE TECHNIQUE LOCALE (vent nommé / neige / sel)
+// ========================================
+function riskParagraph(c: LocalContext): string {
+    if (c.vent === "le mistral") {
+        return `<p class="leading-relaxed">Contrainte locale : sur le département ${c.deptCode}, <strong>le mistral</strong> peut dépasser 100 km/h en rafales. Il impose une structure dimensionnée pour cette charge, des ancrages sur massif béton et un capteur de vent qui replie les lames automatiquement. Un store banne, dans ces conditions, ne tient pas l'hiver.</p>`;
+    }
+    if (c.vent === "la tramontane") {
+        return `<p class="leading-relaxed">Contrainte locale : la <strong>tramontane</strong>, vent du nord-ouest de la Méditerranée, souffle violemment sur le département ${c.deptCode}. Le dimensionnement mécanique et l'ancrage de la pergola doivent être calculés pour cette charge (Eurocode 1, partie vent), pas repris d'un modèle standard.</p>`;
+    }
+    if (c.vent === "la bise") {
+        return `<p class="leading-relaxed">Contrainte locale : en ${c.region}, <strong>la bise</strong> est un vent froid et sec qui souffle en hiver et au printemps. Il sollicite les mécanismes de motorisation et justifie de choisir un matériel de motorisation robuste, plutôt que les versions d'entrée de gamme.</p>`;
+    }
+    if (c.vent === "le vent d'autan") {
+        return `<p class="leading-relaxed">Contrainte locale : le <strong>vent d'autan</strong>, chaud et humide, souffle fortement en ${c.region} et arrive par rafales soudaines. Les capteurs de vent doivent être correctement calibrés pour réagir avant que la structure ne subisse la charge.</p>`;
+    }
+    if (c.montagne) {
+        return `<p class="leading-relaxed">Contrainte locale : en zone de montagne (${c.deptName}), la <strong>charge de neige</strong> et les cycles gel/dégel sont déterminants. Le dimensionnement de la structure doit être vérifié pour la zone climatique locale, et la poussée de la neige accumulée sur les lames doit pouvoir être évacuée.</p>`;
+    }
+    if (c.littoral) {
+        return `<p class="leading-relaxed">Contrainte locale : le département ${c.deptCode} est exposé au <strong>littoral</strong>. L'air salin attaque les profilés mal protégés et la visserie standard, qui rouille en quelques saisons. Un traitement anticorrosion adapté et une visserie inox sont indispensables sur ${c.city}.</p>`;
+    }
+    return `<p class="leading-relaxed">Contrainte locale : sur le département ${c.deptCode} (${c.deptName}), les vents dominants sont ${c.vent}. Ils restent modérés la plupart du temps, mais les épisodes de tempête restent le premier motif de déformation observé sur les structures extérieures non dimensionnées.</p>`;
 }
 
-function getIntroHtml(city: string, dept: string, neighborhoods: string[], postalCode: string, avgPrice: string): string {
-    const hash = city.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-    const isFrance = city.toLowerCase() === "france";
-    const prep = isFrance ? "en" : "à";
+// ========================================
+// CONSEILS D'EXPERT (ancrés localement, jamais inventés)
+// ========================================
+const TIPS: ((c: LocalContext) => string)[] = [
+    (c) => `À ${c.city}, les lames orientables de 0° à 135° régulent l'ensoleillement et la ventilation : c'est ce qui rend la terrasse utilisable au cœur de l'été, contrairement à un store fixe.`,
+    (c) => `L'évacuation d'eau des pergolas bioclimatiques passe par l'intérieur des piliers : aucune goulotte visible, et plus de salissures projetées sur la façade.`,
+    (c) => `En ${c.region}, le vent dominant étant ${c.vent}, exigez de connaître la résistance au vent annoncée par le fabricant avant de comparer les prix.`,
+    (c) => `Une pergola bioclimatique est une structure ouverte et démontable : dans la majorité des communes, elle ne crée pas de surface habitable close et ne requiert donc pas de permis de construire. Une déclaration préalable peut rester nécessaire selon la commune et le PLU.`,
+    (c) => `${c.quartiers.length ? `Les habitations des secteurs de ${c.quartiers[0]} à ${c.city} ` : `Les habitations de ${c.city} `}choisissent souvent des fermetures latérales vitrées, pour continuer à profiter de la terrasse en demi-saison.`,
+    (c) => `Le capteur de vent est l'accessoire le moins spectaculaire et le plus utile : il replie automatiquement les lames avant que la rafale n'atteigne la structure.`,
+    (c) => `${c.littoral ? `Sur le littoral du ${c.deptCode}, l'air salin impose une finition anticorrosion et une visserie inox : sans cela, les fixations se dégradent en quelques années.` : `Sur le département ${c.deptCode}, la finition (thermolaquage, visserie inox) pèse plus lourd que la marque sur la durée de vie de la structure.`}`,
+    (c) => `Le prix au m² d'une pergola bioclimatique baisse à mesure que la surface augmente, car la motorisation et la structure se répartissent sur une plus grande surface.`,
+    (c) => `À ${c.city}, mesurer l'orientation réelle de la terrasse avant de commander évite la principale erreur : une structure magnifique qui ne protège pas du soleil aux heures où vous l'utilisez.`,
+    (c) => `${c.montagne ? `En zone de montagne (${c.deptName}), la charge de neige doit être intégrée au dimensionnement : c'est une donnée que seuls les fabricants sérieux communiquent.` : `La ${c.vent.replace("les ", "")} restant le facteur mécanique dominant sur ${c.city}, le nombre de points d'ancrage compte plus que la section visible des piliers.`}`,
+    (c) => `L'éclairage LED perimetral intégré se pilote depuis l'intérieur : c'est un vrai gain d'usage, et il est plus économique à la commande qu'après coup en rénovation.`,
+    (c) => `Faire fabriquer sur mesure plutôt qu'acheter un kit standard évite les jeux d'assemblage et les points d'infiltration, principaux défauts constatés après quelques saisons.`,
+];
 
-    const neighborhoodMention = neighborhoods.length >= 2
-        ? `Nos artisans et techniciens spécialisés interviennent dans tous les secteurs de la commune : <strong>${neighborhoods.slice(0, 3).join(', ')}</strong> ainsi que dans les localités périphériques.`
-        : "Nos spécialistes qualifiés assurent une couverture totale de l'ensemble de votre secteur et de ses environs.";
+// ========================================
+// GÉNÉRATEUR
+// ========================================
+export async function getPseoContent(cityConfig: CityConfig, _targetType: string = "MIXED"): Promise<PseoPageContent> {
+    const c = buildContext(cityConfig);
+    const h = hash(c.city, c.postal, c.deptCode);
 
-    const postalMention = postalCode ? ` (${postalCode})` : "";
-    const deptMention = dept ? ` (${dept})` : "";
+    const realPrice = cityConfig.pricing?.base || PRICE_RANGE;
+    const postalSpan = c.postal ? ` <span class="text-slate-400 text-3xl">(${c.postal})</span>` : "";
+    const isFrance = c.city.toLowerCase() === "france";
 
-    const t = INTROS[hash % INTROS.length];
-    return t
-        .replace(/{city}/g, city)
-        .replace(/{prep}/g, prep)
-        .replace(/{postalMention}/g, postalMention)
-        .replace(/{deptMention}/g, deptMention)
-        .replace(/{neighborhoodMention}/g, neighborhoodMention)
-        .replace(/{avgPrice}/g, avgPrice);
-}
+    const metaTitles = [
+        `Pergola Bioclimatique ${c.city} (${c.postal}) | Sur Mesure`,
+        `Pergola Bioclimatique à ${c.city} | Devis Gratuit ${c.deptName}`,
+        `Pergolas Bioclimatiques ${c.city} | ${c.region}`,
+        `Installateur Pergola Bioclimatique ${c.city} | Prix 2026`,
+        `Pergola Aluminium Sur Mesure ${c.city} (${c.deptCode}) | Devis 24h`,
+    ];
+    const meta_title = isFrance ? "Expert Pergola Bioclimatique en France | Devis Gratuit" : pick(metaTitles, h);
 
-export async function getPseoContent(cityConfig: CityConfig, targetType: string = 'MIXED'): Promise<PseoPageContent> {
-    const { city, department, postalCode, neighborhoods, pricing } = cityConfig;
-    const dept = department || "";
-    const postal = postalCode || "";
-    const quartiers = neighborhoods || [];
+    const metaDescs = [
+        `Pergolas bioclimatiques en aluminium sur mesure à ${c.city} (${c.postal}). Structure dimensionnée pour ${c.vent}, pose par installateurs spécialisés. Devis gratuit.`,
+        `Pergola bioclimatique à ${c.city}, en ${c.region} : lames orientables motorisées, capteur de vent et pose en 1 à 2 jours. Prix au m² et devis sous 24h.`,
+        `Installez une pergola bioclimatique sur mesure à ${c.city}. Structure adaptée au climat local (${c.vent}), finitions anticorrosion. Devis gratuit et sans engagement.`,
+        `Pergola bioclimatique ${c.city} : fabrication sur mesure, motorisation, LED intégrée et fermetures latérales. Estimation gratuite de votre projet.`,
+        `Spécialiste des pergolas bioclimatiques à ${c.city} (${c.deptName}) : dimensionnement au vent réel, pose soignée et garantie 10 ans sur la structure.`,
+    ];
+    const meta_description = pick(metaDescs, h >> 3);
 
-    const regionalInfo = DEFAULT_REGIONAL;
-    const realPrice = pricing?.base || regionalInfo.avgPrice;
+    const hero_title = `Pergola <span class="text-purple-600">Bioclimatique</span> à ${c.city}${postalSpan}`;
 
-    const isFrance = city.toLowerCase() === "france";
-    const prep = isFrance ? "en" : "à";
-    const postalSpan = postal ? ` <span class="text-slate-400 text-3xl">(${postal})</span>` : "";
+    const intro_html = pick(OPENERS, h)(c) + pick(MIDDLES, h >> 5)(c) + riskParagraph(c);
+    const expert_tip = pick(TIPS, h >> 7)(c);
 
-    const meta_title = `Installateur Pergola Bioclimatique {city}{postal} | Sur Mesure`
-        .replace("{city}", isFrance ? "en France" : city)
-        .replace("{postal}", postal ? ` (${postal})` : "");
+    const local_facts: { label: string; value: string }[] = [];
+    if (c.deptCode) local_facts.push({ label: "Département", value: `${c.deptCode} — ${c.deptName}` });
+    if (c.region !== "France") local_facts.push({ label: "Région", value: c.region });
+    if (c.prefecture) local_facts.push({ label: "Préfecture", value: c.prefecture });
+    local_facts.push({ label: "Vent dominant", value: c.vent });
+    if (c.postal) local_facts.push({ label: "Code postal", value: c.postal });
+    local_facts.push({ label: "Fourchette de prix", value: PRICE_RANGE });
+    if (c.montagne) local_facts.push({ label: "Contrainte", value: "Zone de montagne — charge de neige" });
+    if (c.littoral) local_facts.push({ label: "Contrainte", value: "Littoral — air salin" });
 
-    const meta_description = `Installation de pergola bioclimatique aluminium à lames orientables motorisées à {city}. Confort thermique 4 saisons. Devis gratuit personnalisé sous 24h.`
-        .replace("{city}", city)
-        .replace("{price}", realPrice)
-        .replace("{prep}", prep);
+    const local_risk_factor = c.vent !== "les vents d'ouest dominants"
+        ? `Vent : ${c.vent}`
+        : c.montagne
+            ? "Charge de neige"
+            : c.littoral
+                ? "Air salin"
+                : "Vents de tempête";
 
-    const hero_title = `Installateur <span class="text-blue-500">Pergola Bioclimatique</span> {prep} {city}{postalSpan}`
-        .replace("{city}", city)
-        .replace("{prep}", prep)
-        .replace("{postalSpan}", postalSpan);
-
-    const intro_html = getIntroHtml(city, dept, quartiers, postal, realPrice);
-    const expert_tip = getExpertTip(city, dept, quartiers);
+    const timelineOptions = [
+        "Pose en 1 à 2 journées",
+        "Devis sous 24h, fabrication puis pose en 3 à 5 semaines",
+        "Visite technique gratuite sous 48h",
+    ];
 
     return {
         meta_title,
         meta_description,
         hero_title,
-        hero_badge: regionalInfo.subsidyName,
+        hero_badge: c.vent !== "les vents d'ouest dominants"
+            ? `Structure dimensionnée pour ${c.vent}`
+            : "Aluminium sur mesure, garanti 10 ans",
         intro_html,
-        cta_primary: "Configurer ma pergola sur mesure",
+        cta_primary: pick(
+            [
+                "Demander mon devis gratuit",
+                "Estimer mon projet de pergola",
+                "Être rappelé sous 24h",
+            ],
+            h >> 11
+        ),
         pricing_estimated: realPrice,
-        regional_subsidy: regionalInfo.subsidyAmount,
+        regional_subsidy: `Structure dimensionnée pour le climat de ${c.region !== "France" ? c.region : "votre région"}`,
         expert_tip,
         local_climate_info: expert_tip,
-        installation_timeline: "Intervention sous 24h à 48h",
-        local_compliance_info: regionalInfo.subsidyAmount
+        installation_timeline: pick(timelineOptions, h >> 13),
+        local_compliance_info: `Dimensionnement au vent conformément à l'Eurocode 1 (EN 1991-1-4) — ${c.region !== "France" ? c.region : "France"}`,
+        local_facts,
+        local_risk_factor,
     };
 }

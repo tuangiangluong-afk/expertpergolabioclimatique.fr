@@ -19,7 +19,7 @@ async function getPosts() {
         .from('blog_posts')
         .select('*, category:blog_categories(*)')
         .eq('status', 'published')
-        .contains('tags', ['pac'])
+        .contains('tags', ['pergola'])
         .order('published_at', { ascending: false });
     return data || [];
 }
@@ -32,10 +32,10 @@ export default async function BlogIndex() {
             <div className="container mx-auto px-4">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-                        Le Blog de la Pompe à Chaleur
+                        Le Blog de la Pergola Bioclimatique
                     </h1>
                     <p className="text-xl text-neutral-600">
-                        Guides, actualités et conseils d'experts pour réussir votre installation de pompes à chaleur.
+                        Guides, comparatifs et conseils d'experts pour réussir l'aménagement de votre terrasse et votre pergola bioclimatique.
                     </p>
                 </div>
 

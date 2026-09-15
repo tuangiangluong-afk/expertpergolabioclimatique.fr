@@ -74,11 +74,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const post = await getPost(slug);
 
     if (!post) {
-        return { title: 'Article non trouvé | Expert Béton Décoratif' };
+        return { title: 'Article non trouvé | Expert Pergola Bioclimatique' };
     }
 
     return {
-        title: post.seo_title || `${post.title} | Expert Béton Décoratif`,
+        title: post.seo_title || `${post.title} | Expert Pergola Bioclimatique`,
         description: post.seo_description || post.excerpt,
         openGraph: {
             title: post.title,
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             type: 'article',
             publishedTime: post.published_at,
             modifiedTime: post.updated_at,
-            authors: [post.author_name || 'Expert Béton Décoratif'],
+            authors: [post.author_name || 'Expert Pergola Bioclimatique'],
         },
     };
 }

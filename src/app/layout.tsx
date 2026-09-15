@@ -14,9 +14,22 @@ import AttributionTracker from "@/components/AttributionTracker";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const canonicalDomain = headersList.get("x-irve-canonical-domain") || "www.expertopergolabioclimatica.es";
+  // Canonical host is ALWAYS this site's own host: a canonical pointing to another
+  // domain (e.g. the Spanish twin) removes the page from this site's index.
+  const canonicalDomain = "www.expertpergolabioclimatique.fr";
   const path = headersList.get("x-irve-path") || "";
   const baseUrl = `https://${canonicalDomain}`;
+
+  // hreflang uniquement sur les routes réellement partagées entre les deux domaines
+  const sharedPath = path === "/" ? "" : path;
+  const sharedNorm = sharedPath.replace(/\/+$/, "") || "/";
+  const hreflangLanguages = ["/", "/blog", "/guides", "/glossaire"].includes(sharedNorm)
+    ? {
+        "fr-FR": `https://www.expertpergolabioclimatique.fr${sharedPath}`,
+        "es-ES": `https://www.expertopergolabioclimatica.es${sharedPath}`,
+        "x-default": `https://www.expertpergolabioclimatique.fr${sharedPath}`,
+      }
+    : undefined;
 
   return {
           title: {
@@ -27,6 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}${path}`,
+      languages: hreflangLanguages,
     },
     robots: {
       index: true,
@@ -40,10 +54,10 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
+      title: "Expert Pergola Bioclimatique - Pergola Bioclimatique Sur-Mesure",
       description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
       siteName: "Expert Pergola Bioclimatique",
-      locale: "es_ES",
+      locale: "fr_FR",
       type: "website",
       url: `${baseUrl}${path}`,
       images: [
@@ -51,13 +65,13 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${baseUrl}/images/og-image.png`,
           width: 1200,
           height: 630,
-          alt: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
+          alt: "Expert Pergola Bioclimatique - Conception & Pose Sur-Mesure",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Expert Pergola Bioclimatique - Pergolas de Aluminio a Medida",
+      title: "Expert Pergola Bioclimatique - Pergola Bioclimatique Sur-Mesure",
       description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
       images: [`${baseUrl}/images/og-image.png`],
     },
@@ -85,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="fr" className="scroll-smooth">
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Summary" />
         {/* Google Tag Manager */}

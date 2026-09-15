@@ -21,7 +21,7 @@ export default function HubContactPage() {
                         Service National
                     </span>
                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-slate-900">
-                        Un projet de <span className="text-stone-500">pompe à chaleur</span> ?
+                        Un projet de <span className="text-stone-500">pergola bioclimatique</span> ?
                     </h1>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         Particuliers, copropriétés, locaux professionnels.
@@ -61,7 +61,7 @@ export default function HubContactPage() {
                             </div>
                             <h3 className="font-bold text-slate-900 text-lg mb-2">Siège Social</h3>
                             <p className="text-slate-500 text-sm mb-4">Paris, France</p>
-                            <p className="font-bold text-slate-900">Expert Béton Décoratif</p>
+                            <p className="font-bold text-slate-900">Expert Pergola Bioclimatique</p>
                         </div>
                     </div>
 
@@ -72,10 +72,10 @@ export default function HubContactPage() {
                                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Pourquoi nous choisir ?</h3>
                                 <ul className="space-y-4">
                                     {[
-                                        "Réseau national d'installateurs qualifiés RGE QualiPAC",
-                                        "Accompagnement administratif complet (aides CEE, MaPrimeRénov')",
-                                        "Chauffage haute performance pour des économies durables",
-                                        "Simulation gratuite d'éligibilité aux subventions de l'État"
+                                        "Réseau national d'entreprises spécialisées en pergolas bioclimatiques",
+                                        "Accompagnement du projet, des dimensions à la pose",
+                                        "Conception adaptée à l'exposition, au vent et à l'usage de votre terrasse",
+                                        "Étude gratuite et devis sans engagement"
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-3 text-slate-600">
                                             <CheckCircle size={20} className="text-green-500 mt-0.5 flex-shrink-0" />
@@ -87,7 +87,7 @@ export default function HubContactPage() {
 
                             <div className="p-6 bg-stone-50 rounded-2xl border border-stone-100">
                                 <h4 className="font-bold text-stone-900 mb-2">Vous êtes installateur ?</h4>
-                                <p className="text-sm text-stone-700 mb-4">Rejoignez notre réseau de professionnels RGE QualiPAC sur toute la France.</p>
+                                <p className="text-sm text-stone-700 mb-4">Rejoignez notre réseau de professionnels de la pergola bioclimatique sur toute la France.</p>
                                 <Link href="#form" className="text-sm font-bold text-stone-600 hover:underline flex items-center gap-1">
                                     Devenir partenaire <ArrowLeft className="rotate-180" size={14} />
                                 </Link>
@@ -100,7 +100,7 @@ export default function HubContactPage() {
                                 <h2 className="text-2xl font-bold text-slate-900">Envoyer un message</h2>
                                 <p className="text-slate-500">Remplissez le formulaire ci-dessous pour lancer votre étude thermique.</p>
                             </div>
-                            <ContactForm domain="expertbetondecoratif.com" city="Hub National" theme={getTheme('national')} />
+                            <ContactForm domain="expertpergolabioclimatique.fr" city="Hub National" theme={getTheme('national')} />
                         </div>
                     </div>
                 </div>

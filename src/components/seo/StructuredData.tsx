@@ -143,45 +143,6 @@ export default function StructuredData() {
                 }
             }
         },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "129",
-            "bestRating": "5",
-            "worstRating": "1"
-        },
-        "review": [
-            {
-                "@type": "Review",
-                "author": {
-                    "@type": "Person",
-                    "name": "Julien S."
-                },
-                "datePublished": "2026-02-18",
-                "reviewBody": "Pergola bioclimatique en alu avec lames orientables motorisées. Rendu magnifique sur notre terrasse.",
-                "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                }
-            },
-            {
-                "@type": "Review",
-                "author": {
-                    "@type": "Person",
-                    "name": "Valérie C."
-                },
-                "datePublished": "2026-03-14",
-                "reviewBody": "Finitions soignées, étanchéité parfaite lors des pluies. Très bon rapport qualité/prix.",
-                "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                }
-            }
-        ]
     };
 
     return (

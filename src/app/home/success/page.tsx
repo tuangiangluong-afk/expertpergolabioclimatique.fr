@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        title: "Demande de devis reçue | Expert Béton Décoratif",
+        title: "Demande de devis reçue | Expert Pergola Bioclimatique",
         robots: { index: false, follow: false },
     };
 }

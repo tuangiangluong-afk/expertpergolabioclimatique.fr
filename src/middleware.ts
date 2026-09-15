@@ -12,8 +12,8 @@ export const config = {
 export default async function middleware(req: NextRequest) {
     const url = req.nextUrl;
 
-    // Get hostname (e.g. bornerechargeparis.fr, expertopergolabioclimatica.es)
-    let hostname = req.headers.get("host") || "expertopergolabioclimatica.es";
+    // Get hostname (e.g. expertpergolabioclimatique.fr)
+    let hostname = req.headers.get("host") || "expertpergolabioclimatique.fr";
     hostname = hostname.split(":")[0]; // Remove port if present
 
     // Check if we are on the main hub
@@ -87,7 +87,7 @@ export default async function middleware(req: NextRequest) {
             }
         }
 
-        if (path.startsWith("/admin") || path.startsWith("/login") || path.startsWith("/api") || path.startsWith("/leads") || path.startsWith("/guides") || path.startsWith("/outils") || path.startsWith("/vehicules") || path.startsWith("/ville") || path.startsWith("/solutions") || path.startsWith("/service") || path.startsWith("/quartier") || path.startsWith("/departement") || path.startsWith("/poi") || path.startsWith("/demo") || path.startsWith("/installation") || path.startsWith("/marques") || path.startsWith("/type") || path.startsWith("/comparatif") || path.startsWith("/tailles") || path.startsWith("/images")) {
+        if (path.startsWith("/blog") || path.startsWith("/glossaire") || path.startsWith("/author") || path.startsWith("/admin") || path.startsWith("/login") || path.startsWith("/api") || path.startsWith("/leads") || path.startsWith("/guides") || path.startsWith("/outils") || path.startsWith("/vehicules") || path.startsWith("/ville") || path.startsWith("/solutions") || path.startsWith("/service") || path.startsWith("/quartier") || path.startsWith("/departement") || path.startsWith("/poi") || path.startsWith("/demo") || path.startsWith("/installation") || path.startsWith("/marques") || path.startsWith("/type") || path.startsWith("/comparatif") || path.startsWith("/tailles") || path.startsWith("/images")) {
             response = NextResponse.next();
         } else {
             response = NextResponse.rewrite(
@@ -95,7 +95,7 @@ export default async function middleware(req: NextRequest) {
             );
         }
     } else {
-        if (path.startsWith("/guides") || path.startsWith("/leads") || path.startsWith("/vehicules") || path.startsWith("/solutions") || path.startsWith("/ville") || path.startsWith("/service") || path.startsWith("/quartier") || path.startsWith("/departement") || path.startsWith("/poi") || path.startsWith("/api") || path.startsWith("/outils") || path.startsWith("/login") || path.startsWith("/admin") || path.startsWith("/installation")) {
+        if (path.startsWith("/blog") || path.startsWith("/glossaire") || path.startsWith("/author") || path.startsWith("/guides") || path.startsWith("/leads") || path.startsWith("/vehicules") || path.startsWith("/solutions") || path.startsWith("/ville") || path.startsWith("/service") || path.startsWith("/quartier") || path.startsWith("/departement") || path.startsWith("/poi") || path.startsWith("/api") || path.startsWith("/outils") || path.startsWith("/login") || path.startsWith("/admin") || path.startsWith("/installation")) {
             response = NextResponse.next();
         } else {
             const routeParam = hostname.includes(".localhost") ? domainKey : domainKey;
@@ -112,7 +112,7 @@ export default async function middleware(req: NextRequest) {
 
     // Shared routes must point back to the main hub as their canonical source
     if (cleanPath.startsWith("/guides") || cleanPath.startsWith("/solutions") || cleanPath.startsWith("/service") || cleanPath.startsWith("/poi") || cleanPath.startsWith("/outils") || cleanPath.startsWith("/installation")) {
-        response.headers.set("x-irve-canonical-domain", "www.expertopergolabioclimatica.es");
+        response.headers.set("x-irve-canonical-domain", "www.expertpergolabioclimatique.fr");
     } else {
         response.headers.set("x-irve-canonical-domain", "www." + domainKey);
     }
