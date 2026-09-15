@@ -40,8 +40,8 @@ export default function Header({
 
     const navLinks = [
         {
-                "href": "/guides",
-                "text": "Articles"
+                "href": "/blog",
+                "text": "Articles & Guides"
         },
         {
                 "href": "#simulateur",

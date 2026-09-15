@@ -39,7 +39,7 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                     <div>
                         <h4 className="text-white font-bold mb-6 text-lg">Nuestros Servicios</h4>
                         <ul className="space-y-3">
-                            {[{"title": "Pergola Bioclimatique Adossée", "href": "/type/adossee"}, {"title": "Pergola Bioclimatique Autoportée", "href": "/type/autoportee"}, {"title": "Carport Bioclimatique Aluminium", "href": "/type/carport"}, {"title": "Pergola Toit Plat & Stores Zip", "href": "/type/toit-plat"}, {"title": "Guides & Prix Pergola 2026", "href": "/guides"}].map((service, i) => (
+                            {[{"title": "Pergola Bioclimatique Adossée", "href": "/type/adossee"}, {"title": "Pergola Bioclimatique Autoportée", "href": "/type/autoportee"}, {"title": "Carport Bioclimatique Aluminium", "href": "/type/carport"}, {"title": "Pergola Toit Plat & Stores Zip", "href": "/type/toit-plat"}, {"title": "Guides & Prix Pergola 2026", "href": "/blog"}].map((service, i) => (
                                 <li key={i}>
                                     <Link href={service.href} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
                                         <span className="bg-emerald-500 rounded-full h-1 w-1 shrink-0"></span>
@@ -90,10 +90,10 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                         <h4 className="text-white font-bold mb-6 text-lg">Documentación y Consejos</h4>
                         <ul className="space-y-3">
                             {[
-                                { label: "Precios Pergolas 2026", href: "/guides/precio-pergola-bioclimatica" },
-                                { label: "Guía de Compra", href: "/guides/guia-compra-pergolas" },
-                                { label: "Tipos de Cerramientos", href: "/guides/cerramientos-cristal" },
-                                { label: "Todos los artículos", href: "/guides" }
+                                { label: "Precios Pergolas 2026", href: "/blog/prix-pergola-bioclimatique-m2-cout-reel-installation-2026" },
+                                { label: "Guía de Compra", href: "/blog/pergola-bioclimatique-sur-mesure-vs-kit-comparatif-duree-vie" },
+                                { label: "Tipos de Cerramientos", href: "/blog/stores-lateraux-zip-parois-verre-pergola-bioclimatique" },
+                                { label: "Todos los artículos", href: "/blog" }
                             ].map((link, i) => (
                                 <li key={i}>
                                     <Link href={link.href} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">
