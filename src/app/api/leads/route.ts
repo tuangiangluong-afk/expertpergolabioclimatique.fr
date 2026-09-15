@@ -184,8 +184,8 @@ export async function POST(request: Request) {
             `;
 
             await resend.emails.send({
-                from: `${siteName} <contact@${domain}>`,
-                to: [`bonjour@${domain}`],
+                from: `${siteName} <hello@expertbornerecharge.com>`,
+                to: ['hello@expertbornerecharge.com', `bonjour@${domain}`],
                 subject,
                 html
             });
