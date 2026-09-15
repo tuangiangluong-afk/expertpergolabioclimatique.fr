@@ -7,6 +7,7 @@ import Reviews from "@/components/Reviews";
 import { LocalFAQ } from "@/components/LocalFAQ";
 import { InternalMesh } from "@/components/InternalMesh";
 import { CheckCircle, Award } from "lucide-react";
+import LocalSources from "@/components/LocalSources";
 export interface ContentSection { title: string; html: string; }
 interface PergolaContentPageProps {
     site: CityConfig;
@@ -98,6 +99,7 @@ export default function PergolaContentPage({ site, heroBadge, pageTitle, introHt
             <Reviews site={site} themeColor={themeColor} />
             <LocalFAQ site={site} segment="B2C" />
             <InternalMesh city={site.city} config={site} />
+            <LocalSources site={site} url={canonicalUrl} />
             <Footer config={site} />
         </div>
     );
