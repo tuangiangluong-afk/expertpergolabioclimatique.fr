@@ -1296,7 +1296,7 @@ export const NATIONAL_TARGETS: NationalTarget[] = [
         tier: 'HUB'
     },
     {
-        slug: "ville-d-avray",
+        slug: "ville-davray",
         name: "Ville-d'Avray",
         heroTitle: "Pergola Bioclimatique",
         geo: { lat: 48.8215, lng: 2.1759 },
