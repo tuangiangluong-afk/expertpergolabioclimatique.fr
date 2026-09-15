@@ -1,5 +1,6 @@
 import type { CityConfig } from "@/lib/db";
 import type { PergolaBrand } from "@/data/pergola-brands";
+import { composeLocalIntro } from "@/lib/pseo-local";
 
 // Ensoleillement réel par département — la pergola bioclimatique n'a de sens que selon le climat local
 const SOLEIL: Record<string, { heures: string; conseil: string; prix: string }> = {
@@ -58,41 +59,46 @@ export function getPseoPergolaContent(city: CityConfig, marque: PergolaBrand): P
         </p>
     </div>`;
 
-    const intros = [
-        `<p class="mb-4">
-            Vous cherchez un installateur certifié pour une <strong>pergola bioclimatique ${marque.name}</strong> à <strong>${city.city}${city.postalCode ? ` (${city.postalCode})` : ""}</strong> ?
-            Notre réseau pose la gamme ${marque.modeles.join(", ")} avec lames orientables motorisées, capteur vent/pluie et démarches administratives incluses.
-            ${quartierMention}
-        </p>
-        <p>
-            Comptez entre <strong>${marque.prix}</strong> pour une pergola ${marque.name} clé en main à ${city.city}, fourniture et pose comprises.
-            Devis gratuit et personnalisé sous 24h, étude de faisabilité offerte.
-        </p>`,
-        `<p class="mb-4">
-            Transformez votre terrasse à <strong>${city.city}</strong> en véritable pièce de vie extérieure avec une <strong>pergola bioclimatique ${marque.name}</strong> : lames orientables de 0° à 140°, protection contre le soleil, la pluie et le vent.
-            ${quartierMention}
-        </p>
-        <p>
-            Budget indicatif à ${city.city} : <strong>${marque.prix}</strong> pose comprise.
-            Nous gérons la déclaration préalable et l'installation complète.
-        </p>`,
-        `<p class="mb-4">
-            Fini la terrasse inutilisable l'été à <strong>${city.city}</strong> : la <strong>pergola bioclimatique ${marque.name}</strong> abaisse la température de 4 à 8°C sous les lames fermées et laisse passer la lumière quand elles sont ouvertes.
-            ${quartierMention}
-        </p>
-        <p>
-            Comptez <strong>${marque.prix}</strong> pour une pergola ${marque.name} clé en main à ${city.city}. Devis gratuit, sans engagement, sous 24h.
-        </p>`,
-        `<p class="mb-4">
-            La <strong>pergola bioclimatique ${marque.name}</strong> à <strong>${city.city}</strong> : ${marque.atouts[0].toLowerCase()}. Pose en 1 à 2 jours par nos installateurs certifiés, avec garantie constructeur.
-            ${quartierMention}
-        </p>
-        <p>
-            Budget à prévoir à ${city.city} : <strong>${marque.prix}</strong> fourniture et pose comprises.
-        </p>`,
-    ];
-
-    const intro_html = intros[h % intros.length];
+    // L'intro est assemblée à partir de six emplacements factuels (voir
+    // pseo-local.ts) : l'ancienne version piochait 1 texte sur 4 par hash, ce
+    // qui donnait des pages identiques à un mot près sur tout le département.
+    const intro_html = composeLocalIntro(
+        {
+            city: city.city,
+            postal: city.postalCode,
+            deptCode: city.department,
+            region: city.region,
+            quartiers,
+            authority: `le service urbanisme de la mairie de ${city.city}`,
+        },
+        {
+            audience: "Les particuliers et les professionnels",
+            service: "l'étude, la fourniture et la pose de la pergola bioclimatique",
+            norms: "les règles de mise en œuvre des structures aluminium et l'Eurocode 1 (actions du vent et de la neige)",
+            document: "la déclaration préalable de travaux et l'attestation de conformité de pose",
+            authorityLabel: "le service qui instruit les autorisations d'urbanisme",
+            project: "votre projet d'aménagement extérieur",
+        },
+        {
+            openers: [
+                (f) => `Pergola bioclimatique ${marque.name} à ${f.city} : notre réseau pose la gamme ${marque.modeles.join(", ")}.`,
+                (f) => `À ${f.city}, la pergola ${marque.name} se pose en 1 à 2 jours, avec lames orientables motorisées et capteur vent/pluie automatique.`,
+                (f) => `Pour une terrasse à ${f.city}, la gamme ${marque.name} (${marque.gamme}) se décline en ${marque.tailles}.`,
+                (f) => `La pergola ${marque.name} à ${f.city} : ${marque.atouts[0].toLowerCase()}`,
+                (f) => `Notre réseau installe ${marque.name} à ${f.city}, une fabrication ${marque.origine}.`,
+                (f) => `Terrasse à équiper à ${f.city} : l'étude de faisabilité ${marque.name} est réalisée gratuitement sur place.`,
+            ],
+            middles: [
+                () => `Comptez ${marque.prix} pour une pergola ${marque.name} clé en main, fourniture et pose comprises.`,
+                (f) => `Le budget à ${f.city} varie selon la taille (${marque.tailles}) et les options : stores verticaux, éclairage, chauffage.`,
+                () => `La pose est réalisée par des installateurs formés à la gamme ${marque.name}, avec garantie constructeur sur la structure et la motorisation.`,
+                (f) => `Nous prenons en charge la déclaration préalable à ${f.city} lorsque l'emprise au sol la rend nécessaire.`,
+                () => `Les lames orientables de la gamme ${marque.name} abaissent la température sous la pergola et se ferment automatiquement en cas de pluie ou de vent.`,
+                (f) => `Le devis remis à ${f.city} détaille la fourniture, la pose, les options et les démarches incluses, sans poste forfaitaire caché.`,
+            ],
+        },
+        h,
+    );
 
     const faqs = [
         {

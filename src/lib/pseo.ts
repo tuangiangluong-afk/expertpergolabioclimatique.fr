@@ -1,5 +1,6 @@
 import type { CityConfig } from "@/lib/db";
 import { departementFromPostal, ventForDepartement, type Departement } from "@/data/fr-departements";
+import { composeLocalIntro } from "@/lib/pseo-local";
 
 export interface PseoPageContent {
     meta_title: string;
@@ -169,7 +170,24 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
 
     const hero_title = `Pergola <span class="text-purple-600">Bioclimatique</span> à ${c.city}${postalSpan}`;
 
-    const intro_html = pick(OPENERS, h)(c) + pick(MIDDLES, h >> 5)(c) + riskParagraph(c);
+    const intro_html = composeLocalIntro(
+        {
+            city: c.city, postal: c.postal, deptCode: c.deptCode, deptName: c.deptName,
+            region: c.region, prefecture: c.prefecture, quartiers: c.quartiers,
+            authority: "le service urbanisme de votre commune",
+            littoral: c.littoral, montagne: c.montagne,
+        },
+        {
+            audience: "Les particuliers et les professionnels",
+            service: "la fourniture et la pose d'une pergola bioclimatique sur mesure",
+            norms: "les Eurocodes et les règles de l'art applicables aux structures aluminium",
+            document: "le dossier de garantie et de notice d'entretien",
+            authorityLabel: "l'autorité d'urbanisme compétente",
+            project: "votre projet d'aménagement extérieur",
+        },
+        { openers: OPENERS.map((fn) => () => fn(c)), middles: MIDDLES.map((fn) => () => fn(c)) },
+        h,
+    ) + riskParagraph(c);
     const expert_tip = pick(TIPS, h >> 7)(c);
 
     const local_facts: { label: string; value: string }[] = [];
