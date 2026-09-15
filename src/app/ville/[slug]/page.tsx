@@ -43,6 +43,10 @@ export async function generateMetadata({
         description: pseo.meta_description,
         alternates: {
             canonical: `https://www.expertpergolabioclimatique.fr/ville/${resolvedParams.slug}`,
+            languages: {
+                "fr-FR": `https://www.expertpergolabioclimatique.fr/ville/${resolvedParams.slug}`,
+                "x-default": `https://www.expertpergolabioclimatique.fr/ville/${resolvedParams.slug}`,
+            },
         },
         openGraph: {
             title: pseo.meta_title,
@@ -50,13 +54,13 @@ export async function generateMetadata({
             siteName: site.name,
             images: [
                 {
-                    url: site.heroImage,
+                    url: `https://www.expertpergolabioclimatique.fr/api/og?q=${resolvedParams.slug}`,
                     width: 1200,
                     height: 630,
                     alt: `${site.name} ${site.city}`
                 }
             ],
-            locale: "es_ES",
+            locale: "fr_FR",
             type: "website",
         },
         robots: {

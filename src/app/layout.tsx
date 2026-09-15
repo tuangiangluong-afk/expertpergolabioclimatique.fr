@@ -62,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: `${baseUrl}${path}`,
       images: [
         {
-          url: `${baseUrl}/images/og-image.png`,
+          url: `${baseUrl}/api/og`,
           width: 1200,
           height: 630,
           alt: "Expert Pergola Bioclimatique - Conception & Pose Sur-Mesure",
@@ -73,7 +73,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Expert Pergola Bioclimatique - Pergola Bioclimatique Sur-Mesure",
       description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
-      images: [`${baseUrl}/images/og-image.png`],
+      images: [`${baseUrl}/api/og`],
     },
     icons: {
       icon: "/icon.png",
