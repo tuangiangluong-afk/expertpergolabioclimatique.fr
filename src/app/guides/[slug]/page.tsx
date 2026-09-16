@@ -231,7 +231,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                         <div className="mb-10">
                             <Link href="/guides" className="inline-flex items-center text-sm text-slate-500 hover:text-stone-600 mb-6 group">
                                 <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                                Volver a las guías
+                                Revenir aux guides
                             </Link>
 
                             {/* Meta Data */}
@@ -293,11 +293,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                                 </div>
                                 <div>
                                     <div className="font-bold text-lg text-slate-900">Expert Pergola Bioclimatique</div>
-                                    <div className="text-sm text-slate-500">Departamento de Diseño</div>
+                                    <div className="text-sm text-slate-500">Département conception</div>
                                 </div>
                             </div>
                             <p className="text-slate-600 mb-4">
-                                Nuestras guías están redactadas por paisajistas y especialistas en cerramientos de aluminio para ofrecerle inspiración y presupuestos reales.</p>
+                                Nos guides sont rédigés par des paysagistes et des spécialistes des fermetures aluminium, pour vous apporter de l&apos;inspiration et des budgets réels.</p>
                         </div>
                     </div>
 
@@ -314,7 +314,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                             {/* Dynamic Table of Contents */}
                             {toc.length > 0 && (
                                 <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200">
-                                    <h4 className="font-bold text-sm text-slate-400 uppercase tracking-wider mb-4">En este artículo</h4>
+                                    <h4 className="font-bold text-sm text-slate-400 uppercase tracking-wider mb-4">Dans cet article</h4>
                                     <ul className="space-y-3 text-sm text-slate-600">
                                         {toc.map((item: any, i: number) => (
                                             <li key={i} className={`
@@ -338,7 +338,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur border-t border-slate-200 lg:hidden z-40">
                 <a href="/#simulateur" className="flex items-center justify-center gap-2 w-full bg-stone-600 text-white font-bold py-3 rounded-xl shadow-lg">
                     <Zap size={18} />
-                    Pedir presupuesto a medida
+                    Demander un devis sur mesure
                 </a>
             </div>
         </div>

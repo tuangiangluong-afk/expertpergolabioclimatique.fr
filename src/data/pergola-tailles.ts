@@ -15,10 +15,10 @@ export interface PergolaTaille {
 }
 
 const IMG = {
-    t33: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2670&auto=format&fit=crop",
-    t34: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2670&auto=format&fit=crop",
-    t44: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2670&auto=format&fit=crop",
-    t46: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2670&auto=format&fit=crop",
+    t33: "/images/generated/pergola-hero.png",
+    t34: "/images/generated/pergola-realization-1.png",
+    t44: "/images/generated/pergola-realization-2.png",
+    t46: "/images/generated/pergola-realization-3.png",
 };
 
 export const PERGOLA_TAILLES: PergolaTaille[] = [

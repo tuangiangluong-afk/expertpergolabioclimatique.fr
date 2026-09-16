@@ -23,12 +23,12 @@ export interface PergolaComparatif {
 }
 
 const IMG = {
-    c1: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2670&auto=format&fit=crop",
-    c2: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2670&auto=format&fit=crop",
-    c3: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2670&auto=format&fit=crop",
-    c4: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2670&auto=format&fit=crop",
-    c5: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?q=80&w=2670&auto=format&fit=crop",
-    c6: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=2670&auto=format&fit=crop",
+    c1: "/images/generated/pergola-hero.png",
+    c2: "/images/generated/pergola-realization-1.png",
+    c3: "/images/generated/pergola-realization-2.png",
+    c4: "/images/generated/pergola-realization-3.png",
+    c5: "/images/generated/pergola-realization-4.png",
+    c6: "/images/generated/pergola-hero.png",
 };
 
 export const PERGOLA_COMPARATIFS: PergolaComparatif[] = [

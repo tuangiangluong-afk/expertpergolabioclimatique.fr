@@ -1767,7 +1767,7 @@ export function getTargetAsCityConfig(slug: string): CityConfig | undefined {
         city: target.name,
         name: `${target.heroTitle} ${target.name}`,
         domain: `${target.slug}.localhost`, // rewrite target
-        heroImage: target.heroImage || "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2672&auto=format&fit=crop",
+        heroImage: target.heroImage || "/images/generated/pergola-hero.png",
         postalCode: target.zip,
         // `department` reste le CODE (utilisé par le maillage interne)
         department: departementFromPostal(target.zip)?.code || target.zip.substring(0, 2),

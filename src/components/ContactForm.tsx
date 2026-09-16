@@ -34,7 +34,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
 
         if (errors.length > 0) {
             setStatus("error");
-            setErrorMessage(`Por favor, rellene correctamente los campos.`);
+            setErrorMessage(`Merci de renseigner correctement les champs.`);
             return;
         }
 
@@ -49,7 +49,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
 
             if (!res.ok) {
                 const json = await res.json();
-                throw new Error(json.error || "Ocurrió un error. Por favor, llámenos directamente.");
+                throw new Error(json.error || "Une erreur est survenue. Merci de nous appeler directement.");
             }
 
             setStatus("success");
@@ -57,7 +57,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
         } catch (error: any) {
             console.error(error);
             setStatus("error");
-            setErrorMessage(error.message || "Ocurrió un error. Por favor, llámenos directamente.");
+            setErrorMessage(error.message || "Une erreur est survenue. Merci de nous appeler directement.");
         }
     }
 
@@ -75,7 +75,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
                     onClick={() => setStatus("idle")}
                     className="mt-6 text-sm font-semibold text-green-800 hover:underline"
                 >
-                    Enviar otro mensaje
+                    Envoyer un autre message
                 </button>
             </div>
         );
@@ -119,8 +119,8 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
                         id="subject"
                         className={inputClasses}
                     >
-                        <option value="devis_particulier">Presupuesto particular</option>
-                        <option value="devis_pro">Presupuesto empresa</option>
+                        <option value="devis_particulier">Devis particulier</option>
+                        <option value="devis_pro">Devis entreprise</option>
                         <option value="partenariat_installateur">Devenir installateur partenaire</option>
                         <option value="autre">Otra consulta</option>
                     </select>
@@ -183,13 +183,13 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
                 ) : (
                     <>
                         <Send size={20} />
-                        Enviar mensaje
+                        Envoyer le message
                     </>
                 )}
             </button>
 
             <p className="text-xs text-center text-neutral-500">
-                Al enviar este formulario, aceptas nuestra política de privacidad.
+                En envoyant ce formulaire, vous acceptez notre politique de confidentialité.
             </p>
         </form>
     );

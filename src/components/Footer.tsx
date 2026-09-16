@@ -79,7 +79,7 @@ export function Footer({ config }: FooterProps) {
                                             </li>
                                         ))}
                                         {neighborhoods.length === 0 && (
-                                            <li className="text-neutral-500 italic">Todo {config.city}</li>
+                                            <li className="text-neutral-500 italic">Tout {config.city}</li>
                                         )}
                                     </>
                                 )}

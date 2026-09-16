@@ -17,10 +17,10 @@ export interface PergolaType {
 }
 
 const IMG = {
-    adossee: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2670&auto=format&fit=crop",
-    autoportee: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2670&auto=format&fit=crop",
-    carport: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2670&auto=format&fit=crop",
-    toitplat: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2670&auto=format&fit=crop",
+    adossee: "/images/generated/pergola-hero.png",
+    autoportee: "/images/generated/pergola-realization-1.png",
+    carport: "/images/generated/pergola-realization-2.png",
+    toitplat: "/images/generated/pergola-realization-3.png",
 };
 
 export const PERGOLA_TYPES: PergolaType[] = [

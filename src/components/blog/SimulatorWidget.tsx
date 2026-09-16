@@ -24,7 +24,7 @@ export default function SimulatorWidget() {
                 Comparer les devis
             </a>
             <div className="mt-4 flex justify-center items-center gap-2 text-xs text-green-600 font-medium">
-                <CheckCircle size={12} /> Gratis y sin compromiso
+                <CheckCircle size={12} /> Gratuit et sans engagement
             </div>
         </div>
     );

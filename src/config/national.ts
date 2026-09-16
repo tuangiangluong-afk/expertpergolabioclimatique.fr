@@ -7,7 +7,7 @@ export const NATIONAL_CONFIG: CityConfig = {
     city: "France",
     phoneNumber: "01 84 80 00 00",
     email: "contact@expertpergolabioclimatique.fr",
-    heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop",
+    heroImage: "/images/generated/pergola-hero.png",
     description: "Le réseau n°1 d'installateurs de pergolas bioclimatiques en France. Devis gratuit et techniciens certifiés RGE.",
     meta: {
         title: "Expert Pergola Bioclimatique | Conception & Pose Sur-Mesure",

@@ -25,9 +25,9 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
         const variations = [
             `Pergola bioclimatique ${name}`,
             `Installateur de pergolas ${name}`,
-            `Pergola de aluminio ${name}`,
-            `Cerramientos terraza ${name}`,
-            `Especialistas pergolas ${name}`
+            `Pergola aluminium ${name}`,
+            `Fermetures terrasse ${name}`,
+            `Spécialistes pergolas ${name}`
         ];
         return variations[index % variations.length];
     }
@@ -37,7 +37,7 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
             <div className="mx-auto max-w-7xl">
                 <div className="grid md:grid-cols-4 gap-12 text-left">
                     <div>
-                        <h4 className="text-white font-bold mb-6 text-lg">Nuestros Servicios</h4>
+                        <h4 className="text-white font-bold mb-6 text-lg">Nos services</h4>
                         <ul className="space-y-3">
                             {[{"title": "Pergola Bioclimatique Adossée", "href": "/type/adossee"}, {"title": "Pergola Bioclimatique Autoportée", "href": "/type/autoportee"}, {"title": "Carport Bioclimatique Aluminium", "href": "/type/carport"}, {"title": "Pergola Toit Plat & Stores Zip", "href": "/type/toit-plat"}, {"title": "Guides & Prix Pergola 2026", "href": "/blog"}].map((service, i) => (
                                 <li key={i}>
@@ -69,7 +69,7 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
 
                     <div>
                         <h4 className="text-white font-bold mb-6 text-lg">
-                            {config ? `Barrios de ${config.city}` : "Zonas de actuación"}
+                            {config ? `Quartiers de ${config.city}` : "Zones d'intervention"}
                         </h4>
                         <ul className="space-y-3">
                             {neighborhoods.slice(0, 8).map((quartier: string, i: number) => (
@@ -81,19 +81,19 @@ export function InternalMesh({ city, config }: InternalMeshProps) {
                                 </li>
                             ))}
                             {neighborhoods.length === 0 && (
-                                <li className="text-neutral-500 text-sm italic">Toda la provincia y alrededores</li>
+                                <li className="text-neutral-500 text-sm italic">Tout le département et ses alentours</li>
                             )}
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-6 text-lg">Documentación y Consejos</h4>
+                        <h4 className="text-white font-bold mb-6 text-lg">Documentation & Conseils</h4>
                         <ul className="space-y-3">
                             {[
-                                { label: "Precios Pergolas 2026", href: "/blog/prix-pergola-bioclimatique-m2-cout-reel-installation-2026" },
-                                { label: "Guía de Compra", href: "/blog/pergola-bioclimatique-sur-mesure-vs-kit-comparatif-duree-vie" },
-                                { label: "Tipos de Cerramientos", href: "/blog/stores-lateraux-zip-parois-verre-pergola-bioclimatique" },
-                                { label: "Todos los artículos", href: "/blog" }
+                                { label: "Prix pergola bioclimatique 2026", href: "/blog/prix-pergola-bioclimatique-m2-cout-reel-installation-2026" },
+                                { label: "Guide d'achat", href: "/blog/pergola-bioclimatique-sur-mesure-vs-kit-comparatif-duree-vie" },
+                                { label: "Types de fermetures", href: "/blog/stores-lateraux-zip-parois-verre-pergola-bioclimatique" },
+                                { label: "Tous les articles", href: "/blog" }
                             ].map((link, i) => (
                                 <li key={i}>
                                     <Link href={link.href} className="text-neutral-400 hover:text-white transition text-sm flex items-center gap-2">

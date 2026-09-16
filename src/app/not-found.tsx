@@ -11,11 +11,11 @@ export default function NotFound() {
 
                 <h1 className="text-6xl font-black text-white mb-4 tracking-tighter">404</h1>
                 <h2 className="text-2xl font-bold text-slate-300 mb-6">
-                    ¡Vaya! Parece que esta página se quedó al sol.
+                    Oups ! On dirait que cette page a pris le soleil.
                 </h2>
 
                 <p className="text-slate-500 mb-10 leading-relaxed">
-                    La página que buscas no existe o ha sido movida. Pero no te preocupes, nuestros expertos en pergolas sí están disponibles.
+                    La page que vous cherchez n&apos;existe pas ou a été déplacée. Pas d&apos;inquiétude : nos experts en pergolas bioclimatiques sont toujours disponibles.
                 </p>
 
                 <Link
@@ -23,7 +23,7 @@ export default function NotFound() {
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-blue-600/20 hover:scale-[1.02]"
                 >
                     <Home size={20} />
-                    Volver al inicio
+                    Retour à l'accueil
                 </Link>
             </div>
         </div>
