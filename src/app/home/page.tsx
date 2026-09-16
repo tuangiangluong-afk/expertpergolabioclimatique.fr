@@ -1,5 +1,6 @@
 export const revalidate = 86400; // 24h ISR cache
 import MobileStickyCTA from "@/components/MobileStickyCTA";
+import { slugify } from "@/lib/slugify";
 import { getHubConfig } from "@/lib/sites-config";
 import { NATIONAL_TARGETS } from "@/config/national-targets";
 import { Zap, Award, ArrowRight, Home, CheckCircle } from "lucide-react";
@@ -21,7 +22,7 @@ export const metadata = {
 
 export default function HomePage() {
     const hub = getHubConfig();
-    const cities = NATIONAL_TARGETS.map(t => ({ name: t.name, slug: t.slug, available: true, department: t.zip.substring(0,2) }));
+    const cities = NATIONAL_TARGETS.map(t => ({ name: t.name, slug: slugify(t.name), available: true, department: t.zip.substring(0,2) }));
 
     return (
         <div className="min-h-screen font-sans text-slate-900 bg-white">

@@ -36,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // 2. PARTNER CITIES
     const cityRoutes: MetadataRoute.Sitemap = NATIONAL_TARGETS.map((target) => ({
-        url: `${baseUrl}/ville/${target.slug}`,
+        url: `${baseUrl}/ville/${slugify(target.name)}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,

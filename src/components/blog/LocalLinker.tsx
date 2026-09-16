@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { slugify } from "@/lib/slugify";
 import { MapPin, ArrowRight, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { findLocalSite } from '@/app/actions/find-local-site';
 import Link from 'next/link';
@@ -8,7 +9,7 @@ import { NATIONAL_TARGETS } from '@/config/national-targets';
 
 const SUGGESTIONS = NATIONAL_TARGETS.map(t => ({
     name: `${t.name} (${t.zip.substring(0, 2)})`,
-    slug: t.slug
+    slug: slugify(t.name)
 }));
 
 export default function LocalLinker() {
@@ -28,9 +29,9 @@ export default function LocalLinker() {
         setQuery(name);
         setShowSuggestions(false);
         setStatus('loading');
-        const target = NATIONAL_TARGETS.find(t => t.slug === slug);
+        const target = NATIONAL_TARGETS.find(t => slugify(t.name) === slug);
         if (target) {
-            setResult({ url: `/ville/${target.slug}`, city: target.name });
+            setResult({ url: `/ville/${slugify(target.name)}`, city: target.name });
             setStatus('success');
         } else {
             setStatus('not-found');
