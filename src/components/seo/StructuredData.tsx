@@ -65,12 +65,6 @@ export default function StructuredData() {
             "name": "FR"
         },
         "description": "Fourniture et pose de pergolas bioclimatiques à lames orientables motorisées sur-mesure.",
-        "offers": {
-            "@type": "Offer",
-            "priceCurrency": "EUR",
-            "price": "3490",
-            "validFrom": "2026-01-01"
-        }
     };
 
     // Eligible Product Schema: 100% compliant with Google Product & Review Snippets
@@ -90,14 +84,6 @@ export default function StructuredData() {
             "@type": "Brand",
             "name": "Expert Pergola Bioclimatique"
         },
-        "offers": {
-            "@type": "Offer",
-            "url": `${baseUrl}/#simulateur`,
-            "priceCurrency": "EUR",
-            "price": "3490",
-            "validFrom": "2026-01-01",
-            "priceValidUntil": "2026-12-31",
-                                },
     };
 
     return (
