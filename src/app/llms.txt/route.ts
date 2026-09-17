@@ -9,7 +9,7 @@ export function GET() {
 
 ## Faits vérifiables
 - **Secteur** : la conception et la pose de pergolas bioclimatiques en aluminium à lames orientables.
-- **Zone & couverture** : France métropolitaine (réseau national) — 162 villes couvertes.
+- **Zone & couverture** : France métropolitaine (réseau national) — 161 communes disposant d'une page dédiée, vérifiable dans le sitemap.
 - **Devis** : gratuit sous 24 h via le site (formulaire en ligne).
 - **Engagement** : artisans et techniciens certifiés, garantie décennale.
 - **Atouts mis en avant** : Conception Sur-Mesure, Devis Gratuit sous 24h, Lames Orientables Motorisées, Installateurs Certifiés.
