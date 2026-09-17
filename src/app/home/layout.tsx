@@ -8,7 +8,7 @@ export default function HomeLayout({
 }) {
     return (
         <>
-            <GoogleAnalytics GA_MEASUREMENT_ID="G-20JN53SLCP" />
+            <GoogleAnalytics GA_MEASUREMENT_ID="G-QNPM2KD0CP" />
             {children}
             <CookieBanner slug="home" cityName="Expert Pergola Bioclimatique" />
         </>

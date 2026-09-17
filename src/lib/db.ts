@@ -10,6 +10,13 @@ export interface CityConfig {
     postalCode?: string;
     department?: string;
     region?: string;
+    /** Identité administrative réelle de la commune (source IGN/Etalab) */
+    insee?: string;
+    epci?: string;
+    population?: number;
+    deptName?: string;
+    /** Communes limitrophes réelles avec distance — jamais des quartiers inventés */
+    zones?: { nom: string; km: number }[];
     phoneNumber: string;
     email: string;
     heroImage: string;

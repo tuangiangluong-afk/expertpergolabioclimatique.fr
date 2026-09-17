@@ -16,6 +16,7 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
     const city = site.city;
     const dept = site.department ? ` (${site.department})` : "";
     const neighborhoods = site.neighborhoods || [];
+    const zones = site.zones || [];
     const facts = pseo?.local_facts || [];
     const priceLine = pseo?.pricing_estimated && !pseo.pricing_estimated.includes("partir")
         ? pseo.pricing_estimated
@@ -24,9 +25,22 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
     const f1 = facts.find(f => f.label === "Région")?.value;
     const f2 = facts.find(f => f.label === "Vent dominant")?.value;
     const f3 = facts.find(f => f.label === "Préfecture")?.value;
-    const neighborhoodsText = neighborhoods.length > 0 
-        ? `, notamment dans les quartiers ${neighborhoods.slice(0, 4).join(', ')}` 
+    // Deux ensembles distincts, tous deux réels :
+    // - `neighborhoods` = quartiers et communes du maillage propre à la ville ;
+    // - `zones` = communes limitrophes avec distance (source IGN/Etalab).
+    const neighborhoodsText = neighborhoods.length > 0
+        ? `, ainsi que dans les secteurs suivants : ${neighborhoods.slice(0, 4).join(', ')}`
         : "";
+    const zonesText = zones
+        .slice(0, 4)
+        .map((z) => `${z.nom} (${z.km.toLocaleString("fr-FR")} km)`)
+        .join(", ");
+    const identityText = [
+        site.insee ? `code INSEE ${site.insee}` : null,
+        site.population ? `${site.population.toLocaleString("fr-FR")} habitants` : null,
+        site.epci ? `membre de ${site.epci}` : null,
+        site.deptName ? `département ${site.deptName} (${site.department})` : null,
+    ].filter(Boolean).join(", ");
 
     return (
         <section className="py-12 bg-slate-50/50 border-t border-slate-200">
@@ -164,11 +178,18 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
                                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
                                     <Building2 size={20} />
                                 </span>
-                                <h3 className="font-bold text-slate-900 text-base">Typologie des terrasses & Quartiers à {city}</h3>
+                                <h3 className="font-bold text-slate-900 text-base">Typologie des terrasses & zones desservies autour de {city}</h3>
                             </div>
                             <p className="text-sm text-slate-600 leading-relaxed">
-                                Nos installateurs se déplacent dans tous les secteurs de la commune{neighborhoodsText}. Nous concevons aussi bien des pergolas adossées sur façade isolée (avec scellements chimiques à rupture de pont thermique) que des structures autoportées à 4 poteaux pour abriter un espace lounge près d'une piscine ou au milieu d'un jardin paysager.
+                                Nos installateurs se déplacent dans toute la commune{neighborhoodsText}. Nous concevons aussi bien des pergolas adossées sur façade isolée (avec scellements chimiques à rupture de pont thermique) que des structures autoportées à 4 poteaux pour abriter un espace lounge près d'une piscine ou au milieu d'un jardin paysager.
                             </p>
+                            {(identityText || zonesText) && (
+                                <p className="mt-3 text-xs text-slate-500 leading-relaxed">
+                                    {identityText && <>Identité administrative : {identityText}.</>}
+                                    {identityText && zonesText && " "}
+                                    {zonesText && <>Communes limitrophes : {zonesText}.</>}
+                                </p>
+                            )}
                         </div>
 
                         {/* Card 3: Climat, Performance & Aides */}

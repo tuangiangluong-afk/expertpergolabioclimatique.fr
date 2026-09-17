@@ -30,7 +30,8 @@ const GUARANTEE = "Garantie de 10 ans sur la structure";
 interface LocalContext {
     city: string;
     postal: string;
-    quartiers: string[];
+    /** Communes limitrophes réelles, et non des quartiers inventés */
+    zones: string[];
     dept?: Departement;
     deptCode: string;
     deptName: string;
@@ -47,7 +48,8 @@ function buildContext(c: CityConfig): LocalContext {
     return {
         city: c.city,
         postal,
-        quartiers: c.neighborhoods || [],
+        // Communes limitrophes réelles (et non la liste de quartiers du maillage)
+        zones: (c.zones || []).map((z) => z.nom),
         dept,
         deptCode: dept?.code || c.department || "",
         deptName: dept?.name || "France",
@@ -85,15 +87,15 @@ const OPENERS: ((c: LocalContext) => string)[] = [
 ];
 
 // ========================================
-// PARAGRAPHES TECHNIQUES (quartiers réels + prestations)
+// PARAGRAPHES TECHNIQUES (communes limitrophes réelles + prestations)
 // ========================================
 const MIDDLES: ((c: LocalContext) => string)[] = [
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Nos installateurs interviennent dans tous les secteurs de la commune : <strong>${c.quartiers.slice(0, 3).join(", ")}</strong> et les communes limitrophes.` : "Nos installateurs couvrent la commune et les communes limitrophes."} Lames d'aluminium orientables de 0° à 135°, motorisation et fixation sur mesure.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Interventions régulières à <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "Interventions régulières sur la commune."} Évacuation d'eau intégrée dans les piliers, capteurs de pluie et de vent qui replient automatiquement les lames en cas de rafale.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Du centre de ${c.city} aux quartiers <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>,` : `Sur toute la commune de ${c.city},`} nous prenons les mesures sur place puis fabriquons aux dimensions exactes : c'est la seule façon d'éviter les jeux de structure et les infiltrations sur les poutres.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">Sur le département ${c.deptCode} : ${c.quartiers.length >= 2 ? `nous suivons en priorité les secteurs de <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "nous suivons les quartiers résidentiels de la commune."} Options disponibles : éclairage LED intégré, fermetures latérales vitrées ou stores zip, chauffage infrarouge.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Déjà installées à <strong>${c.quartiers.slice(0, 3).join(", ")}</strong>.` : "Déjà installées sur la commune."} Pose en 1 à 2 journées, sans gros œuvre, avec réglage de la motorisation et des capteurs de vent.</p>`,
-    (c) => `<p class="mb-4 leading-relaxed">${c.quartiers.length >= 2 ? `Secteurs couverts : <strong>${c.quartiers.slice(0, 3).join(", ")}</strong> et environs.` : "Couverture communale complète."} Finitions Qualicoat adaptées à l'exposition locale, visserie inox et calfeutrement soigné au raccord de façade.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Nos installateurs interviennent à ${c.city} et dans les communes limitrophes : <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "Nos installateurs couvrent la commune et les communes limitrophes."} Lames d'aluminium orientables de 0° à 135°, motorisation et fixation sur mesure.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Interventions régulières à <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "Interventions régulières sur la commune."} Évacuation d'eau intégrée dans les piliers, capteurs de pluie et de vent qui replient automatiquement les lames en cas de rafale.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `À ${c.city} comme dans les communes voisines : <strong>${c.zones.slice(0, 3).join(", ")}</strong>,` : `Sur toute la commune de ${c.city},`} nous prenons les mesures sur place puis fabriquons aux dimensions exactes : c'est la seule façon d'éviter les jeux de structure et les infiltrations sur les poutres.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">Sur le département ${c.deptCode} : ${c.zones.length >= 2 ? `nous suivons en priorité les secteurs de <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "nous suivons les zones résidentielles de la commune."} Options disponibles : éclairage LED intégré, fermetures latérales vitrées ou stores zip, chauffage infrarouge.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Zones déjà couvertes par nos équipes : <strong>${c.zones.slice(0, 3).join(", ")}</strong>.` : "Déjà installées sur la commune."} Pose en 1 à 2 journées, sans gros œuvre, avec réglage de la motorisation et des capteurs de vent.</p>`,
+    (c) => `<p class="mb-4 leading-relaxed">${c.zones.length >= 2 ? `Secteurs couverts : <strong>${c.zones.slice(0, 3).join(", ")}</strong> et environs.` : "Couverture communale complète."} Finitions Qualicoat adaptées à l'exposition locale, visserie inox et calfeutrement soigné au raccord de façade.</p>`,
 ];
 
 // ========================================
@@ -129,7 +131,7 @@ const TIPS: ((c: LocalContext) => string)[] = [
     (c) => `L'évacuation d'eau des pergolas bioclimatiques passe par l'intérieur des piliers : aucune goulotte visible, et plus de salissures projetées sur la façade.`,
     (c) => `En ${c.region}, le vent dominant étant ${c.vent}, exigez de connaître la résistance au vent annoncée par le fabricant avant de comparer les prix.`,
     (c) => `Une pergola bioclimatique est une structure ouverte et démontable : dans la majorité des communes, elle ne crée pas de surface habitable close et ne requiert donc pas de permis de construire. Une déclaration préalable peut rester nécessaire selon la commune et le PLU.`,
-    (c) => `${c.quartiers.length ? `Les habitations des secteurs de ${c.quartiers[0]} à ${c.city} ` : `Les habitations de ${c.city} `}choisissent souvent des fermetures latérales vitrées, pour continuer à profiter de la terrasse en demi-saison.`,
+    (c) => `${c.zones.length ? `À ${c.city}, comme dans les communes voisines : ${c.zones.slice(0, 2).join(" et ")}, ` : `Les habitations de ${c.city} `}choisissent souvent des fermetures latérales vitrées, pour continuer à profiter de la terrasse en demi-saison.`,
     (c) => `Le capteur de vent est l'accessoire le moins spectaculaire et le plus utile : il replie automatiquement les lames avant que la rafale n'atteigne la structure.`,
     (c) => `${c.littoral ? `Sur le littoral du ${c.deptCode}, l'air salin impose une finition anticorrosion et une visserie inox : sans cela, les fixations se dégradent en quelques années.` : `Sur le département ${c.deptCode}, la finition (thermolaquage, visserie inox) pèse plus lourd que la marque sur la durée de vie de la structure.`}`,
     (c) => `Le prix au m² d'une pergola bioclimatique baisse à mesure que la surface augmente, car la motorisation et la structure se répartissent sur une plus grande surface.`,
@@ -173,7 +175,7 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
     const intro_html = composeLocalIntro(
         {
             city: c.city, postal: c.postal, deptCode: c.deptCode, deptName: c.deptName,
-            region: c.region, prefecture: c.prefecture, quartiers: c.quartiers,
+            region: c.region, prefecture: c.prefecture, zones: c.zones,
             authority: "le service urbanisme de votre commune",
             littoral: c.littoral, montagne: c.montagne,
         },

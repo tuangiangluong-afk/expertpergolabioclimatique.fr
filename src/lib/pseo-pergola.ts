@@ -42,9 +42,10 @@ function hash(str: string): number {
 export function getPseoPergolaContent(city: CityConfig, marque: PergolaBrand): PseoPergolaContent {
     const deptCode = (city.department || "").substring(0, 2);
     const local = SOLEIL[deptCode] || DEFAULT_SOLEIL;
-    const quartiers = city.neighborhoods || [];
-    const quartierMention = quartiers.length >= 2
-        ? `Nous réalisons l'étude de faisabilité gratuite dans tous les secteurs : ${quartiers.slice(0, 3).join(", ")} et communes environnantes.`
+    // Communes limitrophes réelles (avec distance), et non la liste de quartiers du maillage.
+    const zones = (city.zones || []).map((z) => z.nom);
+    const quartierMention = zones.length >= 2
+        ? `Nous réalisons l'étude de faisabilité gratuite à ${city.city} et dans les communes voisines : ${zones.slice(0, 3).join(", ")}.`
         : "";
     const h = hash(city.city + marque.slug);
 
@@ -68,7 +69,7 @@ export function getPseoPergolaContent(city: CityConfig, marque: PergolaBrand): P
             postal: city.postalCode,
             deptCode: city.department,
             region: city.region,
-            quartiers,
+            zones,
             authority: `le service urbanisme de la mairie de ${city.city}`,
         },
         {
