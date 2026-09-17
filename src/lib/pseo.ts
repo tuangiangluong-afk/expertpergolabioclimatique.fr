@@ -1,6 +1,7 @@
 import type { CityConfig } from "@/lib/db";
 import { departementFromPostal, ventForDepartement, type Departement } from "@/data/fr-departements";
 import { composeLocalIntro } from "@/lib/pseo-local";
+import { getLocalFacts, type LocalFacts } from "@/data/local-facts";
 
 export interface PseoPageContent {
     meta_title: string;
@@ -28,6 +29,8 @@ const GUARANTEE = "Garantie de 10 ans sur la structure";
 // CONTEXTE LOCAL RÉEL
 // ========================================
 interface LocalContext {
+    /** Slug de la commune, sert à retrouver ses mesures réelles */
+    slug: string;
     city: string;
     postal: string;
     /** Communes limitrophes réelles, et non des quartiers inventés */
@@ -46,6 +49,7 @@ function buildContext(c: CityConfig): LocalContext {
     const postal = c.postalCode || "";
     const dept = departementFromPostal(postal);
     return {
+        slug: c.slug,
         city: c.city,
         postal,
         // Communes limitrophes réelles (et non la liste de quartiers du maillage)
@@ -126,6 +130,37 @@ function riskParagraph(c: LocalContext): string {
 // ========================================
 // CONSEILS D'EXPERT (ancrés localement, jamais inventés)
 // ========================================
+/** Énumération à la française : « a, b et c ». */
+function joinFr(items: string[]): string {
+    if (items.length <= 1) return items.join("");
+    return `${items.slice(0, -1).join(", ")} et ${items[items.length - 1]}`;
+}
+
+/**
+ * Paragraphe bâti sur les mesures réelles de la commune (NASA POWER,
+ * climatologie sur vingt ans) : vent dominant, rayonnement reçu, minimum de
+ * janvier, précipitations. Deux communes n'ont pas le même climat, donc deux
+ * pages n'ont pas le même texte.
+ */
+function measuredLocalParagraph(c: LocalContext, local: LocalFacts | undefined): string {
+    if (!local) return "";
+    const items: string[] = [];
+    if (local.windDir) {
+        items.push(`le vent dominant vient du ${local.windDir} à ${(local.windKmh ?? 0).toLocaleString("fr-FR")} km/h de moyenne`);
+    }
+    if (local.sunKwh !== null) {
+        items.push(`la commune reçoit ${local.sunKwh.toLocaleString("fr-FR")} kWh/m² de rayonnement solaire par an`);
+    }
+    if (local.tminJan !== null) {
+        items.push(`le minimum moyen de janvier y est de ${local.tminJan.toLocaleString("fr-FR")} °C`);
+    }
+    if (local.rainMm !== null) {
+        items.push(`les précipitations cumulées atteignent ${local.rainMm.toLocaleString("fr-FR")} mm par an`);
+    }
+    if (items.length === 0) return "";
+    return `<p class="leading-relaxed">Mesures locales : à ${c.city}, ${joinFr(items)}. Ces valeurs commandent le dimensionnement au vent de la structure (Eurocode 1), le choix des lames et l'évacuation des eaux pluviales.</p>`;
+}
+
 const TIPS: ((c: LocalContext) => string)[] = [
     (c) => `À ${c.city}, les lames orientables de 0° à 135° régulent l'ensoleillement et la ventilation : c'est ce qui rend la terrasse utilisable au cœur de l'été, contrairement à un store fixe.`,
     (c) => `L'évacuation d'eau des pergolas bioclimatiques passe par l'intérieur des piliers : aucune goulotte visible, et plus de salissures projetées sur la façade.`,
@@ -189,14 +224,25 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
         },
         { openers: OPENERS.map((fn) => () => fn(c)), middles: MIDDLES.map((fn) => () => fn(c)) },
         h,
-    ) + riskParagraph(c);
+    ) + riskParagraph(c) + measuredLocalParagraph(c, getLocalFacts(c.slug, c.city));
     const expert_tip = pick(TIPS, h >> 7)(c);
 
+    // --- Mesures réelles de la commune, en tête de bloc ---
+    // Vent, ensoleillement, hiver et pluie ne sont plus des appréciations :
+    // ce sont les valeurs mesurées par NASA POWER sur vingt ans.
+    const local = getLocalFacts(c.slug, c.city);
     const local_facts: { label: string; value: string }[] = [];
+    if (local) {
+        if (local.windDir) local_facts.push({ label: "Vent dominant", value: `${local.windDir} — ${(local.windKmh ?? 0).toLocaleString("fr-FR")} km/h` });
+        if (local.sunKwh !== null) local_facts.push({ label: "Rayonnement solaire", value: `${local.sunKwh.toLocaleString("fr-FR")} kWh/m²/an` });
+        if (local.tmean !== null) local_facts.push({ label: "Température moyenne", value: `${local.tmean.toLocaleString("fr-FR")} °C` });
+        if (local.tminJan !== null) local_facts.push({ label: "Minimum moyen de janvier", value: `${local.tminJan.toLocaleString("fr-FR")} °C` });
+        if (local.rainMm !== null) local_facts.push({ label: "Précipitations annuelles", value: `${local.rainMm.toLocaleString("fr-FR")} mm` });
+        if (local.dju18 !== null) local_facts.push({ label: "Degrés-jours base 18", value: `${local.dju18.toLocaleString("fr-FR")} DJU/an` });
+    }
     if (c.deptCode) local_facts.push({ label: "Département", value: `${c.deptCode} — ${c.deptName}` });
     if (c.region !== "France") local_facts.push({ label: "Région", value: c.region });
     if (c.prefecture) local_facts.push({ label: "Préfecture", value: c.prefecture });
-    local_facts.push({ label: "Vent dominant", value: c.vent });
     if (c.postal) local_facts.push({ label: "Code postal", value: c.postal });
     local_facts.push({ label: "Fourchette de prix", value: PRICE_RANGE });
     if (c.montagne) local_facts.push({ label: "Contrainte", value: "Zone de montagne — charge de neige" });

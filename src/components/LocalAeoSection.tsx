@@ -74,7 +74,7 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
 
                                         {facts.length > 0 && (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-2 mb-6">
-                            {facts.slice(0, 8).map((f) => (
+                            {facts.slice(0, 12).map((f) => (
                                 <div key={f.label} className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4">
                                     <div className="text-xs text-slate-500 font-medium">{f.label}</div>
                                     <div className="text-sm font-bold text-slate-900 mt-1 leading-snug">{f.value}</div>
@@ -82,6 +82,11 @@ export default function LocalAeoSection({ site, pseo }: LocalAeoSectionProps) {
                             ))}
                         </div>
                     )}
+
+                    <p className="text-xs text-slate-500 leading-relaxed mb-6">
+                        Climat, vent et rayonnement : NASA POWER, climatologie sur vingt ans.
+                        Identité administrative : IGN / Etalab.
+                    </p>
 
                     {f0 && (
                         <p className="text-sm text-slate-600 leading-relaxed mb-6 pt-1 border-t border-slate-100">
