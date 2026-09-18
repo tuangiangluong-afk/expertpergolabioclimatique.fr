@@ -9,6 +9,7 @@ import { CheckCircle, Award } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { clampTitle, clampDescription } from "@/lib/seo-meta";
 import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
 import Header from "@/components/Header";
@@ -40,8 +41,8 @@ export async function generateMetadata({
     const pseo = await getPseoContent(site);
 
     return {
-        title: pseo.meta_title,
-        description: pseo.meta_description,
+        title: clampTitle(pseo.meta_title),
+        description: clampDescription(pseo.meta_description),
         alternates: {
             canonical: `https://www.expertpergolabioclimatique.fr/ville/${resolvedParams.slug}`,
             languages: {
@@ -50,8 +51,8 @@ export async function generateMetadata({
             },
         },
         openGraph: {
-            title: pseo.meta_title,
-            description: pseo.meta_description,
+            title: clampTitle(pseo.meta_title),
+            description: clampDescription(pseo.meta_description),
             siteName: site.name,
             images: [
                 {

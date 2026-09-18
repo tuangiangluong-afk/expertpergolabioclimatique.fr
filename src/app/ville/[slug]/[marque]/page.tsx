@@ -4,6 +4,7 @@ import { PERGOLA_BRANDS, getPergolaBrandBySlug } from "@/data/pergola-brands";
 import { slugify } from "@/lib/slugify";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { clampTitle, clampDescription } from "@/lib/seo-meta";
 import { getPseoPergolaContent } from "@/lib/pseo-pergola";
 import PergolaContentPage from "@/components/PergolaContentPage";
 
@@ -27,12 +28,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     const pseo = getPseoPergolaContent(s, m);
     const url = `https://www.expertpergolabioclimatique.fr/ville/${slug}/${ms}`;
     return {
-        title: pseo.meta_title,
-        description: pseo.meta_description,
+        title: clampTitle(pseo.meta_title),
+        description: clampDescription(pseo.meta_description),
         alternates: { canonical: url },
         openGraph: {
-            title: pseo.meta_title,
-            description: pseo.meta_description,
+            title: clampTitle(pseo.meta_title),
+            description: clampDescription(pseo.meta_description),
             locale: "fr_FR",
             type: "website",
             url,

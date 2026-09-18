@@ -50,7 +50,7 @@ export function getPseoPergolaContent(city: CityConfig, marque: PergolaBrand): P
         : "";
     const h = hash(city.city + marque.slug);
 
-    const meta_title = `Pergola Bioclimatique ${marque.name} à ${city.city}${city.department ? ` (${city.department})` : ""} | Prix & Devis`;
+    const meta_title = `Pergola ${marque.name} à ${city.city} | Prix`;
     const meta_description = `Installation d'une pergola bioclimatique ${marque.name} à ${city.city}. ${marque.prix} pose comprise. Lames orientables, capteur vent/pluie. Devis gratuit sous 24h.`;
 
     const hero_title = `Installation <span class="text-purple-600">Pergola Bioclimatique ${marque.name}</span> à ${city.city}`;
