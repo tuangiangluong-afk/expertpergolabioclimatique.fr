@@ -1,6 +1,7 @@
 import type { CityConfig } from "@/lib/db";
 import { departementFromPostal, ventForDepartement, type Departement } from "@/data/fr-departements";
 import { composeLocalIntro } from "@/lib/pseo-local";
+import { clampTitle, clampDescription } from "@/lib/seo-meta";
 import { getLocalFacts, type LocalFacts } from "@/data/local-facts";
 
 export interface PseoPageContent {
@@ -263,8 +264,8 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
     ];
 
     return {
-        meta_title,
-        meta_description,
+        meta_title: clampTitle(meta_title),
+        meta_description: clampDescription(meta_description),
         hero_title,
         hero_badge: c.vent !== "les vents d'ouest dominants"
             ? `Structure dimensionnée pour ${c.vent}`

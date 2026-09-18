@@ -1,6 +1,7 @@
 import type { CityConfig } from "@/lib/db";
 import type { PergolaBrand } from "@/data/pergola-brands";
 import { composeLocalIntro } from "@/lib/pseo-local";
+import { clampTitle, clampDescription } from "@/lib/seo-meta";
 
 // Ensoleillement réel par département — la pergola bioclimatique n'a de sens que selon le climat local
 const SOLEIL: Record<string, { heures: string; conseil: string; prix: string }> = {
@@ -125,8 +126,8 @@ export function getPseoPergolaContent(city: CityConfig, marque: PergolaBrand): P
     ];
 
     return {
-        meta_title,
-        meta_description,
+        meta_title: clampTitle(meta_title),
+        meta_description: clampDescription(meta_description),
         hero_title,
         intro_html,
         prix: marque.prix,
