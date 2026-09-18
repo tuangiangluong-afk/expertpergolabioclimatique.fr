@@ -68,6 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 .from('blog_posts')
                 .select('slug, published_at, updated_at')
                 .eq('status', 'published')
+                .contains('tags', ['pergola'])
                 .order('published_at', { ascending: false });
 
             if (blogPosts) {

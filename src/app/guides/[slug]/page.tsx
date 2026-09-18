@@ -1,5 +1,6 @@
 import { getGuideBySlug, getAllGuides } from '@/lib/mdx';
 import { notFound } from 'next/navigation';
+import { clampTitle, clampDescription } from '@/lib/seo-meta';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -65,8 +66,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     
     if (guide) {
         return {
-            title: guide.meta.title,
-            description: guide.meta.description,
+            title: clampTitle(guide.meta.title),
+            description: clampDescription(guide.meta.description),
         };
     }
 
@@ -84,8 +85,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     
     if (post) {
          return {
-            title: post.seo_title || post.title,
-            description: post.seo_description || post.excerpt,
+            title: clampTitle(post.seo_title || post.title),
+            description: clampDescription(post.seo_description || post.excerpt),
         };
     }
 
