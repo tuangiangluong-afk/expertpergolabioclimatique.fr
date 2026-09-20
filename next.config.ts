@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
     ],
   },
   trailingSlash: false,
+  async redirects() {
+    return [
+      { source: '/ville/saint-exupery', destination: '/ville/lyon', permanent: true },
+      { source: '/ville/orly', destination: '/ville/paris', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
