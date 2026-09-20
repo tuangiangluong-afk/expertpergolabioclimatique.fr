@@ -153,7 +153,7 @@ function measuredLocalParagraph(c: LocalContext, local: LocalFacts | undefined):
         items.push(`la commune reçoit ${local.sunKwh.toLocaleString("fr-FR")} kWh/m² de rayonnement solaire par an`);
     }
     if (local.tminJan !== null) {
-        items.push(`le minimum moyen de janvier y est de ${local.tminJan.toLocaleString("fr-FR")} °C`);
+        items.push(`la température de base hivernale y est de ${local.tminJan.toLocaleString("fr-FR")} °C`);
     }
     if (local.rainMm !== null) {
         items.push(`les précipitations cumulées atteignent ${local.rainMm.toLocaleString("fr-FR")} mm par an`);
@@ -237,7 +237,7 @@ export async function getPseoContent(cityConfig: CityConfig, _targetType: string
         if (local.windDir) local_facts.push({ label: "Vent dominant", value: `${local.windDir} — ${(local.windKmh ?? 0).toLocaleString("fr-FR")} km/h` });
         if (local.sunKwh !== null) local_facts.push({ label: "Rayonnement solaire", value: `${local.sunKwh.toLocaleString("fr-FR")} kWh/m²/an` });
         if (local.tmean !== null) local_facts.push({ label: "Température moyenne", value: `${local.tmean.toLocaleString("fr-FR")} °C` });
-        if (local.tminJan !== null) local_facts.push({ label: "Minimum moyen de janvier", value: `${local.tminJan.toLocaleString("fr-FR")} °C` });
+        if (local.tminJan !== null) local_facts.push({ label: "Température de base hivernale", value: `${local.tminJan.toLocaleString("fr-FR")} °C` });
         if (local.rainMm !== null) local_facts.push({ label: "Précipitations annuelles", value: `${local.rainMm.toLocaleString("fr-FR")} mm` });
         if (local.dju18 !== null) local_facts.push({ label: "Degrés-jours base 18", value: `${local.dju18.toLocaleString("fr-FR")} DJU/an` });
     }
