@@ -116,6 +116,10 @@ export default function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body className={`${inter.variable} antialiased bg-white text-slate-900`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.expertpergolabioclimatique.fr/#organization", "name": "Expert Pergola Bioclimatique", "url": "https://www.expertpergolabioclimatique.fr", "logo": {"@type": "ImageObject", "url": "https://www.expertpergolabioclimatique.fr/favicon.ico"}}, {"@type": "WebSite", "@id": "https://www.expertpergolabioclimatique.fr/#website", "url": "https://www.expertpergolabioclimatique.fr", "name": "Expert Pergola Bioclimatique", "inLanguage": "fr", "publisher": {"@id": "https://www.expertpergolabioclimatique.fr/#organization"}}, {"@type": "WebPage", "@id": "https://www.expertpergolabioclimatique.fr/#webpage", "url": "https://www.expertpergolabioclimatique.fr", "name": "Expert Pergola Bioclimatique", "isPartOf": {"@id": "https://www.expertpergolabioclimatique.fr/#website"}, "about": {"@id": "https://www.expertpergolabioclimatique.fr/#organization"}, "publisher": {"@id": "https://www.expertpergolabioclimatique.fr/#organization"}, "datePublished": "2026-06-20T00:00:00Z", "dateModified": "2026-09-26T00:00:00Z"}]}).replace(/</g, '\\u003c') }}
+      />
         <Script src="https://answershaper.com/api/v1/m2m/local-tag/23.js" strategy="lazyOnload" defer />
         {/* Google Tag Manager (noscript) */}
         <noscript>
