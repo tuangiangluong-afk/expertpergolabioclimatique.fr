@@ -25,7 +25,7 @@ export default function HomePage() {
     const cities = NATIONAL_TARGETS.map(t => ({ name: t.name, slug: slugify(t.name), available: true, department: t.zip.substring(0,2) }));
 
     return (
-        <div className="min-h-screen font-sans text-slate-900 bg-white">
+        <div role="main" className="min-h-screen font-sans text-slate-900 bg-white">
             <Header isHub={true} variant="default" themeColor="purple" />
             <section className="relative pt-20 pb-12 lg:pt-24 lg:pb-32 overflow-hidden bg-slate-50">
                 <div className="absolute inset-0 -z-10 bg-slate-100 opacity-30" />
