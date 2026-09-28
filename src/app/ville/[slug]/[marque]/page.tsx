@@ -10,10 +10,15 @@ import PergolaContentPage from "@/components/PergolaContentPage";
 
 type Params = Promise<{ slug: string; marque: string }>;
 
+export const dynamicParams = true;
+
+// Pre-render top 6 combinations at build time; others are generated on-demand (ISR 24h)
 export async function generateStaticParams() {
     const p: { slug: string; marque: string }[] = [];
-    Object.values(CITIES).forEach((c) => {
-        PERGOLA_BRANDS.forEach((m) => {
+    const topCities = Object.values(CITIES).slice(0, 3);
+    const topMarques = PERGOLA_BRANDS.slice(0, 2);
+    topCities.forEach((c) => {
+        topMarques.forEach((m) => {
             p.push({ slug: slugify(c.city), marque: m.slug });
         });
     });

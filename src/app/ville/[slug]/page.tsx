@@ -22,8 +22,11 @@ import { VillesVoisines } from "@/components/VillesVoisines";
 import { LocalFAQ } from "@/components/LocalFAQ";
 import RealizationsGrid from "@/components/RealizationsGrid";
 
+export const dynamicParams = true;
+
+// Pre-render top 5 cities at build time; others are generated on-demand (ISR 24h)
 export async function generateStaticParams() {
-    return Object.values(CITIES).map(city => ({ slug: slugify(city.city) }));
+    return Object.values(CITIES).slice(0, 5).map(city => ({ slug: slugify(city.city) }));
 }
 
 export async function generateMetadata({

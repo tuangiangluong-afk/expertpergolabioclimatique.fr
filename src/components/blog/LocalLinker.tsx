@@ -66,7 +66,7 @@ export default function LocalLinker() {
                 </div>
                 <div>
                     <h3 className="font-bold text-lg">Installateur Chauffage / PAC Local</h3>
-                    <p className="text-stone-200 text-xs">Encuentre a su experto local</p>
+                    <p className="text-stone-200 text-xs">Encuentre a su experto local<span className="sr-only">.</span></p>
                 </div>
             </div>
 

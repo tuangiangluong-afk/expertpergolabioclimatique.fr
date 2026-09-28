@@ -25,8 +25,9 @@ export default function HomePage() {
     const cities = NATIONAL_TARGETS.map(t => ({ name: t.name, slug: slugify(t.name), available: true, department: t.zip.substring(0,2) }));
 
     return (
-        <div role="main" className="min-h-screen font-sans text-slate-900 bg-white">
+        <div className="min-h-screen font-sans text-slate-900 bg-white">
             <Header isHub={true} variant="default" themeColor="purple" />
+            <main>
             <section className="relative pt-20 pb-12 lg:pt-24 lg:pb-32 overflow-hidden bg-slate-50">
                 <div className="absolute inset-0 -z-10 bg-slate-100 opacity-30" />
                 <div className="container mx-auto px-4 relative z-20">
@@ -48,7 +49,7 @@ export default function HomePage() {
                                     <div className="p-1 bg-gradient-to-r from-purple-600 to-indigo-600"></div>
                                     <div className="p-6 md:p-8">
                                         <div className="mb-6">
-                                            <h3 className="text-lg font-bold text-slate-900">Simulateur de Devis</h3>
+                                            <h3 className="text-lg font-bold text-slate-900">Simulateur de Devis<span className="sr-only">.</span></h3>
                                             <p className="text-sm text-slate-500">Gratuit • Sans engagement • Résultats en 2 min</p>
                                         </div>
                                         <LeadForm
@@ -84,7 +85,7 @@ export default function HomePage() {
             {/* Local Cities Section */}
             <section className="py-16 bg-slate-50">
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Installateurs de Pergolas par Département</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Installateurs de Pergolas par Département<span className="sr-only">.</span></h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                         {cities.map((city, idx) => (
                             <Link href={`/ville/${city.slug}`} key={idx} className="p-4 bg-white border rounded-xl hover:border-purple-500 shadow-sm text-center font-semibold text-slate-800">
@@ -106,7 +107,7 @@ export default function HomePage() {
                                 </span>
                                 <h3 className="text-2xl font-bold text-slate-900">
                                     Concevez votre pergola bioclimatique sur-mesure
-                                </h3>
+                                <span className="sr-only">.</span></h3>
                                 <p className="text-slate-600 text-sm leading-relaxed">
                                     Profitez d&apos;un espace de vie extérieur protégé du soleil et des intempéries toute l&apos;année : structure aluminium extrudé, motorisation Somfy, capteurs vent/pluie et éclairage LED intégré avec garantie décennale.
                                 </p>
@@ -124,6 +125,7 @@ export default function HomePage() {
             </section>
 
             <FAQSection />
+            </main>
             <Footer config={hub} />
             <MobileStickyCTA themeColor="purple" />
         </div>
