@@ -7,6 +7,7 @@ import { PERGOLA_BRANDS } from '@/data/pergola-brands';
 import { PERGOLA_TYPES } from '@/data/pergola-types';
 import { PERGOLA_TAILLES } from '@/data/pergola-tailles';
 import { PERGOLA_COMPARATIFS } from '@/data/pergola-comparatifs';
+import { PERGOLA_OPERATORS } from '@/data/operators';
 
 // Base URL (Hub)
 const BASE_URL = 'https://www.expertpergolabioclimatique.fr';
@@ -21,6 +22,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 1,
+        },
+        {
+            url: `${BASE_URL}/operateurs`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/marques`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/comparatifs`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        },
+        {
+            url: `${BASE_URL}/tailles`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.85,
         },
         {
             url: `${BASE_URL}/guides`,
@@ -110,16 +135,58 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }));
     });
 
-    // 6. Marques
-    const marquesRoutes = PERGOLA_BRANDS.map((m) => ({ url: `${BASE_URL}/marques/${m.slug}`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 }));
-    // 7. Types
-    const typeRoutes = PERGOLA_TYPES.map((t) => ({ url: `${BASE_URL}/type/${t.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 }));
-    // 8. Tailles
-    const tailleRoutes = PERGOLA_TAILLES.map((t) => ({ url: `${BASE_URL}/tailles/${t.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 }));
-    // 9. Comparatifs
-    const comparatifRoutes = PERGOLA_COMPARATIFS.map((c) => ({ url: `${BASE_URL}/comparatif/${c.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.85 }));
+    // 6. Opérateurs Pages
+    const operateursRoutes: MetadataRoute.Sitemap = PERGOLA_OPERATORS.map((op) => ({
+        url: `${BASE_URL}/operateurs/${op.slug}`,
+        lastModified: new Date(op.updatedAt),
+        changeFrequency: 'weekly' as const,
+        priority: 0.85,
+    }));
 
-    return [...routes, ...guideRoutes, ...blogRoutes, ...cityRoutes, ...cityMarqueRoutes, ...marquesRoutes, ...typeRoutes, ...tailleRoutes, ...comparatifRoutes].map(item => ({
+    // 7. Marques Pages
+    const marquesRoutes: MetadataRoute.Sitemap = PERGOLA_BRANDS.map((m) => ({
+        url: `${BASE_URL}/marques/${m.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }));
+
+    // 8. Types
+    const typeRoutes: MetadataRoute.Sitemap = PERGOLA_TYPES.map((t) => ({
+        url: `${BASE_URL}/type/${t.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+    }));
+
+    // 9. Tailles
+    const tailleRoutes: MetadataRoute.Sitemap = PERGOLA_TAILLES.map((t) => ({
+        url: `${BASE_URL}/tailles/${t.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+    }));
+
+    // 10. Comparatifs
+    const comparatifRoutes: MetadataRoute.Sitemap = PERGOLA_COMPARATIFS.map((c) => ({
+        url: `${BASE_URL}/comparatif/${c.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.85,
+    }));
+
+    return [
+        ...routes,
+        ...guideRoutes,
+        ...blogRoutes,
+        ...cityRoutes,
+        ...cityMarqueRoutes,
+        ...operateursRoutes,
+        ...marquesRoutes,
+        ...typeRoutes,
+        ...tailleRoutes,
+        ...comparatifRoutes
+    ].map(item => ({
         ...item,
         url: item.url.toLowerCase()
     }));

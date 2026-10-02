@@ -3,7 +3,7 @@ import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { slugify } from "@/lib/slugify";
 import { getHubConfig } from "@/lib/sites-config";
 import { NATIONAL_TARGETS } from "@/config/national-targets";
-import { Zap, Award, ArrowRight, Home, CheckCircle } from "lucide-react";
+import { Zap, Award, ArrowRight, Home, CheckCircle, Users, Scale, Sun, FileText, BookOpen, Sparkles, Sliders } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -14,10 +14,42 @@ import InstallationSteps from "@/components/InstallationSteps";
 import PricingTable from "@/components/PricingTable";
 import FAQSection from "@/components/FAQSection";
 import RealizationsGrid from "@/components/RealizationsGrid";
+import { ogImageUrl } from "@/lib/seo-meta";
+
+const homeOg = ogImageUrl({
+    q: "Pergolas Bioclimatiques Sur-Mesure 2026",
+    sub: "Comparatif des 12 fabricants, simulation de prix et devis gratuit 24h",
+    badge: "OBSERVATOIRE 2026",
+});
 
 export const metadata = {
-    title: "Expert Pergola Bioclimatique : pergolas sur mesure",
-    description: "Concevez et installez votre pergola bioclimatique en aluminium sur mesure en France. Demandez des devis gratuits.",
+    title: "Expert Pergola Bioclimatique : Comparatif, Prix & Devis 2026",
+    description: "Concevez et installez votre pergola bioclimatique en aluminium sur-mesure en France. Comparez les 12 fabricants et demandez vos devis gratuits.",
+    alternates: {
+        canonical: "https://www.expertpergolabioclimatique.fr",
+    },
+    openGraph: {
+        title: "Expert Pergola Bioclimatique : Comparatif, Prix & Devis 2026",
+        description: "Concevez et installez votre pergola bioclimatique en aluminium sur-mesure en France. Comparez les 12 fabricants et demandez vos devis gratuits.",
+        url: "https://www.expertpergolabioclimatique.fr",
+        siteName: "Expert Pergola Bioclimatique",
+        locale: "fr_FR",
+        type: "website",
+        images: [
+            {
+                url: homeOg,
+                width: 1200,
+                height: 630,
+                alt: "Expert Pergola Bioclimatique - Observatoire et Devis 2026",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Expert Pergola Bioclimatique : Comparatif, Prix & Devis 2026",
+        description: "Concevez et installez votre pergola bioclimatique en aluminium sur-mesure en France.",
+        images: [homeOg],
+    },
 };
 
 export default function HomePage() {
@@ -82,6 +114,106 @@ export default function HomePage() {
             <TestimonialsSection />
             <RealizationsGrid />
             
+            {/* Cluster Hubs: Base de Connaissances Pergola Bioclimatique 2026 */}
+            <section className="py-20 bg-white border-t border-slate-100">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800 uppercase tracking-wider mb-4">
+                            <Sparkles className="w-3.5 h-3.5" />
+                            Observatoire National de l'Aménagement Extérieur
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                            Base de Connaissances Pergolas Bioclimatiques 2026
+                        </h2>
+                        <p className="mt-4 text-lg text-slate-600">
+                            Explorez nos dossiers exclusifs, l'audit des 12 constructeurs, le guide des dimensions et nos comparatifs impartiaux.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        {[
+                            {
+                                icon: Users,
+                                title: "Constructeurs & Réseaux de Pose",
+                                desc: "Audit complet des 12 acteurs : Biossun, Brustor, Solisysteme, Renson, Gustave Rideau, Akena, Artisans Qualibat.",
+                                href: "/operateurs",
+                                badge: "12 CONSTRUCTEURS",
+                                iconBg: "bg-purple-100",
+                                iconColor: "text-purple-700",
+                            },
+                            {
+                                icon: Sun,
+                                title: "Grandes Marques Leaders",
+                                desc: "Banc d'essai des fabricants : Brustor B200 XL, Solisysteme Horizon, Biossun BIO 230, Renson Camargue, Gaviota.",
+                                href: "/marques",
+                                badge: "6 MARQUES",
+                                iconBg: "bg-blue-100",
+                                iconColor: "text-blue-700",
+                            },
+                            {
+                                icon: Scale,
+                                title: "Comparatifs & Duels Décisionnels",
+                                desc: "6 duels décisionnels : Bioclimatique vs Classique, Adossée vs Autoportée, Brustor vs Solisysteme, Aluminium vs Bois.",
+                                href: "/comparatifs",
+                                badge: "6 DUELS",
+                                iconBg: "bg-indigo-100",
+                                iconColor: "text-indigo-700",
+                            },
+                            {
+                                icon: Sliders,
+                                title: "Tailles, Formats & Dimensions",
+                                desc: "Prix et configurations pour terrasses 3x3 (9m²), 4x3 (12m²), 4x4 (16m²), 6x4 (24m²) et sur-mesure grande portée.",
+                                href: "/tailles",
+                                badge: "DIMENSIONS",
+                                iconBg: "bg-amber-100",
+                                iconColor: "text-amber-700",
+                            },
+                            {
+                                icon: FileText,
+                                title: "Réglementation & Mairie (DP)",
+                                desc: "Tout sur la Déclaration Préalable de travaux (5 à 20 m²), le permis de construire, la TVA 10% et la taxe d'aménagement.",
+                                href: "/guides",
+                                badge: "URBANISME",
+                                iconBg: "bg-emerald-100",
+                                iconColor: "text-emerald-700",
+                            },
+                            {
+                                icon: BookOpen,
+                                title: "Glossaire Technique Pergola",
+                                desc: "Lames double paroi, Qualicoat Classe 2, Qualimarine, Somfy io, Fixscreen zip, classe au vent : tout expliqué.",
+                                href: "/glossaire",
+                                badge: "GUIDE TECHNIQUE",
+                                iconBg: "bg-rose-100",
+                                iconColor: "text-rose-700",
+                            },
+                        ].map((hub, i) => (
+                            <Link key={i} href={hub.href} className="group">
+                                <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 group-hover:shadow-lg group-hover:border-purple-400 transition-all h-full flex flex-col">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div className={`w-12 h-12 ${hub.iconBg} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                                            <hub.icon className={hub.iconColor} size={24} />
+                                        </div>
+                                        <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-700 tracking-wide">
+                                            {hub.badge}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-purple-700 transition-colors">
+                                        {hub.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-600 flex-1 leading-relaxed">
+                                        {hub.desc}
+                                    </p>
+                                    <div className="mt-4 pt-4 border-t border-slate-200/60 flex items-center gap-1 text-sm font-bold text-purple-700 group-hover:text-purple-800">
+                                        <span>Consulter le dossier</span>
+                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Local Cities Section */}
             <section className="py-16 bg-slate-50">
                 <div className="max-w-6xl mx-auto px-4">

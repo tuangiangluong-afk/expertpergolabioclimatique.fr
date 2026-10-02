@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { Zap } from "lucide-react";
+import { Zap, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 interface HeaderProps {
@@ -40,14 +40,26 @@ export default function Header({
 
     const navLinks = [
         {
-                "href": "/blog",
-                "text": "Articles & Guides"
+            href: "/operateurs",
+            text: "Opérateurs & Réseaux"
         },
         {
-                "href": "#simulateur",
-                "text": "Simulateur"
+            href: "/marques",
+            text: "Marques"
+        },
+        {
+            href: "/comparatifs",
+            text: "Comparatifs"
+        },
+        {
+            href: "/tailles",
+            text: "Tailles & Prix"
+        },
+        {
+            href: "/guides",
+            text: "Guides & Aides"
         }
-];
+    ];
 
     const pathname = usePathname();
 
@@ -85,9 +97,9 @@ export default function Header({
                         </div>
                     )}
 
-                    <div className="hidden lg:flex items-center gap-2 bg-purple-500/10 border-purple-500/20 text-purple-700 px-3 py-1.5 rounded-full">
-                        <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                        <span className="text-xs font-bold">Fabricants Premium</span>
+                    <div className="hidden lg:flex items-center gap-1.5 bg-purple-50 border border-purple-200 text-purple-700 px-3 py-1.5 rounded-full">
+                        <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />
+                        <span className="text-xs font-bold">Fabricants Certifiés</span>
                     </div>
 
                     <Link
