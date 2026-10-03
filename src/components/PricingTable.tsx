@@ -5,8 +5,8 @@ export default function PricingTable() {
             <div className="max-w-4xl mx-auto px-4">
                 <h2 className="text-3xl font-extrabold text-center mb-6">Prix indicatifs d'une Pergola Bioclimatique</h2>
                 <p className="text-center text-slate-500 mb-12">Les tarifs varient selon les dimensions, le type d'installation (adossée ou autoportée) et les options choisies (LED, stores latéraux, capteurs).</p>
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse border border-slate-200">
+                <div className="overflow-x-auto w-full">
+                    <table className="w-full min-w-[640px] text-left border-collapse border border-slate-200">
                         <thead>
                             <tr className="bg-slate-100">
                                 <th className="p-4 font-bold border border-slate-200">Type de Pergola Bioclimatique</th>
