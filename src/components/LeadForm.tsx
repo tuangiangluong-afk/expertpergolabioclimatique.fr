@@ -23,8 +23,8 @@ interface FormData {
     phoneConsent?: boolean;
 }
 
-const FRENCH_PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-const PHONE_REGEX = FRENCH_PHONE_REGEX;
+const cleanPhone = (v: string) => v.replace(/[^\d+]/g, '');
+const isPhoneValid = (v: string) => /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(cleanPhone(v));
 const ZIP_CODE_REGEX = /^\d{5}$/;
 
 export default function LeadForm({ city, domain, initialProjectType }: LeadFormProps) {
@@ -71,7 +71,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
                     formData.name.trim() !== "" &&
                     formData.email.includes("@") &&
                     ZIP_CODE_REGEX.test(formData.zipCode.trim()) &&
-                    PHONE_REGEX.test(formData.phone.replace(/\s/g, '')) && formData.phoneConsent === true
+                    isPhoneValid(formData.phone) && formData.phoneConsent === true
                 );
             default: return false;
         }
@@ -98,6 +98,7 @@ export default function LeadForm({ city, domain, initialProjectType }: LeadFormP
         try {
             const payload = {
                 ...formData,
+                phone: cleanPhone(formData.phone),
                 city,
                 postalCode: formData.zipCode,
                 domain,
