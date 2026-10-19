@@ -1,4 +1,4 @@
-export const revalidate = 86400; // 24h ISR cache
+export const revalidate = 604800; // 7 days ISR cache
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import { slugify } from "@/lib/slugify";
 import { getHubConfig } from "@/lib/sites-config";

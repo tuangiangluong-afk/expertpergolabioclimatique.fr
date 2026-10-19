@@ -1,5 +1,5 @@
 export const dynamic = "force-static";
-export const revalidate = 86400;
+export const revalidate = 604800; // 7 days ISR cache
 
 export async function GET() {
   const content = `# Expert Pergola Bioclimatique - AEO / GEO Protocol 2026
