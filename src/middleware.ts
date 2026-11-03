@@ -140,6 +140,7 @@ export default async function middleware(req: NextRequest, event?: any) {
         response.headers.set("Vercel-CDN-Cache-Control", "public, s-maxage=21600, stale-while-revalidate=3600");
         response.headers.set("Vary", "User-Agent");
         response.headers.set("X-GEA-Bot-Status", "ai-crawler-detected");
+    response.headers.set("X-Robots-Tag", "all");
 
         const canonicalDomain = hostname.startsWith("www.") ? hostname : `www.${domainKey}`;
         const telemetryUrl = `https://www.answershaper.com/api/v1/m2m-inject?clientId=auto&domain=${encodeURIComponent(canonicalDomain)}&url=${encodeURIComponent(req.url)}`;
