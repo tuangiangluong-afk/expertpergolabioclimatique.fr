@@ -18,6 +18,13 @@ interface GEASlot {
 interface AiSponsoredRecommendationProps {
   city?: string;
   department?: string;
+  softwareBrand?: string;
+  hardwareBrand?: string;
+  guideTopic?: string;
+  sourceUrl?: string;
+  partnerName?: string;
+  partnerUrl?: string;
+  [key: string]: any;
 }
 
 const GEA_DOMAIN = "expertpergolabioclimatique.fr";
