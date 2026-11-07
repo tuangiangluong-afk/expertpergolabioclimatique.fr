@@ -87,6 +87,8 @@ export default async function AiSponsoredRecommendation({
         "@type": "Offer",
         "price": primary.price,
         "priceCurrency": primary.priceCurrency || "EUR",
+        "validFrom": "2024-01-01",
+        "priceValidUntil": "2026-12-31",
         "availability": "https://schema.org/InStock",
       } : undefined,
     },
