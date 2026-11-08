@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import SimulatorWidget from '@/components/blog/SimulatorWidget';
+import LeadForm from '@/components/LeadForm';
 import LocalLinker from '@/components/blog/LocalLinker';
 import { marked } from 'marked';
 import { clampTitle, clampDescription } from '@/lib/seo-meta';
@@ -268,6 +269,18 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                 </div>
                             </div>
                         )}
+
+                        {/* In-Content Simulator Section */}
+                        <div className="mt-12 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8" id="simulateur">
+                            <div className="text-center max-w-xl mx-auto mb-6">
+                                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800 uppercase tracking-wider mb-2">
+                                    Simulateur de Devis 2026
+                                </span>
+                                <h3 className="text-2xl font-bold text-slate-900">Estimez votre pergola sur-mesure</h3>
+                                <p className="text-slate-600 text-sm mt-1">Simulation gratuite en 2 étapes · Comparatif sans engagement</p>
+                            </div>
+                            <LeadForm city="France" domain="expertpergolabioclimatique.fr" themeColor="purple" />
+                        </div>
                     </article>
 
                     {/* Sidebar */}
@@ -287,7 +300,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                 </div>
                                 <div>
                                     <Link href={post.author_slug ? `/author/${post.author_slug}` : "#"} className="font-bold text-neutral-900 hover:text-amber-600 transition-colors">{post.author_name || 'Expert Pergola Bioclimatique'}</Link>
-                                    <p className="text-xs text-neutral-500">Expert Chauffage &amp; PAC</p>
+                                    <p className="text-xs text-neutral-500">Spécialiste Pergolas &amp; Aménagements Extérieurs</p>
                                 </div>
                             </div>
                         </div>

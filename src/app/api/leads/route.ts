@@ -49,8 +49,8 @@ export async function POST(request: Request) {
 
         console.log(`⚖️ [ARBITRAGE] Pays: ${currentCountry} | Niche: ${currentNiche} | Status: ${arbitrageStatus}`);
 
-        // 1. VITEUNDEVIS (FR)
-        if (true) { // Always route to ViteUnDevis
+        // 1. VITEUNDEVIS (FR) - Ne pas envoyer sous cat_id 108 (Pompe à chaleur) pour éviter les rejets
+        if (false) {
             console.log("📡 [ViteUnDevis] Forwarding lead...");
             const nameParts = (name || '').trim().split(/\s+/);
             const prenom = nameParts[0] || 'Client';
@@ -184,7 +184,8 @@ export async function POST(request: Request) {
 
             await resend.emails.send({
                 from: `${siteName} <hello@expertbornerecharge.com>`,
-                to: ['hello@expertbornerecharge.com'],
+                to: ['hello@expertpergolabioclimatique.fr', 'hello@expertbornerecharge.com'],
+                replyTo: email,
                 subject,
                 html
             });

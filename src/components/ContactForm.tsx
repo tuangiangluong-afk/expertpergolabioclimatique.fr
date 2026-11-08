@@ -22,19 +22,19 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
         const data = Object.fromEntries(formData.entries());
 
         const errors: string[] = [];
-        if (!data.name || (data.name as string).trim() === "") errors.push("Nombre completo");
-        if (!data.email || !(data.email as string).includes("@")) errors.push("Correo electrónico");
-        if (!data.postalCode || !/^\d{4,5}$/.test((data.postalCode as string).trim())) errors.push("Código Postal");
-        if (!data.message || (data.message as string).trim() === "") errors.push("Mensaje");
+        if (!data.name || (data.name as string).trim() === "") errors.push("Nom complet");
+        if (!data.email || !(data.email as string).includes("@")) errors.push("Adresse email");
+        if (!data.postalCode || !/^\d{4,5}$/.test((data.postalCode as string).trim())) errors.push("Code postal");
+        if (!data.message || (data.message as string).trim() === "") errors.push("Message");
         
         const phone = (data.phone as string) || "";
-        if (phone.trim() === "" || phone.length < 8) {
-            errors.push("Teléfono");
+        if (phone.trim() === "" || phone.replace(/\D/g, '').length < 8) {
+            errors.push("Numéro de téléphone");
         }
 
         if (errors.length > 0) {
             setStatus("error");
-            setErrorMessage(`Merci de renseigner correctement les champs.`);
+            setErrorMessage(`Veuillez renseigner correctement les champs : ${errors.join(", ")}.`);
             return;
         }
 
@@ -49,7 +49,7 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
 
             if (!res.ok) {
                 const json = await res.json();
-                throw new Error(json.error || "Une erreur est survenue. Merci de nous appeler directement.");
+                throw new Error(json.error || "Une erreur est survenue lors de l'envoi. Merci de réessayer.");
             }
 
             setStatus("success");
@@ -57,23 +57,23 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
         } catch (error: any) {
             console.error(error);
             setStatus("error");
-            setErrorMessage(error.message || "Une erreur est survenue. Merci de nous appeler directement.");
+            setErrorMessage(error.message || "Une erreur est survenue. Merci de nous contacter directement par email.");
         }
     }
 
     if (status === "success") {
         return (
-            <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center animate-in fade-in zoom-in duration-300">
-                <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                    <CheckCircle className="text-green-600" size={32} />
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center animate-in fade-in zoom-in duration-300">
+                <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+                    <CheckCircle className="text-emerald-600" size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-green-900 mb-2">¡Mensaje enviado!</h3>
-                <p className="text-green-700">
-                    Gracias por contactarnos. Le responderemos en menos de 24 horas.
+                <h3 className="text-xl font-bold text-emerald-900 mb-2">Message envoyé avec succès !</h3>
+                <p className="text-emerald-700">
+                    Merci pour votre message. Un conseiller technique Expert Pergola vous répondra en moins de 24 heures.
                 </p>
                 <button
                     onClick={() => setStatus("idle")}
-                    className="mt-6 text-sm font-semibold text-green-800 hover:underline"
+                    className="mt-6 text-sm font-semibold text-emerald-800 hover:underline"
                 >
                     Envoyer un autre message
                 </button>
@@ -81,31 +81,31 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
         );
     }
 
-    const inputClasses = `w-full rounded-xl border border-neutral-300 px-4 py-3 text-neutral-900 focus:border-blue-500 focus:ring-blue-500 transition outline-none bg-white font-medium`;
-    const buttonClasses = `w-full flex items-center justify-center gap-2 rounded-xl py-4 text-white font-bold text-lg transition active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed ${theme.classes.bg} hover:brightness-110`;
+    const inputClasses = `w-full rounded-xl border border-neutral-300 px-4 py-3 text-neutral-900 focus:border-purple-500 focus:ring-purple-500 transition outline-none bg-white font-medium`;
+    const buttonClasses = `w-full flex items-center justify-center gap-2 rounded-xl py-4 text-white font-bold text-lg transition active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed ${theme.classes.bg} hover:brightness-110 shadow-lg`;
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-neutral-700">Nombre completo</label>
+                    <label htmlFor="name" className="text-sm font-medium text-neutral-700">Nom et prénom *</label>
                     <input
                         required
                         type="text"
                         name="name"
                         id="name"
-                        placeholder="Juan Pérez"
+                        placeholder="Jean Dupont"
                         className={inputClasses}
                     />
                 </div>
                 <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-neutral-700">Correo electrónico</label>
+                    <label htmlFor="email" className="text-sm font-medium text-neutral-700">Adresse email *</label>
                     <input
                         required
                         type="email"
                         name="email"
                         id="email"
-                        placeholder="email@example.com"
+                        placeholder="jean.dupont@gmail.com"
                         className={inputClasses}
                     />
                 </div>
@@ -113,25 +113,26 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
 
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium text-neutral-700">Asunto</label>
+                    <label htmlFor="subject" className="text-sm font-medium text-neutral-700">Objet de votre demande *</label>
                     <select
                         name="subject"
                         id="subject"
                         className={inputClasses}
                     >
-                        <option value="devis_particulier">Devis particulier</option>
-                        <option value="devis_pro">Devis entreprise</option>
+                        <option value="devis_particulier">Demande de devis pergola particulier</option>
+                        <option value="devis_pro">Projet professionnel / CHR / Restaurant</option>
                         <option value="partenariat_installateur">Devenir installateur partenaire</option>
-                        <option value="autre">Otra consulta</option>
+                        <option value="autre">Autre question ou renseignement</option>
                     </select>
                 </div>
                 <div className="space-y-2">
-                    <label htmlFor="postalCode" className="text-sm font-medium text-neutral-700">Código Postal</label>
+                    <label htmlFor="postalCode" className="text-sm font-medium text-neutral-700">Code postal du projet *</label>
                     <input
                         required
                         type="text"
                         name="postalCode"
                         id="postalCode"
+                        placeholder="Ex : 75000, 69000..."
                         maxLength={5}
                         className={inputClasses}
                     />
@@ -139,12 +140,13 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
             </div>
 
             <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium text-neutral-700">Teléfono</label>
+                <label htmlFor="phone" className="text-sm font-medium text-neutral-700">Numéro de téléphone *</label>
                 <input
                     required
                     type="tel"
                     name="phone"
                     id="phone"
+                    placeholder="Ex : 06 12 34 56 78"
                     className={inputClasses}
                 />
             </div>
@@ -152,13 +154,13 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
             <input type="text" name="b_name" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
 
             <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-neutral-700">Mensaje</label>
+                <label htmlFor="message" className="text-sm font-medium text-neutral-700">Votre message ou description de votre projet *</label>
                 <textarea
                     required
                     name="message"
                     id="message"
                     rows={5}
-                    placeholder="Hola, me gustaría..."
+                    placeholder="Bonjour, je souhaite installer une pergola bioclimatique en aluminium d'environ 20 m² sur ma terrasse..."
                     className={`${inputClasses} resize-none`}
                 />
             </div>
@@ -178,18 +180,18 @@ export default function ContactForm({ domain, city, theme }: ContactFormProps) {
                 {status === "loading" ? (
                     <>
                         <Loader2 className="animate-spin" size={20} />
-                        Enviando...
+                        Envoi de votre demande en cours...
                     </>
                 ) : (
                     <>
                         <Send size={20} />
-                        Envoyer le message
+                        Envoyer ma demande
                     </>
                 )}
             </button>
 
             <p className="text-xs text-center text-neutral-500">
-                En envoyant ce formulaire, vous acceptez notre politique de confidentialité.
+                En soumettant ce formulaire, vous acceptez d&apos;être recontacté(e) gratuitement dans le cadre de votre projet de pergola. Vos données restent strictement confidentielles.
             </p>
         </form>
     );

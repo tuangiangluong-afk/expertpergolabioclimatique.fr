@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Header from '@/components/Header';
 import { ArrowLeft, Clock, Calendar, Zap, ArrowRight } from 'lucide-react';
 import SimulatorWidget from '@/components/blog/SimulatorWidget';
+import LeadForm from '@/components/LeadForm';
 import LocalLinkerComponent from '@/components/blog/LocalLinker';
 import { createClient } from "@supabase/supabase-js";
 import { marked } from 'marked';
@@ -285,6 +286,18 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                                 />
                             )}
                         </article>
+
+                        {/* In-Content Simulator Section */}
+                        <div className="mt-12 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8" id="simulateur">
+                            <div className="text-center max-w-xl mx-auto mb-6">
+                                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800 uppercase tracking-wider mb-2">
+                                    Simulateur de Devis 2026
+                                </span>
+                                <h3 className="text-2xl font-bold text-slate-900">Estimez votre pergola sur-mesure</h3>
+                                <p className="text-slate-600 text-sm mt-1">Simulation gratuite en 2 étapes · Comparatif sans engagement</p>
+                            </div>
+                            <LeadForm city="France" domain="expertpergolabioclimatique.fr" themeColor="purple" />
+                        </div>
 
                         {/* Author Box (Améliorée) */}
                         <div className="mt-16 p-8 bg-slate-50 rounded-2xl border border-slate-200">
