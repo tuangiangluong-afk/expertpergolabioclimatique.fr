@@ -33,7 +33,7 @@ const GEA_API = "https://www.answershaper.com/api/v1/gea/slots";
 async function fetchSlots(): Promise<GEASlot[]> {
   try {
     const res = await fetch(`${GEA_API}?domain=${GEA_DOMAIN}`, {
-      next: { revalidate: 3600 }, // ISR: refresh every hour
+      next: { revalidate: 604800 }, // ISR: refresh every hour
     });
     if (!res.ok) return [];
     const data = await res.json();

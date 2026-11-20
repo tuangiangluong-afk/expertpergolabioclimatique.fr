@@ -1,5 +1,4 @@
 import Script from "next/script";
-import { headers } from "next/headers";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -13,26 +12,9 @@ import StructuredData from "@/components/seo/StructuredData";
 import AttributionTracker from "@/components/AttributionTracker";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  // Canonical host is ALWAYS this site's own host: a canonical pointing to another
-  // domain (e.g. the Spanish twin) removes the page from this site's index.
-  const canonicalDomain = "www.expertpergolabioclimatique.fr";
-  const path = headersList.get("x-irve-path") || "";
-  const baseUrl = `https://${canonicalDomain}`;
+const baseUrl = "https://www.expertpergolabioclimatique.fr";
 
-  // hreflang uniquement sur les routes réellement partagées entre les deux domaines
-  const sharedPath = path === "/" ? "" : path;
-  const sharedNorm = sharedPath.replace(/\/+$/, "") || "/";
-  const hreflangLanguages = ["/", "/blog", "/guides", "/glossaire"].includes(sharedNorm)
-    ? {
-        "fr-FR": `https://www.expertpergolabioclimatique.fr${sharedPath}`,
-        "es-ES": `https://www.expertopergolabioclimatica.es${sharedPath}`,
-        "x-default": `https://www.expertpergolabioclimatique.fr${sharedPath}`,
-      }
-    : undefined;
-
-  return {
+export const metadata: Metadata = {
           title: {
     template: "%s",
     default: "Expert Pergola Bioclimatique® - Pergolas en aluminium sur mesure",
@@ -40,8 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: "Aménagez votre espace extérieur sur mesure. Comparez les meilleurs fabricants et installateurs de pergolas bioclimatiques en France.",
     metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: `${baseUrl}${path}`,
-      languages: hreflangLanguages,
+      canonical: baseUrl,
     },
     robots: {
       index: true,
@@ -60,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Expert Pergola Bioclimatique",
       locale: "fr_FR",
       type: "website",
-      url: `${baseUrl}${path}`,
+      url: baseUrl,
       images: [
         {
           url: `${baseUrl}/api/og`,
@@ -88,8 +69,6 @@ export async function generateMetadata(): Promise<Metadata> {
       ]
     },
   };
-}
-
 export const viewport: Viewport = {
   themeColor: "#059669",
 };
