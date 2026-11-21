@@ -107,6 +107,7 @@ export default async function PergolaOperatorDetailPage({ params }: PageProps) {
       url: `https://www.expertpergolabioclimatique.fr/operateurs/${operator.slug}`,
       priceCurrency: "EUR",
       price: operator.priceRangeStandard.replace(/[^0-9]/g, "").slice(0, 4) || "3500",
+      validFrom: "2024-01-01",
       priceValidUntil: "2026-12-31",
       itemCondition: "https://schema.org/NewCondition",
       availability: "https://schema.org/InStock",
